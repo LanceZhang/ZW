@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYWC.ZW.Core", "ZYWC.ZW.Core\ZYWC.ZW.Core.csproj", "{976125E3-5232-4BBD-A1C2-E12A9C389699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYWC.ZW.Core.Analysis", "ZYWC.ZW.Core.Analysis\ZYWC.ZW.Core.Analysis.csproj", "{741ADE16-64B1-4C11-B4FF-234BF72DD095}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZYWC.ZW.Demo", "ZYWC.ZW.Demo\ZYWC.ZW.Demo.csproj", "{AC5617BD-2777-4130-B188-2E19BD8AF1ED}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{976125E3-5232-4BBD-A1C2-E12A9C389699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976125E3-5232-4BBD-A1C2-E12A9C389699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976125E3-5232-4BBD-A1C2-E12A9C389699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976125E3-5232-4BBD-A1C2-E12A9C389699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{741ADE16-64B1-4C11-B4FF-234BF72DD095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{741ADE16-64B1-4C11-B4FF-234BF72DD095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{741ADE16-64B1-4C11-B4FF-234BF72DD095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{741ADE16-64B1-4C11-B4FF-234BF72DD095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC5617BD-2777-4130-B188-2E19BD8AF1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC5617BD-2777-4130-B188-2E19BD8AF1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC5617BD-2777-4130-B188-2E19BD8AF1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC5617BD-2777-4130-B188-2E19BD8AF1ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
