@@ -12,7 +12,7 @@ namespace ZYWC.ZW.Core
 
         public string 星名 { get; set; }
 
-        public int 类型 { get; set; }
+        public StarType 类型 { get; set; }
 
         public int? 亮度 { get; set; }
 
@@ -44,10 +44,26 @@ namespace ZYWC.ZW.Core
             }
         }
 
-        public Star(string name)
+        public Star(string name, StarType type)
         {
             星名 = name;
+            类型 = type;
         }
 
+
+        public enum StarType
+        {
+            主星 = 1,
+            月系 = 2,
+            年系 = 3,
+            时系 = 4,
+            年干系 = 5,
+            火铃 = 6,
+            其它 = 7,
+            博士十二 = 8,
+            长生十二 = 9,
+            年前十二 = 10,
+            岁前十二 = 11
+        }
     }
 }
