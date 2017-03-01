@@ -28,12 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dpBirthDate = new System.Windows.Forms.DateTimePicker();
+            this.txtBrithday = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ckMan = new System.Windows.Forms.CheckBox();
+            this.dpLiuDate = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(773, 685);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "天盘";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // dpBirthDate
+            // 
+            this.dpBirthDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpBirthDate.Location = new System.Drawing.Point(66, 27);
+            this.dpBirthDate.Name = "dpBirthDate";
+            this.dpBirthDate.ShowUpDown = true;
+            this.dpBirthDate.Size = new System.Drawing.Size(133, 21);
+            this.dpBirthDate.TabIndex = 3;
+            this.dpBirthDate.Value = new System.DateTime(1986, 5, 20, 4, 36, 0, 0);
+            // 
+            // txtBrithday
+            // 
+            this.txtBrithday.Location = new System.Drawing.Point(29, 68);
+            this.txtBrithday.Name = "txtBrithday";
+            this.txtBrithday.Size = new System.Drawing.Size(928, 598);
+            this.txtBrithday.TabIndex = 4;
+            this.txtBrithday.Text = "";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(863, 685);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "限流盘";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // ckMan
+            // 
+            this.ckMan.AutoSize = true;
+            this.ckMan.Location = new System.Drawing.Point(207, 30);
+            this.ckMan.Name = "ckMan";
+            this.ckMan.Size = new System.Drawing.Size(36, 16);
+            this.ckMan.TabIndex = 5;
+            this.ckMan.Text = "男";
+            this.ckMan.UseVisualStyleBackColor = true;
+            // 
+            // dpLiuDate
+            // 
+            this.dpLiuDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dpLiuDate.Location = new System.Drawing.Point(355, 25);
+            this.dpLiuDate.Name = "dpLiuDate";
+            this.dpLiuDate.ShowUpDown = true;
+            this.dpLiuDate.Size = new System.Drawing.Size(133, 21);
+            this.dpLiuDate.TabIndex = 3;
+            this.dpLiuDate.Value = new System.DateTime(2016, 7, 22, 9, 3, 0, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 32);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "生辰";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(330, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(17, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "流";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(987, 732);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ckMan);
+            this.Controls.Add(this.txtBrithday);
+            this.Controls.Add(this.dpLiuDate);
+            this.Controls.Add(this.dpBirthDate);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dpBirthDate;
+        private System.Windows.Forms.RichTextBox txtBrithday;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.CheckBox ckMan;
+        private System.Windows.Forms.DateTimePicker dpLiuDate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
