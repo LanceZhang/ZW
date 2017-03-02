@@ -63,13 +63,14 @@ namespace ZYWC.ZW.Demo
 
         }
 
+
+        Engine eg = null;
+
         private void button3_Click(object sender, EventArgs e)
         {
 
-            Engine eg = new Engine(string.Empty);
-
-
-
+            eg = new Engine(string.Empty);
+            
 
 
         }

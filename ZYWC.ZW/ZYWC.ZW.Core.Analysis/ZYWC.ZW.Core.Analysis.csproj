@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DAL.cs" />
     <Compile Include="Data\ziwei_data_s45.cs" />
     <Compile Include="Data\ziwei_data_s44.cs" />
     <Compile Include="Data\ziwei_data_s43.cs" />
