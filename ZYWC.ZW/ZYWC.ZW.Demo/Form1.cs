@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZYWC.ZW.Core;
+using ZYWC.ZW.Core.Analysis;
 
 namespace ZYWC.ZW.Demo
 {
@@ -58,6 +59,17 @@ namespace ZYWC.ZW.Demo
 
 
             this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + pan.TestLiu;
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            Engine eg = new Engine(string.Empty);
+
+
+
 
 
         }

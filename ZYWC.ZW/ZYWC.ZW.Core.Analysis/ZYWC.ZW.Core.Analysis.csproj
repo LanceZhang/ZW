@@ -39,7 +39,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Data\ziwei_data_s45.cs" />
+    <Compile Include="Data\ziwei_data_s44.cs" />
+    <Compile Include="Data\ziwei_data_s43.cs" />
+    <Compile Include="Data\ziwei_data_s42.cs" />
+    <Compile Include="Data\ziwei_data_s1.cs" />
+    <Compile Include="Data\ziwei_data_s31.cs" />
+    <Compile Include="Data\ziwei_data_s26.cs" />
+    <Compile Include="Data\ziwei_data_s25.cs" />
+    <Compile Include="Data\ziwei_data_s24.cs" />
+    <Compile Include="Data\ziwei_data_s23.cs" />
+    <Compile Include="Data\ziwei_data_s22.cs" />
+    <Compile Include="Data\ziwei_data_s21.cs" />
+    <Compile Include="Data\ziwei_data_s20.cs" />
+    <Compile Include="Data\ziwei_data_s15.cs" />
+    <Compile Include="Data\ziwei_data_s14.cs" />
+    <Compile Include="Data\ziwei_data_s13.cs" />
+    <Compile Include="Data\ziwei_data_s12.cs" />
+    <Compile Include="Data\ziwei_data_s11.cs" />
+    <Compile Include="Data\ziwei_data_s7.cs" />
+    <Compile Include="Data\ziwei_data_s6.cs" />
+    <Compile Include="Data\ziwei_data_s5.cs" />
+    <Compile Include="Data\ziwei_data_s4.cs" />
+    <Compile Include="Data\ziwei_data_s3.cs" />
+    <Compile Include="Data\ziwei_data_s2.cs" />
+    <Compile Include="Data\ziwei_data_s10.cs" />
+    <Compile Include="Data\ziwei_data_s9.cs" />
+    <Compile Include="Data\ziwei_data_s8.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

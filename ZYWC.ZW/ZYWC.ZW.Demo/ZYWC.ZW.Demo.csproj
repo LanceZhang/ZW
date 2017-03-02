@@ -78,6 +78,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ZYWC.ZW.Core.Analysis\ZYWC.ZW.Core.Analysis.csproj">
+      <Project>{741ade16-64b1-4c11-b4ff-234bf72dd095}</Project>
+      <Name>ZYWC.ZW.Core.Analysis</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZYWC.ZW.Core\ZYWC.ZW.Core.csproj">
       <Project>{976125e3-5232-4bbd-a1c2-e12a9c389699}</Project>
       <Name>ZYWC.ZW.Core</Name>
