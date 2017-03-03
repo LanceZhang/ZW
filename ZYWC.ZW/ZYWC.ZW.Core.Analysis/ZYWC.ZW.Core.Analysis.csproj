@@ -39,6 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\BenMingAnalyzer.cs" />
+    <Compile Include="BusinessLogic\CaiBoAnalyzer.cs" />
+    <Compile Include="BusinessLogic\FudeAnalyzer.cs" />
+    <Compile Include="BusinessLogic\FuMuAnalyzer.cs" />
+    <Compile Include="BusinessLogic\FuQiAnalyzer.cs" />
+    <Compile Include="BusinessLogic\JiaoYouAnalyzer.cs" />
+    <Compile Include="BusinessLogic\JiEAnalyzer.cs" />
+    <Compile Include="BusinessLogic\QianYiAnalyzer.cs" />
+    <Compile Include="BusinessLogic\ShiYeAnalyzer.cs" />
+    <Compile Include="BusinessLogic\TianZhaiAnalyzer.cs" />
+    <Compile Include="BusinessLogic\XiongDiAnalyzer.cs" />
+    <Compile Include="BusinessLogic\ZiNvAnalyzer.cs" />
     <Compile Include="Data\DAL.cs" />
     <Compile Include="Data\ziwei_data_s45.cs" />
     <Compile Include="Data\ziwei_data_s44.cs" />
@@ -68,10 +80,15 @@
     <Compile Include="Data\ziwei_data_s9.cs" />
     <Compile Include="Data\ziwei_data_s8.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Model\BasicGong.cs" />
+    <Compile Include="Model\FuMuGong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BusinessLogic\" />
+    <ProjectReference Include="..\ZYWC.ZW.Core\ZYWC.ZW.Core.csproj">
+      <Project>{976125e3-5232-4bbd-a1c2-e12a9c389699}</Project>
+      <Name>ZYWC.ZW.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
