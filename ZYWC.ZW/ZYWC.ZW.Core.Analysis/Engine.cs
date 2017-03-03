@@ -13,12 +13,35 @@ namespace ZYWC.ZW.Core.Analysis
     {
         DAL dal = null;
         FuMuAnalyzer fumu = null;
+        FuQiAnalyzer fuqi = null;
+        CaiBoAnalyzer caibo = null;
+        FudeAnalyzer fude = null;
+        JiaoYouAnalyzer jiaoyou = null;
+        JiEAnalyzer jie = null;
+        MingAnalyzer ming = null;
+        QianYiAnalyzer qianyi = null;
+        ShiYeAnalyzer shiye = null;
+        TianZhaiAnalyzer tianzhai = null;
+        XiongDiAnalyzer xiongdi = null;
+        ZiNvAnalyzer zinv = null;
 
         public Engine(string path)
         {
             dal = new DAL(path);
 
             fumu = new FuMuAnalyzer(dal);
+            fuqi = new FuQiAnalyzer(dal);
+            caibo = new CaiBoAnalyzer(dal);
+            jiaoyou = new JiaoYouAnalyzer(dal);
+            jie = new JiEAnalyzer(dal);
+            ming = new MingAnalyzer(dal);
+            qianyi = new QianYiAnalyzer(dal);
+            shiye = new ShiYeAnalyzer(dal);
+            tianzhai = new TianZhaiAnalyzer(dal);
+            xiongdi = new XiongDiAnalyzer(dal);
+            zinv = new ZiNvAnalyzer(dal);
+
+            //fude = new FudeAnalyzer(dal);
         }
 
 
@@ -31,7 +54,93 @@ namespace ZYWC.ZW.Core.Analysis
         }
 
 
+        public FuQiAnalyzer FuQiAnalyzer
+        {
+            get
+            {
+                return fuqi;
+            }
+        }
 
+        public CaiBoAnalyzer CaiBoAnalyzer
+        {
+            get
+            {
+                return caibo;
+            }
+        }
+
+        public FudeAnalyzer FudeAnalyzer
+        {
+            get
+            {
+                return fude;
+            }
+        }
+
+        public JiaoYouAnalyzer JiaoYouAnalyzer
+        {
+            get
+            {
+                return jiaoyou;
+            }
+        }
+
+        public JiEAnalyzer JiEAnalyzer
+        {
+            get
+            {
+                return jie;
+            }
+        }
+
+        public MingAnalyzer MingAnalyzer
+        {
+            get
+            {
+                return ming;
+            }
+        }
+
+        public QianYiAnalyzer QianYiAnalyzer
+        {
+            get
+            {
+                return qianyi;
+            }
+        }
+
+        public ShiYeAnalyzer ShiYeAnalyzer
+        {
+            get
+            {
+                return shiye;
+            }
+        }
+
+        public TianZhaiAnalyzer TianZhaiAnalyzer
+        {
+            get
+            {
+                return tianzhai;
+            }
+        }
+
+        public XiongDiAnalyzer XiongDiAnalyzer
+        {
+            get
+            {
+                return xiongdi;
+            }
+        }
+
+        public ZiNvAnalyzer ZiNvAnalyzer
+        {
+            get
+            {
+                return zinv;
+            }
+        }
 
         /// <summary>     
         /// 从某一XML文件反序列化到某一类型   
