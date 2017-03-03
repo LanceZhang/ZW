@@ -45,6 +45,11 @@ namespace ZYWC.ZW.Core.Analysis.Data
         public ziwei_data_s43 s43 { get; private set; }
         public ziwei_data_s44 s44 { get; private set; }
         public ziwei_data_s45 s45 { get; private set; }
+        public Dictionary<string, s1_xingdi> Dic_ZhuXing { get; private set; }
+        public Dictionary<string, s1_xingdi> Dic_JiXing { get; private set; }
+        public Dictionary<string, s1_xingdi> Dic_XiongXing { get; private set; }
+
+
 
 
         public DAL(string path)
@@ -124,6 +129,13 @@ namespace ZYWC.ZW.Core.Analysis.Data
             s45 = DeserializeFromXml<ziwei_data_s45>(path + "ziwei_data_s45.xml");
 
 
+            Dic_ZhuXing = s1.Where(s => s.character == "正翟").ToDictionary(x => x.name);
+
+
+            Dic_JiXing = s1.Where(s => s.character == "吉星" && s.level == "甲").ToDictionary(x => x.name);
+
+
+            Dic_XiongXing = s1.Where(s => s.character == "煞星").ToDictionary(x => x.name);
 
         }
 
@@ -148,5 +160,21 @@ namespace ZYWC.ZW.Core.Analysis.Data
             }
         }
 
+    }
+
+    public enum GongIndex
+    {
+        命宫 = 0,
+        兄弟宫 = 1,
+        夫妻宫 = 2,
+        子女宫 = 3,
+        财帛宫 = 4,
+        疾厄宫 = 5,
+        迁移宫 = 6,
+        仆役宫 = 7,
+        官禄宫 = 8,
+        田宅宫 = 9,
+        福德宫 = 10,
+        父母宫 = 11
     }
 }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZYWC.ZW.Core.Analysis.Data;
 
 namespace ZYWC.ZW.Core.Analysis.Model
 {
     public class FuMuGong : BasicGong
     {
-        public override string Name
+        public override GongIndex Name
         {
-            get { return "父母宫"; }
+            get { return GongIndex.父母宫; }
         }
     }
 }

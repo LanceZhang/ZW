@@ -45,6 +45,7 @@
     <Compile Include="BusinessLogic\FuMuAnalyzer.cs" />
     <Compile Include="BusinessLogic\FuQiAnalyzer.cs" />
     <Compile Include="BusinessLogic\GeJuAnalyzer.cs" />
+    <Compile Include="BusinessLogic\GongAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiaoYouAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiEAnalyzer.cs" />
     <Compile Include="BusinessLogic\QianYiAnalyzer.cs" />

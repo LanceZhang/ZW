@@ -8,22 +8,19 @@ using ZYWC.ZW.Core.Analysis.Model;
 
 namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 {
-    public class FuMuAnalyzer : GongAnalyzer
+    public abstract class GongAnalyzer
     {
-        public FuMuAnalyzer(DAL dal)
-        {
-            this.dal = dal;
-        }
+        protected DAL dal = null;
 
-        /*
-        public FuMuGong GetResult(PaiPan pan)
+
+        public T GetResult<T>(PaiPan pan, GongIndex gong_idx, int index_of_s2) where T : BasicGong, new()
         {
-            FuMuGong model = new FuMuGong();
+            T model = new T();
 
             #region 宫位信息初始化
 
             //三方四正
-            model.SelfGong = pan.Gongs.First(g => g.Name == "父母宫");
+            model.SelfGong = pan.Gongs.First(g => g.Name == gong_idx.ToString());
 
             int dui = (model.SelfGong.Zhi + 6) % 12;
             if (dui == 0)
@@ -108,24 +105,24 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             #endregion
 
             //宫位
-            model.GongWei = string.Format("【{0}在{1}】", "父母宫", model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[11];
+            model.GongWei = string.Format("【{0}在{1}】", gong_idx.ToString(), model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[gong_idx.GetHashCode()];
 
             //主星
             foreach (var xing in model.ZhuXing)
             {
-                xing.Content = dal.s2[xing.Id].items[10];
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
             }
 
             //吉星
             foreach (var xing in model.JiXing)
             {
-                xing.Content = dal.s2[xing.Id].items[10];
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
             }
 
             //凶星
             foreach (var xing in model.XiongXing)
             {
-                xing.Content = dal.s2[xing.Id].items[10];
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
             }
 
             //四化
@@ -134,16 +131,16 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 switch (item.Star.Hua)
                 {
                     case "禄":
-                        item.HuaContent = dal.s4.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s4.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "权":
-                        item.HuaContent = dal.s5.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s5.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "科":
-                        item.HuaContent = dal.s6.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s6.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "忌":
-                        item.HuaContent = dal.s7.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s7.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                 }
             }
@@ -153,16 +150,16 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 switch (item.Star.Hua)
                 {
                     case "禄":
-                        item.HuaContent = dal.s4.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s4.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "权":
-                        item.HuaContent = dal.s5.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s5.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "科":
-                        item.HuaContent = dal.s6.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s6.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                     case "忌":
-                        item.HuaContent = dal.s7.Find(x => x.id == item.Id).items[11];
+                        item.HuaContent = dal.s7.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                 }
             }
@@ -170,16 +167,5 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             return model;
         }
-        */
-
-        public FuMuGong GetResult(PaiPan pan)
-        {
-            FuMuGong result = base.GetResult<FuMuGong>(pan, GongIndex.父母宫, 10);
-
-            return result;
-        }
-
-
-
     }
 }

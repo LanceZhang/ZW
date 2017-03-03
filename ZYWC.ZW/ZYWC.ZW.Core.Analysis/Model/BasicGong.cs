@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZYWC.ZW.Core.Analysis.Data;
 
 namespace ZYWC.ZW.Core.Analysis.Model
 {
-    public abstract class BasicGong
+    public class BasicGong
     {
-        public abstract string Name { get; }
+
+
+
+        public virtual GongIndex Name { get; set; }
 
         public Gong SelfGong { get; set; }
 
