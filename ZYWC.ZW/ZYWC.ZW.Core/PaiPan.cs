@@ -64,13 +64,13 @@ namespace ZYWC.ZW.Core
 
         #region 属性
 
-        public string 五行局
+        public string WuXingJu
         {
             get
             {
-                int gan = (命宫.干 + 1) / 2;
+                int gan = (MingGong.Gan + 1) / 2;
 
-                int zhi = 命宫.支 % 6;
+                int zhi = MingGong.Zhi % 6;
                 if (zhi == 0)
                     zhi = 6;
                 zhi = (zhi + 1) / 2;
@@ -83,20 +83,20 @@ namespace ZYWC.ZW.Core
             }
         }
 
-        public Gong 命宫
+        public Gong MingGong
         {
             get
             {
-                return this._xingGong.First(g => g.is_命);
+                return this._xingGong.First(g => g.Is_Ming);
             }
         }
 
-        public string 命主
+        public string MingZhu
         {
-            get { return _mingshenzhuxing["命主"][命宫.支 - 1]; }
+            get { return _mingshenzhuxing["命主"][MingGong.Zhi - 1]; }
         }
 
-        public string 身主
+        public string ShenZhu
         {
             get { return _mingshenzhuxing["身主"][this.calendar.BaziIndex[1]]; }
         }
@@ -266,18 +266,18 @@ namespace ZYWC.ZW.Core
             int m = 2 + (month - 1) - (hour - 1);
             if (m < 0)
                 m = 12 + m;
-            int 命_index = _xingGong[m].支;
+            int 命_index = _xingGong[m].Zhi;
 
             Gong gong = _xingGong[命_index - 1];
-            gong.is_命 = true;
-            gong.宫名 = "命  宫";
+            gong.Is_Ming = true;
+            gong.Name = "命  宫";
 
 
             //安12宫
             for (int i = 1; i < _gongName.Length; i++)
             {
                 gong = gong.Next;
-                gong.宫名 = _gongName[i];
+                gong.Name = _gongName[i];
             }
 
 
@@ -285,8 +285,8 @@ namespace ZYWC.ZW.Core
             int n = 2 + (month - 1) + (hour - 1);
             if (n > 11)
                 n = n - 12;
-            int 身_index = _xingGong[n].支;
-            _xingGong[身_index - 1].is_身 = true;
+            int 身_index = _xingGong[n].Zhi;
+            _xingGong[身_index - 1].Is_Shen = true;
 
 
             //安12宫干
@@ -297,13 +297,13 @@ namespace ZYWC.ZW.Core
             gong = _xingGong[2];//从寅开始
             for (int i = 0; i < tmpGan.Length; i++)
             {
-                gong.干Str = tmpGan[i].ToString();
+                gong.GanString = tmpGan[i].ToString();
                 gong = gong.Next;
             }
 
 
             //定紫薇
-            int jushu = _wuXingJuNum[_wuXingJu.ToList().IndexOf(五行局)];
+            int jushu = _wuXingJuNum[_wuXingJu.ToList().IndexOf(WuXingJu)];
             int shang = cal.ChineseDay / jushu;
 
             if (cal.ChineseDay % jushu != 0)
@@ -322,80 +322,80 @@ namespace ZYWC.ZW.Core
                 shang = shang + 12;
 
             gong = _xingGong[shang + 1];
-            gong.天星.Add(new Star("紫微", Star.StarType.主星));
+            gong.Stars.Add(new Star("紫微", Star.StarType.主星));
 
 
             //紫薇诸星：紫微天機星逆行，隔一陽武天同行，天同隔二是廉貞
             gong = gong.Previous;
-            gong.天星.Add(new Star("天机", Star.StarType.主星));
+            gong.Stars.Add(new Star("天机", Star.StarType.主星));
 
             gong = gong.Previous.Previous;
-            gong.天星.Add(new Star("太阳", Star.StarType.主星));
+            gong.Stars.Add(new Star("太阳", Star.StarType.主星));
 
             gong = gong.Previous;
-            gong.天星.Add(new Star("武曲", Star.StarType.主星));
+            gong.Stars.Add(new Star("武曲", Star.StarType.主星));
 
             gong = gong.Previous;
-            gong.天星.Add(new Star("天同", Star.StarType.主星));
+            gong.Stars.Add(new Star("天同", Star.StarType.主星));
 
             gong = gong.Previous.Previous.Previous;
-            gong.天星.Add(new Star("廉贞", Star.StarType.主星));
+            gong.Stars.Add(new Star("廉贞", Star.StarType.主星));
 
 
             //天府星：与紫薇以日出日落轴对称
             gong = _xingGong[shang + 1];
             int tianfu = 0;
 
-            if (gong.支 < 6)
-                tianfu = 6 - gong.支;
+            if (gong.Zhi < 6)
+                tianfu = 6 - gong.Zhi;
             else
-                tianfu = 18 - gong.支;
+                tianfu = 18 - gong.Zhi;
 
-            gong = _xingGong.First(t => t.支 == tianfu);
-            gong.天星.Add(new Star("天府", Star.StarType.主星));
+            gong = _xingGong.First(t => t.Zhi == tianfu);
+            gong.Stars.Add(new Star("天府", Star.StarType.主星));
 
 
             //天府诸星：天府太陰順貪狼，巨門天相與天梁，七殺空三是破軍
             gong = gong.Next;
-            gong.天星.Add(new Star("太阴", Star.StarType.主星));
+            gong.Stars.Add(new Star("太阴", Star.StarType.主星));
 
             gong = gong.Next;
-            gong.天星.Add(new Star("贪狼", Star.StarType.主星));
+            gong.Stars.Add(new Star("贪狼", Star.StarType.主星));
 
             gong = gong.Next;
-            gong.天星.Add(new Star("巨门", Star.StarType.主星));
+            gong.Stars.Add(new Star("巨门", Star.StarType.主星));
 
             gong = gong.Next;
-            gong.天星.Add(new Star("天相", Star.StarType.主星));
+            gong.Stars.Add(new Star("天相", Star.StarType.主星));
 
             gong = gong.Next;
-            gong.天星.Add(new Star("天梁", Star.StarType.主星));
+            gong.Stars.Add(new Star("天梁", Star.StarType.主星));
 
             gong = gong.Next;
-            gong.天星.Add(new Star("七杀", Star.StarType.主星));
+            gong.Stars.Add(new Star("七杀", Star.StarType.主星));
 
             gong = gong.Next.Next.Next.Next;
-            gong.天星.Add(new Star("破军", Star.StarType.主星));
+            gong.Stars.Add(new Star("破军", Star.StarType.主星));
 
 
             //安生月系诸星
             foreach (var star in _yuexizhuxing)
             {
-                _xingGong.First(g => g.支Str == star.Value[month - 1].ToString()).天星.Add(new Star(star.Key, Star.StarType.月系));
+                _xingGong.First(g => g.ZhiString == star.Value[month - 1].ToString()).Stars.Add(new Star(star.Key, Star.StarType.月系));
             }
 
 
             //安生年支系诸星
             foreach (var star in _nianxizhuxing)
             {
-                _xingGong.First(g => g.支Str == star.Value[cal.BaziIndex[1]].ToString()).天星.Add(new Star(star.Key, Star.StarType.年系));
+                _xingGong.First(g => g.ZhiString == star.Value[cal.BaziIndex[1]].ToString()).Stars.Add(new Star(star.Key, Star.StarType.年系));
             }
 
 
             //安时系诸星
             foreach (var star in _shixizhuxing)
             {
-                _xingGong.First(g => g.支Str == star.Value[cal.BaziIndex[7]].ToString()).天星.Add(new Star(star.Key, Star.StarType.时系));
+                _xingGong.First(g => g.ZhiString == star.Value[cal.BaziIndex[7]].ToString()).Stars.Add(new Star(star.Key, Star.StarType.时系));
             }
 
 
@@ -410,15 +410,15 @@ namespace ZYWC.ZW.Core
                 {
 
                 }
-                _xingGong.First(g => g.支Str == star.Value[cal.BaziIndex[0]].ToString()).天星.Add(new Star(star.Key, Star.StarType.年干系));
+                _xingGong.First(g => g.ZhiString == star.Value[cal.BaziIndex[0]].ToString()).Stars.Add(new Star(star.Key, Star.StarType.年干系));
             }
 
 
             //安四化
             foreach (var star in _sihuaxing)
             {
-                var xg = _xingGong.First(g => g.天星.Exists(s => s.星名 == star.Value[cal.BaziIndex[0]].ToString()));
-                xg.天星.Find(s => s.星名 == star.Value[cal.BaziIndex[0]].ToString()).化 = star.Key;
+                var xg = _xingGong.First(g => g.Stars.Exists(s => s.Name == star.Value[cal.BaziIndex[0]].ToString()));
+                xg.Stars.Find(s => s.Name == star.Value[cal.BaziIndex[0]].ToString()).Hua = star.Key;
             }
 
 
@@ -426,72 +426,72 @@ namespace ZYWC.ZW.Core
             foreach (var huo in _huoxing)
             {
                 if (huo.Key.Contains(cal.BaziString[1]))
-                    _xingGong.First(g => g.支Str == huo.Value[cal.BaziIndex[7]].ToString()).天星.Add(new Star("火星", Star.StarType.火铃));
+                    _xingGong.First(g => g.ZhiString == huo.Value[cal.BaziIndex[7]].ToString()).Stars.Add(new Star("火星", Star.StarType.火铃));
             }
 
             foreach (var ling in _lingxing)
             {
                 if (ling.Key.Contains(cal.BaziString[1]))
-                    _xingGong.First(g => g.支Str == ling.Value[cal.BaziIndex[7]].ToString()).天星.Add(new Star("铃星", Star.StarType.火铃));
+                    _xingGong.First(g => g.ZhiString == ling.Value[cal.BaziIndex[7]].ToString()).Stars.Add(new Star("铃星", Star.StarType.火铃));
             }
 
 
             //安三台星
-            gong = _xingGong.First(g => g.天星.Exists(s => s.星名 == "左辅"));
-            int i_santai = (gong.支 + cal.ChineseDay - 2) % 12;
-            _xingGong[i_santai].天星.Add(new Star("三台", Star.StarType.其它));
+            gong = _xingGong.First(g => g.Stars.Exists(s => s.Name == "左辅"));
+            int i_santai = (gong.Zhi + cal.ChineseDay - 2) % 12;
+            _xingGong[i_santai].Stars.Add(new Star("三台", Star.StarType.其它));
 
 
             //安八座星
-            gong = _xingGong.First(g => g.天星.Exists(s => s.星名 == "右弼"));
-            int i_bazuo = (gong.支 - cal.ChineseDay) % 12;
+            gong = _xingGong.First(g => g.Stars.Exists(s => s.Name == "右弼"));
+            int i_bazuo = (gong.Zhi - cal.ChineseDay) % 12;
             if (i_bazuo < 0)
                 i_bazuo += 12;
-            _xingGong[i_bazuo].天星.Add(new Star("八座", Star.StarType.其它));
+            _xingGong[i_bazuo].Stars.Add(new Star("八座", Star.StarType.其它));
 
 
             //安天贵星
-            gong = _xingGong.First(g => g.天星.Exists(s => s.星名 == "文曲"));
-            int i_tiangui = (gong.支 + cal.ChineseDay - 2 - 1) % 12;
+            gong = _xingGong.First(g => g.Stars.Exists(s => s.Name == "文曲"));
+            int i_tiangui = (gong.Zhi + cal.ChineseDay - 2 - 1) % 12;
             if (i_tiangui < 0)
                 i_tiangui += 12;
-            _xingGong[i_tiangui].天星.Add(new Star("天贵", Star.StarType.其它));
+            _xingGong[i_tiangui].Stars.Add(new Star("天贵", Star.StarType.其它));
 
 
             //安恩光星
-            gong = _xingGong.First(g => g.天星.Exists(s => s.星名 == "文昌"));
-            int i_enguang = (gong.支 + cal.ChineseDay - 2 - 1) % 12;
+            gong = _xingGong.First(g => g.Stars.Exists(s => s.Name == "文昌"));
+            int i_enguang = (gong.Zhi + cal.ChineseDay - 2 - 1) % 12;
             if (i_enguang < 0)
                 i_enguang += 12;
-            _xingGong[i_enguang].天星.Add(new Star("恩光", Star.StarType.其它));
+            _xingGong[i_enguang].Stars.Add(new Star("恩光", Star.StarType.其它));
 
 
             //安天才星
-            gong = _xingGong.First(g => g.is_命);
-            int i_tiancai = (gong.支 + cal.BaziIndex[1] - 1) % 12;
+            gong = _xingGong.First(g => g.Is_Ming);
+            int i_tiancai = (gong.Zhi + cal.BaziIndex[1] - 1) % 12;
             if (i_tiancai < 0)
                 i_tiancai += 12;
-            _xingGong[i_tiancai].天星.Add(new Star("天才", Star.StarType.其它));
+            _xingGong[i_tiancai].Stars.Add(new Star("天才", Star.StarType.其它));
 
 
             //安天寿星
-            gong = _xingGong.First(g => g.is_身);
-            int i_tianshou = (gong.支 + cal.BaziIndex[1] - 1) % 12;
+            gong = _xingGong.First(g => g.Is_Shen);
+            int i_tianshou = (gong.Zhi + cal.BaziIndex[1] - 1) % 12;
             if (i_tianshou < 0)
                 i_tianshou += 12;
-            _xingGong[i_tianshou].天星.Add(new Star("天寿", Star.StarType.其它));
+            _xingGong[i_tianshou].Stars.Add(new Star("天寿", Star.StarType.其它));
 
 
             //安天伤、天使星
-            _xingGong.First(g => g.宫名 == "仆役宫").天星.Add(new Star("天伤", Star.StarType.其它));
-            _xingGong.First(g => g.宫名 == "疾厄宫").天星.Add(new Star("天使", Star.StarType.其它));
+            _xingGong.First(g => g.Name == "仆役宫").Stars.Add(new Star("天伤", Star.StarType.其它));
+            _xingGong.First(g => g.Name == "疾厄宫").Stars.Add(new Star("天使", Star.StarType.其它));
 
 
             //安生年博士十二神
-            gong = _xingGong.First(g => g.天星.Exists(s => s.星名 == "禄存"));
+            gong = _xingGong.First(g => g.Stars.Exists(s => s.Name == "禄存"));
             for (int i = 0; i < _boshi12.Length; i++)
             {
-                gong.天星.Add(new Star(_boshi12[i], Star.StarType.博士十二));
+                gong.Stars.Add(new Star(_boshi12[i], Star.StarType.博士十二));
 
                 if (sex == (cal.ChineseYear % 2 == 0))  //阳男阴女顺行，阴男阳女逆行
                 {
@@ -505,11 +505,11 @@ namespace ZYWC.ZW.Core
 
 
             //安长生十二神
-            int i_changsheng = _wuXingChangsheng[_wuXingJu.ToList().IndexOf(五行局)];
-            gong = _xingGong.First(g => g.支 == i_changsheng);
+            int i_changsheng = _wuXingChangsheng[_wuXingJu.ToList().IndexOf(WuXingJu)];
+            gong = _xingGong.First(g => g.Zhi == i_changsheng);
             for (int i = 0; i < _changsheng12.Length; i++)
             {
-                gong.天星.Add(new Star(_changsheng12[i], Star.StarType.长生十二));
+                gong.Stars.Add(new Star(_changsheng12[i], Star.StarType.长生十二));
 
                 if (sex)  //男顺，女逆
                     gong = gong.Next;
@@ -519,14 +519,14 @@ namespace ZYWC.ZW.Core
 
 
             //定大限
-            gong = _xingGong.First(xg => xg.is_命);
-            int i_daxian = _wuXingJuNum[_wuXingJu.ToList().IndexOf(五行局)] - 1;
+            gong = _xingGong.First(xg => xg.Is_Ming);
+            int i_daxian = _wuXingJuNum[_wuXingJu.ToList().IndexOf(WuXingJu)] - 1;
 
             for (int i = 0; i < 9; i++)
             {
-                gong.大限From = i_daxian + 1;
+                gong.DaXian_From = i_daxian + 1;
                 i_daxian = i_daxian + 10;
-                gong.大限To = i_daxian;
+                gong.DaXian_To = i_daxian;
 
                 if (sex == (cal.ChineseYear % 2 == 0))  //阳男阴女顺行，阴男阳女逆行
                     gong = gong.Next;
@@ -539,11 +539,11 @@ namespace ZYWC.ZW.Core
             foreach (var xiao in _xiaoxian)
             {
                 if (xiao.Key.Contains(cal.BaziString[1]))
-                    gong = _xingGong.First(g => g.支 == xiao.Value);
+                    gong = _xingGong.First(g => g.Zhi == xiao.Value);
             }
             for (int i = 1; i < 84; i++)
             {
-                gong.小限.Add(i);
+                gong.XiaoXian.Add(i);
 
                 if (sex)  //男顺，女逆
                     gong = gong.Next;
@@ -555,14 +555,14 @@ namespace ZYWC.ZW.Core
             //安生年将前十二星
             foreach (var star in _jiangqian12)
             {
-                _xingGong.First(g => g.支Str == star.Value[cal.BaziIndex[1]].ToString()).天星.Add(new Star(star.Key, Star.StarType.年前十二));
+                _xingGong.First(g => g.ZhiString == star.Value[cal.BaziIndex[1]].ToString()).Stars.Add(new Star(star.Key, Star.StarType.年前十二));
             }
 
 
             //安生年岁前十二星
             foreach (var star in _suiqian12)
             {
-                _xingGong.First(g => g.支Str == star.Value[cal.BaziIndex[1]].ToString()).天星.Add(new Star(star.Key, Star.StarType.岁前十二));
+                _xingGong.First(g => g.ZhiString == star.Value[cal.BaziIndex[1]].ToString()).Stars.Add(new Star(star.Key, Star.StarType.岁前十二));
             }
 
 
@@ -578,7 +578,7 @@ namespace ZYWC.ZW.Core
                     else
                         zhi = star.Key[1].ToString();
 
-                    _xingGong.First(g => g.支Str == zhi).天星.Add(new Star("旬空", Star.StarType.其它));
+                    _xingGong.First(g => g.ZhiString == zhi).Stars.Add(new Star("旬空", Star.StarType.其它));
                     break;
                 }
             }
@@ -587,11 +587,11 @@ namespace ZYWC.ZW.Core
             //主星亮度
             foreach (var xg in _xingGong)
             {
-                foreach (var star in xg.天星)
+                foreach (var star in xg.Stars)
                 {
-                    if (_liangdu.ContainsKey(star.星名))
+                    if (_liangdu.ContainsKey(star.Name))
                     {
-                        star.亮度 = _liangdu[star.星名][xg.支 - 1];
+                        star.LiangDu = _liangdu[star.Name][xg.Zhi - 1];
                     }
                 }
             }
@@ -604,19 +604,19 @@ namespace ZYWC.ZW.Core
             {
                 StringBuilder sb = new StringBuilder();
 
-                sb.AppendLine(string.Format("命宫在:{0}", 命宫.支Str));
-                sb.AppendLine(string.Format("身宫在:{0}", _xingGong.First(g => g.is_身).支Str));
+                sb.AppendLine(string.Format("命宫在:{0}", MingGong.ZhiString));
+                sb.AppendLine(string.Format("身宫在:{0}", _xingGong.First(g => g.Is_Shen).ZhiString));
 
-                sb.AppendLine(string.Format("命主:{0}", 命主));
-                sb.AppendLine(string.Format("身主:{0}", 身主));
+                sb.AppendLine(string.Format("命主:{0}", MingZhu));
+                sb.AppendLine(string.Format("身主:{0}", ShenZhu));
 
-                sb.AppendLine(string.Format("五行局:{0}", 五行局));
+                sb.AppendLine(string.Format("五行局:{0}", WuXingJu));
 
                 for (int i = 0; i < _xingGong.Length; i++)
                 {
                     Gong g = _xingGong[i];
 
-                    sb.AppendLine(string.Format("{0}在：{1}\t干为：{2} {4}~{5}\t{6}\t天星：{3}", g.宫名, g.支Str, g.干Str, g.天星.Select(s => string.Format("{0}{1}{2}", s.星名, s.亮度Str, s.化Str)).ToCSV(","), g.大限From, g.大限To, g.小限.ToCSV(",")));
+                    sb.AppendLine(string.Format("{0}在：{1}\t干为：{2} {4}~{5}\t{6}\t天星：{3}", g.Name, g.ZhiString, g.GanString, g.Stars.Select(s => string.Format("{0}{1}{2}", s.Name, s.LiangDuString, s.HuaString)).ToCSV(","), g.DaXian_From, g.DaXian_To, g.XiaoXian.ToCSV(",")));
                 }
 
                 return sb.ToString();
@@ -635,7 +635,7 @@ namespace ZYWC.ZW.Core
                 {
                     Gong g = _xingGong[i];
 
-                    sb.AppendLine(string.Format("运{0}在：{1}\t干为：{2} \t天星：{3}", g.大限宫名, g.支Str, g.干Str, g.天星.Select(s => string.Format("{0}{1}", s.星名, s.亮度Str)).ToCSV(",")));
+                    sb.AppendLine(string.Format("运{0}在：{1}\t干为：{2} \t天星：{3}", g.XianName, g.ZhiString, g.GanString, g.Stars.Select(s => string.Format("{0}{1}", s.Name, s.LiangDuString)).ToCSV(",")));
                 }
 
                 sb.AppendLine(string.Empty);
@@ -645,7 +645,7 @@ namespace ZYWC.ZW.Core
                 {
                     Gong g = _xingGong[i];
 
-                    sb.AppendLine(string.Format("流{0}在：{1}\t干为：{2} \t天星：{3}", g.流年宫名, g.支Str, g.干Str, g.天星.Select(s => string.Format("{0}{1}{2}", s.星名, s.亮度Str, s.流化Str)).ToCSV(",")));
+                    sb.AppendLine(string.Format("流{0}在：{1}\t干为：{2} \t天星：{3}", g.LiuName, g.ZhiString, g.GanString, g.Stars.Select(s => string.Format("{0}{1}{2}", s.Name, s.LiangDuString, s.LiuHuaString)).ToCSV(",")));
                 }
 
                 return sb.ToString();
@@ -660,36 +660,36 @@ namespace ZYWC.ZW.Core
 
 
             //大限
-            var gong = _xingGong.FirstOrDefault(g => g.大限From <= old && g.大限To > old);
+            var gong = _xingGong.FirstOrDefault(g => g.DaXian_From <= old && g.DaXian_To > old);
             if (gong == null)
-                gong = _xingGong.First(g => g.is_命);
+                gong = _xingGong.First(g => g.Is_Ming);
 
-            gong.大限宫名 = "命  宫";
+            gong.XianName = "命  宫";
 
             for (int i = 1; i < _gongName.Length; i++)
             {
                 gong = gong.Next;
-                gong.大限宫名 = _gongName[i];
+                gong.XianName = _gongName[i];
             }
 
 
             //流年
             int zhi = this.liu_calendar.BaziIndex[1];
-            gong = _xingGong.First(g => g.支 == zhi + 1);
+            gong = _xingGong.First(g => g.Zhi == zhi + 1);
 
-            gong.流年宫名 = "命  宫";
+            gong.LiuName = "命  宫";
 
             for (int i = 1; i < _gongName.Length; i++)
             {
                 gong = gong.Next;
-                gong.流年宫名 = _gongName[i];
+                gong.LiuName = _gongName[i];
             }
 
             //流年四化
             foreach (var star in _sihuaxing)
             {
-                var xg = _xingGong.First(g => g.天星.Exists(s => s.星名 == star.Value[this.liu_calendar.BaziIndex[0]].ToString()));
-                xg.天星.Find(s => s.星名 == star.Value[this.liu_calendar.BaziIndex[0]].ToString()).流化 = star.Key;
+                var xg = _xingGong.First(g => g.Stars.Exists(s => s.Name == star.Value[this.liu_calendar.BaziIndex[0]].ToString()));
+                xg.Stars.Find(s => s.Name == star.Value[this.liu_calendar.BaziIndex[0]].ToString()).LiuHua = star.Key;
             }
         }
 

@@ -10,44 +10,44 @@ namespace ZYWC.ZW.Core
     {
         private static string liangStr = "陷不平利得旺庙"; //从陷开始++ -3 ~ 3,留一个4为空
 
-        public string 星名 { get; set; }
+        public string Name { get; set; }
 
-        public StarType 类型 { get; set; }
+        public StarType Type { get; set; }
 
-        public int? 亮度 { get; set; }
+        public int? LiangDu { get; set; }
 
-        public string 化 { get; set; }
+        public string Hua { get; set; }
 
-        public string 流化 { get; set; }
+        public string LiuHua { get; set; }
 
-        public string 亮度Str
+        public string LiangDuString
         {
             get
             {
-                return 亮度.HasValue ? "(" + liangStr[亮度.Value + 3].ToString() + ")" : string.Empty;
+                return LiangDu.HasValue ? "(" + liangStr[LiangDu.Value + 3].ToString() + ")" : string.Empty;
             }
         }
 
-        public string 化Str
+        public string HuaString
         {
             get
             {
-                return string.IsNullOrEmpty(化) ? string.Empty : "<" + 化 + ">";
+                return string.IsNullOrEmpty(Hua) ? string.Empty : "<" + Hua + ">";
             }
         }
 
-        public string 流化Str
+        public string LiuHuaString
         {
             get
             {
-                return string.IsNullOrEmpty(流化) ? string.Empty : "<流" + 化 + ">";
+                return string.IsNullOrEmpty(LiuHua) ? string.Empty : "<流" + Hua + ">";
             }
         }
 
         public Star(string name, StarType type)
         {
-            星名 = name;
-            类型 = type;
+            Name = name;
+            Type = type;
         }
 
 
