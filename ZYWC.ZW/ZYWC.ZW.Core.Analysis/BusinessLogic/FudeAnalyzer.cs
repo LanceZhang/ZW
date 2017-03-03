@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 {
-    class FudeAnalyzer
+    public class FudeAnalyzer
     {
+
     }
 }
