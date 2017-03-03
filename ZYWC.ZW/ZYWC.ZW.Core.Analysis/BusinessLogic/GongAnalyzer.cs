@@ -27,17 +27,30 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 dui = 12;
             }
+            else if (dui < 0)
+            {
+                dui += 12;
+            }
 
             int hui1 = (model.SelfGong.Zhi + 4) % 12;
             if (hui1 == 0)
             {
                 hui1 = 12;
             }
+            else if (hui1 < 0)
+            {
+                hui1 += 12;
+            }
+
 
             int hui2 = (model.SelfGong.Zhi - 4) % 12;
             if (hui2 == 0)
             {
                 hui2 = 12;
+            }
+            else if (hui2 < 0)
+            {
+                hui2 += 12;
             }
 
             model.DuiZhaoGong = pan.Gongs[dui - 1];
