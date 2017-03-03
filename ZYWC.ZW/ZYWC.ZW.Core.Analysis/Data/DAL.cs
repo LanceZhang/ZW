@@ -47,8 +47,6 @@ namespace ZYWC.ZW.Core.Analysis.Data
         public ziwei_data_s45 s45 { get; private set; }
 
 
-
-
         public DAL(string path)
         {
             s1 = DeserializeFromXml<ziwei_data_s1>(path + "ziwei_data_s1.xml");
@@ -124,6 +122,9 @@ namespace ZYWC.ZW.Core.Analysis.Data
             s44 = DeserializeFromXml<ziwei_data_s44>(path + "ziwei_data_s44.xml");
 
             s45 = DeserializeFromXml<ziwei_data_s45>(path + "ziwei_data_s45.xml");
+
+
+
         }
 
 

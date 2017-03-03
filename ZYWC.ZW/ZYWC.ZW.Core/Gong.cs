@@ -11,6 +11,9 @@ namespace ZYWC.ZW.Core
         private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
         private static string zhiStr = "子丑寅卯辰巳午未申酉戌亥";
 
+        /// <summary>
+        /// 1...12
+        /// </summary>
         public int Zhi { get; private set; }
 
         public string ZhiString

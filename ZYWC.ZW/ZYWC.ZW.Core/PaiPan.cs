@@ -101,6 +101,14 @@ namespace ZYWC.ZW.Core
             get { return _mingshenzhuxing["身主"][this.calendar.BaziIndex[1]]; }
         }
 
+        public Gong[] Gongs
+        {
+            get
+            {
+                return this._xingGong;
+            }
+        }
+
         #endregion
 
         #region 构造函数

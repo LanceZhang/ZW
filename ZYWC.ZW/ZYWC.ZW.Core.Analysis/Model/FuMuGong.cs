@@ -8,6 +8,9 @@ namespace ZYWC.ZW.Core.Analysis.Model
 {
     public class FuMuGong : BasicGong
     {
-
+        public override string Name
+        {
+            get { return "父母宫"; }
+        }
     }
 }

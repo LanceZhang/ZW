@@ -3,24 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZYWC.ZW.Core.Analysis.BusinessLogic;
 using ZYWC.ZW.Core.Analysis.Data;
+using ZYWC.ZW.Core.Analysis.Model;
 
 namespace ZYWC.ZW.Core.Analysis
 {
     public class Engine
     {
+        DAL dal = null;
+        FuMuAnalyzer fumu = null;
+
         public Engine(string path)
         {
+            dal = new DAL(path);
 
-            DAL dal = new DAL(path);
-
-            string t = dal.s12[0].jiexinan;
-
-
-            string x = dal.s22.zhuxing[4].items[2].text;
+            fumu = new FuMuAnalyzer(dal);
         }
 
 
+        public FuMuAnalyzer FuMuAnalyzer
+        {
+            get
+            {
+                return fumu;
+            }
+        }
 
 
 

@@ -68,10 +68,17 @@ namespace ZYWC.ZW.Demo
 
         private void button3_Click(object sender, EventArgs e)
         {
+            DateTime dateTime = this.dpBirthDate.Value;
+            ChineseCalendar cc = new ChineseCalendar(dateTime);
+
+
 
             eg = new Engine(string.Empty);
-            
 
+            var fumu = eg.FuMuAnalyzer.GetResult(new PaiPan(cc, this.ckMan.Checked));
+
+
+            this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + fumu.ToString();
 
         }
     }
