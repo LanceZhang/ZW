@@ -52,9 +52,6 @@ namespace ZYWC.ZW.Core.Analysis.Model
 适合对象：{3}
 主星对爱情的影响：{4}", Name, aiqingguan, jianyi, shihe, liangdu
        );
-
-
-            return sb.ToString();
         }
     }
 }
