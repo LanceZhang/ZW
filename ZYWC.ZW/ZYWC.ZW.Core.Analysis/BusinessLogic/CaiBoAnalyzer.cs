@@ -59,7 +59,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
             var xiongxing = pan.MingGong.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
-            foreach (var item in fuxing)
+            foreach (var item in xiongxing)
             {
                 result.MingXing.Add(new Xing(item, dal.Dic_XiongXing[item.Name].id, Position.坐宫));
             }

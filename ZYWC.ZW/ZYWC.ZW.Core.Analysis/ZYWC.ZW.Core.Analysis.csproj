@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLogic\DaShisWords.cs" />
     <Compile Include="BusinessLogic\MingAnalyzer.cs" />
     <Compile Include="BusinessLogic\CaiBoAnalyzer.cs" />
     <Compile Include="BusinessLogic\FudeAnalyzer.cs" />
