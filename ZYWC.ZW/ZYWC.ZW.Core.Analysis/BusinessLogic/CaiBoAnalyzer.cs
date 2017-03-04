@@ -44,6 +44,61 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
 
+            //命宫、田宅对财运方面影响
+
+            var zhuxing = pan.MingGong.Stars.Where(s => dal.Dic_ZhuXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in zhuxing)
+            {
+                result.MingXing.Add(new Xing(item, dal.Dic_ZhuXing[item.Name].id, Position.坐宫));
+            }
+
+            var fuxing = pan.MingGong.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in fuxing)
+            {
+                result.MingXing.Add(new Xing(item, dal.Dic_JiXing[item.Name].id, Position.坐宫));
+            }
+
+            var xiongxing = pan.MingGong.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in fuxing)
+            {
+                result.MingXing.Add(new Xing(item, dal.Dic_XiongXing[item.Name].id, Position.坐宫));
+            }
+
+            //
+            var tianzhai = pan.Gongs.First(g => g.Name == GongIndex.田宅宫.ToString());
+
+            zhuxing = tianzhai.Stars.Where(s => dal.Dic_ZhuXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in zhuxing)
+            {
+                result.TianZhaiXing.Add(new Xing(item, dal.Dic_ZhuXing[item.Name].id, Position.坐宫));
+            }
+
+            fuxing = tianzhai.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in fuxing)
+            {
+                result.TianZhaiXing.Add(new Xing(item, dal.Dic_JiXing[item.Name].id, Position.坐宫));
+            }
+
+            xiongxing = tianzhai.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
+            foreach (var item in xiongxing)
+            {
+                result.TianZhaiXing.Add(new Xing(item, dal.Dic_XiongXing[item.Name].id, Position.坐宫));
+            }
+
+            //
+
+            foreach (var xing in result.MingXing)
+            {
+                xing.Content = dal.s15.Find(s => s.id == xing.Id.ToString()).mingong;
+            }
+
+            foreach (var xing in result.TianZhaiXing)
+            {
+                xing.Content = dal.s15.Find(s => s.id == xing.Id.ToString()).tianzai;
+            }
+
+
+
             return result;
         }
     }
