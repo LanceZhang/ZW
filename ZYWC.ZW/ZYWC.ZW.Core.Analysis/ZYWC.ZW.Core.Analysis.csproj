@@ -39,12 +39,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessLogic\BenMingAnalyzer.cs" />
+    <Compile Include="BusinessLogic\MingAnalyzer.cs" />
     <Compile Include="BusinessLogic\CaiBoAnalyzer.cs" />
     <Compile Include="BusinessLogic\FudeAnalyzer.cs" />
     <Compile Include="BusinessLogic\FuMuAnalyzer.cs" />
     <Compile Include="BusinessLogic\FuQiAnalyzer.cs" />
     <Compile Include="BusinessLogic\GeJuAnalyzer.cs" />
+    <Compile Include="BusinessLogic\GongAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiaoYouAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiEAnalyzer.cs" />
     <Compile Include="BusinessLogic\QianYiAnalyzer.cs" />
@@ -82,6 +83,17 @@
     <Compile Include="Data\ziwei_data_s8.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Model\BasicGong.cs" />
+    <Compile Include="Model\MingGong.cs" />
+    <Compile Include="Model\XiongDiGong.cs" />
+    <Compile Include="Model\FuQiGong.cs" />
+    <Compile Include="Model\FuDeGong.cs" />
+    <Compile Include="Model\TianZhaiGong.cs" />
+    <Compile Include="Model\ZiNvGong.cs" />
+    <Compile Include="Model\CaiBoGong.cs" />
+    <Compile Include="Model\JiEGong.cs" />
+    <Compile Include="Model\QianYiGong.cs" />
+    <Compile Include="Model\PuYiGong.cs" />
+    <Compile Include="Model\GuanLuGong.cs" />
     <Compile Include="Model\FuMuGong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

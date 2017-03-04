@@ -11,7 +11,7 @@ namespace ZYWC.ZW.Core
         #region 基础数据
 
         private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
-        private static string[] _gongName = { "命  宫", "父母宫", "福德宫", "田宅宫", "官禄宫", "仆役宫", "迁移宫", "疾厄宫", "财帛宫", "子女宫", "夫妻宫", "兄弟宫" }; //从命宫顺排
+        private static string[] _gongName = { "命宫", "父母宫", "福德宫", "田宅宫", "官禄宫", "仆役宫", "迁移宫", "疾厄宫", "财帛宫", "子女宫", "夫妻宫", "兄弟宫" }; //从命宫顺排
         private static string[] _wuXingJu = { "木三局", "金四局", "水二局", "火六局", "土五局" };
         private static int[] _wuXingJuNum = { 3, 4, 2, 6, 5 };
         private static int[] _wuXingChangsheng = { 12, 6, 3, 9, 9 };
@@ -278,7 +278,7 @@ namespace ZYWC.ZW.Core
 
             Gong gong = _xingGong[命_index - 1];
             gong.Is_Ming = true;
-            gong.Name = "命  宫";
+            gong.Name = "命宫";
 
 
             //安12宫
@@ -672,7 +672,7 @@ namespace ZYWC.ZW.Core
             if (gong == null)
                 gong = _xingGong.First(g => g.Is_Ming);
 
-            gong.XianName = "命  宫";
+            gong.XianName = "命宫";
 
             for (int i = 1; i < _gongName.Length; i++)
             {
@@ -685,7 +685,7 @@ namespace ZYWC.ZW.Core
             int zhi = this.liu_calendar.BaziIndex[1];
             gong = _xingGong.First(g => g.Zhi == zhi + 1);
 
-            gong.LiuName = "命  宫";
+            gong.LiuName = "命宫";
 
             for (int i = 1; i < _gongName.Length; i++)
             {

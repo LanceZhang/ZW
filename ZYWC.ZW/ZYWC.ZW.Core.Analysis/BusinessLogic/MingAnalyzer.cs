@@ -8,16 +8,16 @@ using ZYWC.ZW.Core.Analysis.Model;
 
 namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 {
-    public class ShiYeAnalyzer: GongAnalyzer
+    public class MingAnalyzer : GongAnalyzer
     {
-        public ShiYeAnalyzer(DAL dal)
+        public MingAnalyzer(DAL dal)
         {
             this.dal = dal;
         }
 
-        public GuanLuGong GetResult(PaiPan pan)
+        public MingGong GetResult(PaiPan pan)
         {
-            GuanLuGong result = base.GetResult<GuanLuGong>(pan, GongIndex.官禄宫, 8);
+            MingGong result = base.GetResult<MingGong>(pan, GongIndex.命宫, 0);
 
             return result;
         }
