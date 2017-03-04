@@ -7,11 +7,11 @@ using ZYWC.ZW.Core.Analysis.Data;
 
 namespace ZYWC.ZW.Core.Analysis.Model
 {
-    public class GuanLuGong : BasicGong
+    public class ShiYeGong : BasicGong
     {
         public override GongIndex Name
         {
-            get { return GongIndex.官禄宫; }
+            get { return GongIndex.事业宫; }
         }
 
         public ShiYeFenXi ShiYeFenXi { get; set; } //2017-3-4 app中有多个，嫌多

@@ -11,7 +11,7 @@ namespace ZYWC.ZW.Core
         #region 基础数据
 
         private static string ganStr = "甲乙丙丁戊己庚辛壬癸";
-        private static string[] _gongName = { "命宫", "父母宫", "福德宫", "田宅宫", "官禄宫", "仆役宫", "迁移宫", "疾厄宫", "财帛宫", "子女宫", "夫妻宫", "兄弟宫" }; //从命宫顺排
+        private static string[] _gongName = { "命宫", "父母宫", "福德宫", "田宅宫", "事业宫", "仆役宫", "迁移宫", "疾厄宫", "财帛宫", "子女宫", "夫妻宫", "兄弟宫" }; //从命宫顺排
         private static string[] _wuXingJu = { "木三局", "金四局", "水二局", "火六局", "土五局" };
         private static int[] _wuXingJuNum = { 3, 4, 2, 6, 5 };
         private static int[] _wuXingChangsheng = { 12, 6, 3, 9, 9 };

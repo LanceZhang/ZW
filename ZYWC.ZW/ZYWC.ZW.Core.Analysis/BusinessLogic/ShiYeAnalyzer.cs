@@ -15,9 +15,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             this.dal = dal;
         }
 
-        public GuanLuGong GetResult(PaiPan pan)
+        public ShiYeGong GetResult(PaiPan pan)
         {
-            GuanLuGong result = base.GetResult<GuanLuGong>(pan, GongIndex.官禄宫, 8);
+            ShiYeGong result = base.GetResult<ShiYeGong>(pan, GongIndex.事业宫, 8);
 
             result.ShiYeFenXi = new ShiYeFenXi();
 

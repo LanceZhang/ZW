@@ -19,6 +19,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         {
             MingGong result = base.GetResult<MingGong>(pan, GongIndex.命宫, pan.IsMale ? 0 : 1);
 
+            var shen = pan.Gongs.First(g => g.Is_Shen);
+            result.ShenGongPosition = shen.Name;
+            result.ShenGongContent = dal.s3.Find(s => shen.Name.Contains(s.name)).text;
+
+
             return result;
         }
     }

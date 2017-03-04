@@ -13,5 +13,21 @@ namespace ZYWC.ZW.Core.Analysis.Model
         {
             get { return GongIndex.命宫; }
         }
+
+        public string ShenGongPosition { get; set; }
+
+        public string ShenGongContent { get; set; }
+
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder(base.ToString());
+
+            sb.AppendFormat(@"
+身宫在：{0}
+{1}", ShenGongPosition, ShenGongContent);
+
+            return sb.ToString();
+        }
     }
 }
