@@ -24,6 +24,7 @@ namespace ZYWC.ZW.Core.Analysis
         TianZhaiAnalyzer tianzhai = null;
         XiongDiAnalyzer xiongdi = null;
         ZiNvAnalyzer zinv = null;
+        GeJuAnalyzer geju = null;
 
         public Engine(string path)
         {
@@ -40,7 +41,7 @@ namespace ZYWC.ZW.Core.Analysis
             tianzhai = new TianZhaiAnalyzer(dal);
             xiongdi = new XiongDiAnalyzer(dal);
             zinv = new ZiNvAnalyzer(dal);
-
+            geju = new GeJuAnalyzer(dal);
             //fude = new FudeAnalyzer(dal);
         }
 
@@ -139,6 +140,14 @@ namespace ZYWC.ZW.Core.Analysis
             get
             {
                 return zinv;
+            }
+        }
+
+        public GeJuAnalyzer GeJuAnalyzer
+        {
+            get
+            {
+                return geju;
             }
         }
 
