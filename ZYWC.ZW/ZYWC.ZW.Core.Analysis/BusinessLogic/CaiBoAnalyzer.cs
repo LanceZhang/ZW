@@ -17,11 +17,34 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
         public CaiBoGong GetResult(PaiPan pan)
         {
-            throw new NotImplementedException();
-            //s15
+            CaiBoGong result = base.GetResult<CaiBoGong>(pan, GongIndex.财帛宫, 0);
 
-            //CaiBoGong result = base.GetResult<CaiBoGong>(pan, GongIndex.财帛宫, 10);
+            //主星
+            foreach (var xing in result.ZhuXing)
+            {
+                xing.Content = dal.s15.Find(x => x.id == xing.Id.ToString()).caibo;
+            }
 
+            //吉星
+            foreach (var xing in result.JiXing)
+            {
+                xing.Content = dal.s15.Find(x => x.id == xing.Id.ToString()).caibo;
+            }
+
+            //凶星
+            foreach (var xing in result.XiongXing)
+            {
+                xing.Content = dal.s15.Find(x => x.id == xing.Id.ToString()).caibo;
+            }
+
+            if (result.ZhuXing.Count == 2)
+            {
+                var shuang = dal.s15.Find(x => x.id == string.Format("{0}#{1}", result.ZhuXing[0].Id, result.ZhuXing[1].Id));
+                result.ShuangZhuXing = shuang.caibo;
+            }
+
+
+            return result;
         }
     }
 }

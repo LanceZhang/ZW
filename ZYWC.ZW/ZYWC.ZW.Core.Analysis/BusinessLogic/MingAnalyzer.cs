@@ -17,7 +17,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
         public MingGong GetResult(PaiPan pan)
         {
-            MingGong result = base.GetResult<MingGong>(pan, GongIndex.命宫, 0);
+            MingGong result = base.GetResult<MingGong>(pan, GongIndex.命宫, pan.IsMale ? 0 : 1);
 
             return result;
         }
