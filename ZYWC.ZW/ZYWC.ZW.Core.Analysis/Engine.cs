@@ -13,22 +13,20 @@ namespace ZYWC.ZW.Core.Analysis
     {
         DAL dal = null;
         FuMuAnalyzer fumu = null;
+        GeJuAnalyzer geju = null;
 
         public Engine(string path)
         {
             dal = new DAL(path);
 
             fumu = new FuMuAnalyzer(dal);
+            geju = new GeJuAnalyzer(dal);
         }
 
 
-        public FuMuAnalyzer FuMuAnalyzer
-        {
-            get
-            {
-                return fumu;
-            }
-        }
+        public FuMuAnalyzer FuMuAnalyzer { get { return fumu; } }
+
+        public GeJuAnalyzer GeJuAnalyzer { get { return geju; } }
 
 
 

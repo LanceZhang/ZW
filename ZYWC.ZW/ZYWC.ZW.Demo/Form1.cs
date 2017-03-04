@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZYWC.ZW.Core;
 using ZYWC.ZW.Core.Analysis;
+using ZYWC.ZW.Core.Analysis.BusinessLogic;
+using ZYWC.ZW.Core.Analysis.Data;
 
 namespace ZYWC.ZW.Demo
 {
@@ -80,6 +82,34 @@ namespace ZYWC.ZW.Demo
 
             this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + fumu.ToString();
 
+        }
+
+        private void btnGeJu_Click(object sender, EventArgs e)
+        {
+            DateTime dateTime = this.dpBirthDate.Value;
+            ChineseCalendar cc = new ChineseCalendar(dateTime);
+            PaiPan pan = new PaiPan(cc, this.ckMan.Checked);
+            var eg = new Engine(string.Empty);
+            var geju = eg.GeJuAnalyzer.GeJuFromPaiPan(pan);
+            
+            /*
+            var dal = new DAL(string.Empty);
+            var ccc = new StringBuilder();
+            var fff = new StringBuilder();
+            foreach(var ge in dal.s26)
+            {
+                ccc.AppendFormat("            CheckGeJu(pan, rets, {0});\n", ge.gejuname);
+
+                this.txtBrithday.Text += "\n        ";
+                this.txtBrithday.Text += "\n        private static string " + ge.gejuname + "(PaiPan pan)";
+                this.txtBrithday.Text += "\n        {";
+                this.txtBrithday.Text += "\n            //";
+                this.txtBrithday.Text += "\n            return \"" + ge.gejuname+"\";";
+                this.txtBrithday.Text += "\n        }";
+            }
+
+            this.txtBrithday.Text += ccc.ToString();
+            */
         }
     }
 }
