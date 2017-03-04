@@ -40,7 +40,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
         }
 
 
-        public string ToString()
+        public override string ToString()
         {
             return string.Format(@"
 【{0}】：

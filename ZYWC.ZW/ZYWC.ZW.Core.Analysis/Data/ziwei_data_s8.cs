@@ -17,6 +17,13 @@ namespace ZYWC.ZW.Core.Analysis.Data
     [XmlType("xingdi")]
     public class s8_xingdi
     {
+        [XmlAttribute]
+        public string id { get; set; }
+
+        [XmlAttribute]
+        public string name { get; set; }
+
+
         [XmlElement("aiqingguan")]
         public string aiqingguan { get; set; }
 
@@ -31,6 +38,10 @@ namespace ZYWC.ZW.Core.Analysis.Data
 
         [XmlElement("miaowang")]
         public string miaowang { get; set; }
+
+
+        [XmlElement("ruoxian")]
+        public string ruoxian { get; set; }
 
     }
 }
