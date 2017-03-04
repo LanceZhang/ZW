@@ -42,7 +42,7 @@ namespace ZYWC.ZW.Core.Analysis
             xiongdi = new XiongDiAnalyzer(dal);
             zinv = new ZiNvAnalyzer(dal);
             geju = new GeJuAnalyzer(dal);
-            //fude = new FudeAnalyzer(dal);
+            fude = new FudeAnalyzer(dal);
         }
 
 

@@ -19,7 +19,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         {
             FuQiGong result = base.GetResult<FuQiGong>(pan, GongIndex.夫妻宫, 3);
 
-
             //命宫主星爱情分析
             result.AiQingFenXi = new AiQingFenXi();
 

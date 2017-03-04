@@ -9,9 +9,6 @@ namespace ZYWC.ZW.Core.Analysis.Model
 {
     public class BasicGong
     {
-
-
-
         public virtual GongIndex Name { get; set; }
 
         public Gong SelfGong { get; set; }
@@ -62,7 +59,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
         }
 
 
-        private string GetXingsString(List<Xing> xings)
+        protected string GetXingsString(List<Xing> xings)
         {
             StringBuilder sb = new StringBuilder();
 

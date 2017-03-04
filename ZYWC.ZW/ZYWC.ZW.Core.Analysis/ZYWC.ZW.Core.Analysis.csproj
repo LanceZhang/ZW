@@ -93,7 +93,7 @@
     <Compile Include="Model\JiEGong.cs" />
     <Compile Include="Model\QianYiGong.cs" />
     <Compile Include="Model\PuYiGong.cs" />
-    <Compile Include="Model\GuanLuGong.cs" />
+    <Compile Include="Model\ShiYeGong.cs" />
     <Compile Include="Model\FuMuGong.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
