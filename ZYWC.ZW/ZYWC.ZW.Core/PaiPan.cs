@@ -109,6 +109,8 @@ namespace ZYWC.ZW.Core
             }
         }
 
+        public bool IsMale { get; private set; }
+
         #endregion
 
         #region 构造函数
@@ -244,6 +246,8 @@ namespace ZYWC.ZW.Core
         public PaiPan(ChineseCalendar cal, bool sex)
         {
             #region 清空初始化
+
+            IsMale = sex;
 
             calendar = cal;
 

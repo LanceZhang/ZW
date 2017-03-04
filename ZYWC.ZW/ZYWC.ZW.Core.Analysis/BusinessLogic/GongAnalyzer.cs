@@ -71,8 +71,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
 
-
-
             //吉星
             foreach (var item in model.SelfGong.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name)).ToList())
             {
@@ -91,9 +89,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                     model.JiXing.Add(new Xing(item, dal.Dic_JiXing[item.Name].id, Position.加会));
                 }
             }
-
-
-
 
 
             //凶星
@@ -120,23 +115,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             //宫位
             model.GongWei = string.Format("【{0}在{1}】", gong_idx.ToString(), model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[gong_idx.GetHashCode()];
 
-            //主星
-            foreach (var xing in model.ZhuXing)
-            {
-                xing.Content = dal.s2[xing.Id].items[index_of_s2];
-            }
-
-            //吉星
-            foreach (var xing in model.JiXing)
-            {
-                xing.Content = dal.s2[xing.Id].items[index_of_s2];
-            }
-
-            //凶星
-            foreach (var xing in model.XiongXing)
-            {
-                xing.Content = dal.s2[xing.Id].items[index_of_s2];
-            }
 
             //四化
             foreach (var item in model.ZhuXing.Where(x => !string.IsNullOrEmpty(x.Star.Hua)))
@@ -175,6 +153,32 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                         item.HuaContent = dal.s7.Find(x => x.id == item.Id).items[gong_idx.GetHashCode()];
                         break;
                 }
+            }
+
+
+            //福德则直接返回
+            if (gong_idx== GongIndex.福德宫)
+            {
+                return model;
+            }
+
+
+            //主星
+            foreach (var xing in model.ZhuXing)
+            {
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
+            }
+
+            //吉星
+            foreach (var xing in model.JiXing)
+            {
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
+            }
+
+            //凶星
+            foreach (var xing in model.XiongXing)
+            {
+                xing.Content = dal.s2[xing.Id].items[index_of_s2];
             }
 
 
