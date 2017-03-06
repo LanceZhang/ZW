@@ -11,7 +11,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
     public class DaShisWords
     {
 
-        public DaShi GetDaShi(BasicGong gong, DAL dal)
+        public static DaShi GetDaShi(BasicGong gong, DAL dal)
         {
             DaShi result = new DaShi();
 
@@ -42,7 +42,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return result;
         }
 
-        private ziwei_data_s31 GetData(GongIndex index, DAL dal)
+        private static ziwei_data_s31 GetData(GongIndex index, DAL dal)
         {
             switch (index)
             {
@@ -73,7 +73,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
         }
 
-        private string GetJianYi(GongIndex index)
+        private static string GetJianYi(GongIndex index)
         {
             switch (index)
             {

@@ -48,7 +48,7 @@ namespace ZYWC.ZW.Core.Analysis.Data
     public class s20_xingyao 
     {
         [XmlAttribute]
-        public string id { get; set; }
+        public int id { get; set; }
 
         [XmlAttribute]
         public string name { get; set; }

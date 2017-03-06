@@ -116,7 +116,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             model.GongWei = string.Format("【{0}在{1}】", gong_idx.ToString(), model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[gong_idx.GetHashCode()];
 
 
-            //四化
+            //主星四化
             foreach (var item in model.ZhuXing.Where(x => !string.IsNullOrEmpty(x.Star.Hua)))
             {
                 switch (item.Star.Hua)
@@ -157,7 +157,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
 
             //福德则直接返回
-            if (gong_idx== GongIndex.福德宫)
+            if (gong_idx == GongIndex.福德宫)
             {
                 return model;
             }
@@ -181,6 +181,38 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 xing.Content = dal.s2[xing.Id].items[index_of_s2];
             }
 
+
+
+            //计算吉凶指数
+            int ji = 0;
+            int xiong = 0;
+
+            var jis = model.JiXing.Select(j => j.Star.Name).ToList();
+            var self_jis = model.SelfGong.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name)).Select(j => j.Name).ToList();
+
+            var xiongs = model.XiongXing.Select(j => j.Star.Name).ToList();
+            var self_xiongs = model.SelfGong.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).Select(j => j.Name).ToList();
+
+            var jizu = dal.s20.jixiongzhishu.Where(jx => jx.id > 16
+                && jis.Contains(jx.name.Substring(0, 2))
+                && jis.Contains(jx.name.Substring(0, 2))
+                && !self_jis.Contains(jx.name.Substring(0, 2))
+                && !self_jis.Contains(jx.name.Substring(0, 2)));
+
+            var xiongzu = dal.s20.jixiongzhishu.Where(jx => jx.id > 16
+                && xiongs.Contains(jx.name.Substring(0, 2))
+                && xiongs.Contains(jx.name.Substring(0, 2))
+                && !self_xiongs.Contains(jx.name.Substring(0, 2))
+                && !self_xiongs.Contains(jx.name.Substring(0, 2)));
+
+
+
+
+
+
+
+
+            model.DaShi = DaShisWords.GetDaShi(model, dal);
 
             return model;
         }
