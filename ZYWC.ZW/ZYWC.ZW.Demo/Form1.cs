@@ -101,5 +101,55 @@ namespace ZYWC.ZW.Demo
 
             this.txtBrithday.Text = eg.GeJuAnalyzer.GetResult(pan).ToString();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Dictionary<string, int> dic = new Dictionary<string, int>();
+
+            DateTime dt = DateTime.Now.AddYears(-60);
+
+            for (int i = 0; i < 260000; i++)
+            {
+                ChineseCalendar cc = new ChineseCalendar(dt);
+                var pan = new PaiPan(cc, this.ckMan.Checked);
+
+                string key = string.Empty;
+
+                var star = pan.MingGong.Stars.Where(s => s.Type == Star.StarType.主星).ToList();
+                if (star.Count == 0)
+                {
+                    star = pan.Gongs.First(g => g.Name == "迁移宫").Stars.Where(s => s.Type == Star.StarType.主星).ToList();
+                }
+
+                if (star.Count == 2)
+                {
+                    key = string.Format("{0}#{1}", star[0].Name, star[1].Name);
+                }
+                else
+                {
+                    key = star[0].Name;
+                }
+
+                if (dic.ContainsKey(key))
+                {
+                    dic[key]++;
+                }
+                else
+                {
+                    dic.Add(key, 1);
+                }
+
+                dt = dt.AddHours(2);
+            }
+
+            StringBuilder sb = new StringBuilder();
+            foreach (var item in dic.OrderBy(d => d.Key.Length))
+            {
+                sb.AppendLine(string.Format("{0}:\t\t{1}", item.Key, item.Value));
+            }
+
+            this.txtBrithday.Text = sb.ToString();
+        }
+
     }
 }
