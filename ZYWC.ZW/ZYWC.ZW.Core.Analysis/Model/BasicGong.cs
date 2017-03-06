@@ -27,6 +27,8 @@ namespace ZYWC.ZW.Core.Analysis.Model
 
         public int JiXiongZhiShu { get; set; }
 
+        public DaShi DaShi { get; set; }
+
 
         public BasicGong()
         {
@@ -118,6 +120,16 @@ namespace ZYWC.ZW.Core.Analysis.Model
         坐宫,
         对照,
         加会
+    }
+
+
+    public class DaShi
+    {
+        public float JiXiongZhiShu { get; set; }
+
+        public string MingZhongTeDian { get; set; }
+
+        public string JianYi { get; set; }
     }
 
 }
