@@ -107,16 +107,18 @@ namespace ZYWC.ZW.Demo
             foreach(var ge in dal.s26)
             {
                 ccc.AppendFormat("            CheckGeJu(pan, rets, {0});\n", ge.gejuname);
-
+                
                 this.txtBrithday.Text += "\n        ";
                 this.txtBrithday.Text += "\n        private static string " + ge.gejuname + "(PaiPan pan)";
                 this.txtBrithday.Text += "\n        {";
                 this.txtBrithday.Text += "\n            //";
                 this.txtBrithday.Text += "\n            return \"" + ge.gejuname+"\";";
                 this.txtBrithday.Text += "\n        }";
+                
+                fff.AppendFormat("\n            {0},", ge.gejuname);
             }
 
-            this.txtBrithday.Text += ccc.ToString();
+            this.txtBrithday.Text += fff.ToString();
             */
         }
 
