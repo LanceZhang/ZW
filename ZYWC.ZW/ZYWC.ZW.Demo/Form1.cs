@@ -89,7 +89,7 @@ namespace ZYWC.ZW.Demo
             this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + eg.ZiNvAnalyzer.GetResult(pan).ToString();
             this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + eg.CaiBoAnalyzer.GetResult(pan).ToString();
             this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + eg.FudeAnalyzer.GetResult(pan).ToString();
-
+            this.txtBrithday.Text = this.txtBrithday.Text + "\n\n" + eg.GeJuAnalyzer.GetResult(pan).ToString();
         }
 
         private void btnGeJu_Click(object sender, EventArgs e)
@@ -98,28 +98,8 @@ namespace ZYWC.ZW.Demo
             ChineseCalendar cc = new ChineseCalendar(dateTime);
             PaiPan pan = new PaiPan(cc, this.ckMan.Checked);
             var eg = new Engine(string.Empty);
-            var geju = eg.GeJuAnalyzer.GeJuFromPaiPan(pan);
-            
-            /*
-            var dal = new DAL(string.Empty);
-            var ccc = new StringBuilder();
-            var fff = new StringBuilder();
-            foreach(var ge in dal.s26)
-            {
-                ccc.AppendFormat("            CheckGeJu(pan, rets, {0});\n", ge.gejuname);
-                
-                this.txtBrithday.Text += "\n        ";
-                this.txtBrithday.Text += "\n        private static string " + ge.gejuname + "(PaiPan pan)";
-                this.txtBrithday.Text += "\n        {";
-                this.txtBrithday.Text += "\n            //";
-                this.txtBrithday.Text += "\n            return \"" + ge.gejuname+"\";";
-                this.txtBrithday.Text += "\n        }";
-                
-                fff.AppendFormat("\n            {0},", ge.gejuname);
-            }
 
-            this.txtBrithday.Text += fff.ToString();
-            */
+            this.txtBrithday.Text = eg.GeJuAnalyzer.GetResult(pan).ToString();
         }
     }
 }

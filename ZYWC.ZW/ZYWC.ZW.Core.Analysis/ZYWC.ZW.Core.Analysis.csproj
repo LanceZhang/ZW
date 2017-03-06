@@ -83,6 +83,7 @@
     <Compile Include="Data\ziwei_data_s8.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Model\BasicGong.cs" />
+    <Compile Include="Model\GeJu.cs" />
     <Compile Include="Model\MingGong.cs" />
     <Compile Include="Model\XiongDiGong.cs" />
     <Compile Include="Model\FuQiGong.cs" />
