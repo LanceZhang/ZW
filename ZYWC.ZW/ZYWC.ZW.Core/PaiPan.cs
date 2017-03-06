@@ -278,6 +278,10 @@ namespace ZYWC.ZW.Core
             int m = 2 + (month - 1) - (hour - 1);
             if (m < 0)
                 m = 12 + m;
+            if (m >= 12)
+            {
+                m = m - 12;//2017-3-6 12:38:20 临时加，不知正确否
+            }
             int 命_index = _xingGong[m].Zhi;
 
             Gong gong = _xingGong[命_index - 1];
@@ -295,6 +299,8 @@ namespace ZYWC.ZW.Core
 
             //安身
             int n = 2 + (month - 1) + (hour - 1);
+            if (n > 11)
+                n = n - 12;
             if (n > 11)
                 n = n - 12;
             int 身_index = _xingGong[n].Zhi;
@@ -332,6 +338,11 @@ namespace ZYWC.ZW.Core
                 shang = shang - 12;
             else if (shang < 0)
                 shang = shang + 12;
+
+            if (shang == 11)
+            {
+                shang = 0;//2017-3-6 12:38:20 临时加，不知正确否
+            }
 
             gong = _xingGong[shang + 1];
             gong.Stars.Add(new Star("紫微", Star.StarType.主星));
