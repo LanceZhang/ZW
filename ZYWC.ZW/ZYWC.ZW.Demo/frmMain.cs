@@ -17,7 +17,7 @@ namespace ZYWC.ZW.Demo
     public partial class frmMain : Form
     {
         public frmMain()
-        {
+        { 
             InitializeComponent();
             this.dpBirthDate.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dpLiuDate.CustomFormat = "yyyy-MM-dd HH:mm";
