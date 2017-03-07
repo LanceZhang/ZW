@@ -151,5 +151,10 @@ namespace ZYWC.ZW.Demo
             this.txtBrithday.Text = sb.ToString();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.lblVersion.Text = "version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
+
     }
 }
