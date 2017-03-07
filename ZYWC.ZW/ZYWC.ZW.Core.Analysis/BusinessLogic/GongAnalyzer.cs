@@ -246,9 +246,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             //单星
             ji += self_jis.Count * 2;
             ji += (jis.Count - self_jis.Count) * 1;
+            ji -= jizu.Count() * 2;
 
             xiong += self_xiongs.Count * 2;
             xiong += (xiongs.Count - self_xiongs.Count) * 1;
+            xiong -= xiongzu.Count() * 2;
 
 
             //四化(有非本宫组合++)
