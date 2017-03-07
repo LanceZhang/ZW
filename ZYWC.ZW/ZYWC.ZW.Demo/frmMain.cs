@@ -14,9 +14,9 @@ using ZYWC.ZW.Core.Analysis.Data;
 
 namespace ZYWC.ZW.Demo
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
             this.dpBirthDate.CustomFormat = "yyyy-MM-dd HH:mm";
