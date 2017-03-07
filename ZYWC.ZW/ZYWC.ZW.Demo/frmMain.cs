@@ -104,51 +104,58 @@ namespace ZYWC.ZW.Demo
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Dictionary<string, int> dic = new Dictionary<string, int>();
+            #region 穷举命盘
 
-            DateTime dt = DateTime.Now.AddYears(-60);
+            //Dictionary<string, int> dic = new Dictionary<string, int>();
 
-            for (int i = 0; i < 260000; i++)
-            {
-                ChineseCalendar cc = new ChineseCalendar(dt);
-                var pan = new PaiPan(cc, this.ckMan.Checked);
+            //DateTime dt = DateTime.Now.AddYears(-60);
 
-                string key = string.Empty;
+            //for (int i = 0; i < 260000; i++)
+            //{
+            //    ChineseCalendar cc = new ChineseCalendar(dt);
+            //    var pan = new PaiPan(cc, this.ckMan.Checked);
 
-                var star = pan.MingGong.Stars.Where(s => s.Type == Star.StarType.主星).ToList();
-                if (star.Count == 0)
-                {
-                    star = pan.Gongs.First(g => g.Name == "迁移宫").Stars.Where(s => s.Type == Star.StarType.主星).ToList();
-                }
+            //    string key = string.Empty;
 
-                if (star.Count == 2)
-                {
-                    key = string.Format("{0}#{1}", star[0].Name, star[1].Name);
-                }
-                else
-                {
-                    key = star[0].Name;
-                }
+            //    var star = pan.MingGong.Stars.Where(s => s.Type == Star.StarType.主星).ToList();
+            //    if (star.Count == 0)
+            //    {
+            //        star = pan.Gongs.First(g => g.Name == "迁移宫").Stars.Where(s => s.Type == Star.StarType.主星).ToList();
+            //    }
 
-                if (dic.ContainsKey(key))
-                {
-                    dic[key]++;
-                }
-                else
-                {
-                    dic.Add(key, 1);
-                }
+            //    if (star.Count == 2)
+            //    {
+            //        key = string.Format("{0}#{1}", star[0].Name, star[1].Name);
+            //    }
+            //    else
+            //    {
+            //        key = star[0].Name;
+            //    }
 
-                dt = dt.AddHours(2);
-            }
+            //    if (dic.ContainsKey(key))
+            //    {
+            //        dic[key]++;
+            //    }
+            //    else
+            //    {
+            //        dic.Add(key, 1);
+            //    }
 
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in dic.OrderBy(d => d.Key.Length))
-            {
-                sb.AppendLine(string.Format("{0}:\t\t{1}", item.Key, item.Value));
-            }
+            //    dt = dt.AddHours(2);
+            //}
 
-            this.txtBrithday.Text = sb.ToString();
+            //StringBuilder sb = new StringBuilder();
+            //foreach (var item in dic.OrderBy(d => d.Key.Length))
+            //{
+            //    sb.AppendLine(string.Format("{0}:\t\t{1}", item.Key, item.Value));
+            //}
+
+            //this.txtBrithday.Text = sb.ToString();
+
+            #endregion
+
+            Form1 f1 = new Form1();
+            f1.Show();
         }
 
         private void Form1_Load(object sender, EventArgs e)
