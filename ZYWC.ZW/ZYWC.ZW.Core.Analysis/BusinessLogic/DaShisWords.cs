@@ -34,7 +34,14 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             else
             {
                 var data = GetData(gong.Name, dal);
-                result.MingZhongTeDian = data.Find(d => d.id == gong.ZhuXing[0].Id.ToString()).dizhis[gong.SelfGong.Zhi - 1].contents[0].text;
+                if (gong.JiXiongZhiShu > 50)
+                {
+                    result.MingZhongTeDian = data.Find(d => d.id == gong.ZhuXing[0].Id.ToString()).dizhis[gong.SelfGong.Zhi - 1].contents[0].text;
+                }
+                else
+                {
+                    result.MingZhongTeDian = data.Find(d => d.id == gong.ZhuXing[0].Id.ToString()).dizhis[gong.SelfGong.Zhi - 1].contents[1].text;
+                }
 
                 result.JianYi = GetJianYi(gong.Name);
             }

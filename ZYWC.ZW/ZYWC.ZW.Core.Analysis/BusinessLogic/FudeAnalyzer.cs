@@ -52,6 +52,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             base.GetJiXiong<FuDeGong>(result);
 
+            result.DaShi = DaShisWords.GetDaShi(result, dal);
+
             return result;
         }
 

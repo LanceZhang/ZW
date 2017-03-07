@@ -116,9 +116,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             model.GongWei = string.Format("【{0}在{1}】", gong_idx.ToString(), model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[gong_idx.GetHashCode()];
 
 
-
-
-
             //主星四化
             foreach (var item in model.ZhuXing.Where(x => !string.IsNullOrEmpty(x.Star.Hua)))
             {

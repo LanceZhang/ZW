@@ -39,6 +39,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
             JiXing = new List<Xing>();
             XiongXing = new List<Xing>();
             Hua = new List<Hua>();
+            DaShi = new DaShi();
         }
 
 
@@ -50,19 +51,26 @@ namespace ZYWC.ZW.Core.Analysis.Model
 宫位：{4}
 吉凶指数：{8}%
 
-
 主星：
 {5}
 吉星：
 {6}
 凶星：
-{7}", Name
+{7}
+
+大师赠言：
+命中特点：{9}
+大师建议：{10}
+
+", Name
        , DuiZhaoGong.Name, HuiGongs[0].Name, HuiGongs[1].Name
        , GongWei
        , GetXingsString(ZhuXing)
        , GetXingsString(JiXing)
        , GetXingsString(XiongXing)
        , JiXiongZhiShu.ToString(".00")
+       , DaShi.MingZhongTeDian??string.Empty
+       , DaShi.JianYi ?? string.Empty
        );
         }
 
