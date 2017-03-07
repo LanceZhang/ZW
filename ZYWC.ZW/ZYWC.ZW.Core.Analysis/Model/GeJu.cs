@@ -23,7 +23,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
                     jiGe.Add(ge);
 
                 if (ge.gejuJixiong == "凶")
-                    jiGe.Add(ge);
+                    xiongGe.Add(ge);
             }
         }
 
@@ -31,23 +31,23 @@ namespace ZYWC.ZW.Core.Analysis.Model
         {
             var sb = new StringBuilder();
 
-            sb.Append("格局：\n");
-            sb.Append("    吉格：\n");
+            sb.Append("【格局】：\n");
+            sb.Append("吉格：\n");
             if (jiGe.Count == 0)
-                sb.Append("        无\n");
+                sb.Append("    无\n");
             else
             {
                 foreach (var ge in jiGe)
-                    sb.AppendFormat("        {0}：{1}\n", ge.gejuname, ge.text);
+                    sb.AppendFormat("    {0}：{1}\n", ge.gejuname, ge.text);
             }
 
-            sb.Append("    凶格：\n");
+            sb.Append("凶格：\n");
             if (xiongGe.Count == 0)
-                sb.Append("        无\n");
+                sb.Append("    无\n");
             else
             {
                 foreach (var ge in xiongGe)
-                    sb.AppendFormat("        {0}：{1}\n", ge.gejuname, ge.text);
+                    sb.AppendFormat("    {0}：{1}\n", ge.gejuname, ge.text);
             }
 
             return sb.ToString();

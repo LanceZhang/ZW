@@ -97,7 +97,7 @@ namespace ZYWC.ZW.Demo
             DateTime dateTime = this.dpBirthDate.Value;
             ChineseCalendar cc = new ChineseCalendar(dateTime);
             PaiPan pan = new PaiPan(cc, this.ckMan.Checked);
-            var eg = new Engine(string.Empty);
+            var eg = new Engine(@".\Data\");
 
             this.txtBrithday.Text = eg.GeJuAnalyzer.GetResult(pan).ToString();
         }
