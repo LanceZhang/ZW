@@ -25,7 +25,9 @@ namespace ZYWC.ZW.Core.Analysis.Model
 
         public List<Xing> XiongXing { get; set; }
 
-        public int JiXiongZhiShu { get; set; }
+        public List<Hua> Hua { get; set; }
+
+        public double JiXiongZhiShu { get; set; }
 
         public DaShi DaShi { get; set; }
 
@@ -36,6 +38,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
             ZhuXing = new List<Xing>();
             JiXing = new List<Xing>();
             XiongXing = new List<Xing>();
+            Hua = new List<Hua>();
         }
 
 
@@ -45,6 +48,8 @@ namespace ZYWC.ZW.Core.Analysis.Model
 【{0}】：
 三方四正：[{1}]对照，[{2}]拱会，[{3}]拱会
 宫位：{4}
+吉凶指数：{8}%
+
 
 主星：
 {5}
@@ -57,6 +62,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
        , GetXingsString(ZhuXing)
        , GetXingsString(JiXing)
        , GetXingsString(XiongXing)
+       , JiXiongZhiShu.ToString(".00")
        );
         }
 
@@ -114,12 +120,36 @@ namespace ZYWC.ZW.Core.Analysis.Model
 
     }
 
+    public class Hua
+    {
+        public string StarName { get; set; }
+
+        public HuaType HuaType { get; set; }
+
+        public Position Position { get; set; }
+
+        public Hua(string name, HuaType type, Position position)
+        {
+            this.HuaType = type;
+            this.Position = position;
+            this.StarName = name;
+        }
+    }
+
 
     public enum Position
     {
         坐宫,
         对照,
         加会
+    }
+
+    public enum HuaType
+    {
+        禄,
+        权,
+        科,
+        忌
     }
 
 

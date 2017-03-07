@@ -116,6 +116,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             model.GongWei = string.Format("【{0}在{1}】", gong_idx.ToString(), model.SelfGong.ZhiString) + dal.s11[model.SelfGong.Zhi - 1].items[gong_idx.GetHashCode()];
 
 
+
+
+
             //主星四化
             foreach (var item in model.ZhuXing.Where(x => !string.IsNullOrEmpty(x.Star.Hua)))
             {
@@ -156,6 +159,28 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
 
+            //四化（不只主星）
+            foreach (var item in model.DuiZhaoGong.Stars.Where(x => !string.IsNullOrEmpty(x.Hua)))
+            {
+                model.Hua.Add(new Hua(item.Name, (HuaType)Enum.Parse(typeof(HuaType), item.Hua, false), Position.对照));
+            }
+
+            foreach (var item in model.SelfGong.Stars.Where(x => !string.IsNullOrEmpty(x.Hua)))
+            {
+                model.Hua.Add(new Hua(item.Name, (HuaType)Enum.Parse(typeof(HuaType), item.Hua, false), Position.坐宫));
+            }
+
+            foreach (var item in model.HuiGongs[0].Stars.Where(x => !string.IsNullOrEmpty(x.Hua)))
+            {
+                model.Hua.Add(new Hua(item.Name, (HuaType)Enum.Parse(typeof(HuaType), item.Hua, false), Position.加会));
+            }
+
+            foreach (var item in model.HuiGongs[1].Stars.Where(x => !string.IsNullOrEmpty(x.Hua)))
+            {
+                model.Hua.Add(new Hua(item.Name, (HuaType)Enum.Parse(typeof(HuaType), item.Hua, false), Position.加会));
+            }
+
+
             //福德则直接返回
             if (gong_idx == GongIndex.福德宫)
             {
@@ -182,7 +207,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
 
-
             //计算吉凶指数
             int ji = 0;
             int xiong = 0;
@@ -190,27 +214,55 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             var jis = model.JiXing.Select(j => j.Star.Name).ToList();
             var self_jis = model.SelfGong.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name)).Select(j => j.Name).ToList();
 
+            //组合
             var xiongs = model.XiongXing.Select(j => j.Star.Name).ToList();
             var self_xiongs = model.SelfGong.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).Select(j => j.Name).ToList();
 
             var jizu = dal.s20.jixiongzhishu.Where(jx => jx.id > 16
                 && jis.Contains(jx.name.Substring(0, 2))
-                && jis.Contains(jx.name.Substring(0, 2))
+                && jis.Contains(jx.name.Substring(2, 2))
                 && !self_jis.Contains(jx.name.Substring(0, 2))
-                && !self_jis.Contains(jx.name.Substring(0, 2)));
+                && !self_jis.Contains(jx.name.Substring(2, 2)));
 
             var xiongzu = dal.s20.jixiongzhishu.Where(jx => jx.id > 16
                 && xiongs.Contains(jx.name.Substring(0, 2))
-                && xiongs.Contains(jx.name.Substring(0, 2))
+                && xiongs.Contains(jx.name.Substring(2, 2))
                 && !self_xiongs.Contains(jx.name.Substring(0, 2))
-                && !self_xiongs.Contains(jx.name.Substring(0, 2)));
+                && !self_xiongs.Contains(jx.name.Substring(2, 2)));
+
+            ji += jizu.Count() * 3;
+            xiong += xiongzu.Count() * 3;
 
 
+            //单星
+            ji += self_jis.Count * 2;
+            ji += (jis.Count - self_jis.Count) * 1;
+
+            xiong += self_xiongs.Count * 2;
+            xiong += (xiongs.Count - self_xiongs.Count) * 1;
 
 
+            //四化(有非本宫组合++)
+            if (model.Hua.Exists(h => h.HuaType == HuaType.忌))
+            {
+                xiong += 1;
+                if (model.Hua.Exists(h => h.HuaType == HuaType.忌 && h.Position == Position.坐宫))
+                {
+                    xiong += 1;
+                }
+            }
 
+            int goodhua = model.Hua.Count(h => h.HuaType != HuaType.忌);
+            int goodselfhua = model.Hua.Count(h => h.HuaType != HuaType.忌 && h.Position == Position.坐宫);
 
+            xiong += goodhua;
+            xiong += goodselfhua;
+            if (goodhua - goodselfhua > 1)
+            {
+                xiong += (goodhua - goodselfhua);
+            }
 
+            model.JiXiongZhiShu = ji * 100.00 / (ji + xiong);
 
             model.DaShi = DaShisWords.GetDaShi(model, dal);
 

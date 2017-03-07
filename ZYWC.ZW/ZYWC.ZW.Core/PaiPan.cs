@@ -169,8 +169,9 @@ namespace ZYWC.ZW.Core
 
             _shixizhuxing.Add("文昌", "戌酉申未午巳辰卯寅丑子亥");
             _shixizhuxing.Add("文曲", "辰巳午未申酉戌亥子丑寅卯");
-            _shixizhuxing.Add("天空", "亥戌酉申未午巳辰卯寅丑子");
+            //_shixizhuxing.Add("天空", "亥戌酉申未午巳辰卯寅丑子");
             _shixizhuxing.Add("地劫", "亥子丑寅卯辰巳午未申酉戌");
+            _shixizhuxing.Add("地空", "亥戌酉申未午巳辰卯寅丑子");//
             _shixizhuxing.Add("台辅", "午未申酉戌亥子丑寅卯辰巳");
             _shixizhuxing.Add("封诰", "寅卯辰巳午未申酉戌亥子丑");
 
