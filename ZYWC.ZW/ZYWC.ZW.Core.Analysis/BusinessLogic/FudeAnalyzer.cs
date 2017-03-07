@@ -50,6 +50,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 result.ShuangZhuXing = pan.IsMale ? shuang.jiexinan : shuang.jiexinu;
             }
 
+            base.GetJiXiong<FuDeGong>(result);
 
             return result;
         }

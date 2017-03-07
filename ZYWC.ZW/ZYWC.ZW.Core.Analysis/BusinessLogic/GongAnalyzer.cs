@@ -207,6 +207,15 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
 
+            GetJiXiong<T>(model);
+
+            model.DaShi = DaShisWords.GetDaShi(model, dal);
+
+            return model;
+        }
+
+        protected void GetJiXiong<T>(T model) where T : BasicGong, new()
+        {
             //计算吉凶指数
             int ji = 0;
             int xiong = 0;
@@ -222,13 +231,13 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 && jis.Contains(jx.name.Substring(0, 2))
                 && jis.Contains(jx.name.Substring(2, 2))
                 && !self_jis.Contains(jx.name.Substring(0, 2))
-                && !self_jis.Contains(jx.name.Substring(2, 2)));
+                && !self_jis.Contains(jx.name.Substring(2, 2))).ToList();
 
             var xiongzu = dal.s20.jixiongzhishu.Where(jx => jx.id > 16
                 && xiongs.Contains(jx.name.Substring(0, 2))
                 && xiongs.Contains(jx.name.Substring(2, 2))
                 && !self_xiongs.Contains(jx.name.Substring(0, 2))
-                && !self_xiongs.Contains(jx.name.Substring(2, 2)));
+                && !self_xiongs.Contains(jx.name.Substring(2, 2))).ToList();
 
             ji += jizu.Count() * 3;
             xiong += xiongzu.Count() * 3;
@@ -255,18 +264,14 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             int goodhua = model.Hua.Count(h => h.HuaType != HuaType.忌);
             int goodselfhua = model.Hua.Count(h => h.HuaType != HuaType.忌 && h.Position == Position.坐宫);
 
-            xiong += goodhua;
-            xiong += goodselfhua;
+            ji += goodhua;
+            ji += goodselfhua;
             if (goodhua - goodselfhua > 1)
             {
-                xiong += (goodhua - goodselfhua);
+                ji += (goodhua - goodselfhua);
             }
 
             model.JiXiongZhiShu = ji * 100.00 / (ji + xiong);
-
-            model.DaShi = DaShisWords.GetDaShi(model, dal);
-
-            return model;
         }
     }
 }
