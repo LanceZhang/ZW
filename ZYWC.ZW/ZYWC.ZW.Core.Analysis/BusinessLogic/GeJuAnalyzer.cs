@@ -162,7 +162,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 return false;
 
             // 无化忌同宫
-            if (pan.MingGong.Stars.Exists(s => s.Name == "化忌"))
+            //if (pan.MingGong.Stars.Exists(s => s.Name == "化忌"))
+            //    return false;
+            if (pan.MingGong.Stars.Exists(s => "忌" == s.Hua))
                 return false;
 
             return true;
@@ -352,10 +354,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             if (pan.MingGong.Stars.Exists(s => s.Name == "天马"))
             {
                 if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "武曲")
-                    && pan.MingGong.Next.Stars.Exists(s => s.Name == "化禄"))
+                    && pan.MingGong.Next.Stars.Exists(s => "禄" == s.Hua))
                     return true;
 
-                if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "化禄")
+                if (pan.MingGong.Previous.Stars.Exists(s => "禄" == s.Hua)
                     && pan.MingGong.Next.Stars.Exists(s => s.Name == "武曲"))
                     return true;
 
@@ -400,12 +402,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             var tianxiang = pan.Gongs.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "天相"));
             if (tianxiang != null)
             {
-                if (tianxiang.Previous.Stars.Exists(s => s.Name == "化禄")
+                if (tianxiang.Previous.Stars.Exists(s => "禄" == s.Hua)
                     && tianxiang.Next.Stars.Exists(s => s.Name == "天梁"))
                     return true;
 
                 if (tianxiang.Previous.Stars.Exists(s => s.Name == "天梁")
-                    && tianxiang.Next.Stars.Exists(s => s.Name == "化禄"))
+                    && tianxiang.Next.Stars.Exists(s => "禄" == s.Hua))
                     return true;
             }
 
@@ -548,7 +550,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 return true;
             }
 
-            if (pan.MingGong.Stars.Exists(s => s.Name == "化禄")
+            if (pan.MingGong.Stars.Exists(s => "禄" == s.Hua)
                 && pan.MingGong.Stars.Exists(s => s.Name == "天马")
                 && pan.MingGong.Stars.Exists(s => s.Name == "天相"))
             {
@@ -566,7 +568,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
             Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "禄存"));
             Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "天马"));
-            Gong g3 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化禄"));
+            Gong g3 = arr.FirstOrDefault(g => g.Stars.Exists(s => "禄" == s.Hua));
 
             if (g1 != null && g2 != null)
                 return true;
@@ -749,7 +751,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.DuiZhaoGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
             Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "禄存"));
-            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化禄"));
+            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => "禄" == s.Hua));
 
             if (g1 != null && g2 != null)
                 return true;
@@ -762,9 +764,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
 
             Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.DuiZhaoGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
-            Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化禄"));
-            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化权"));
-            Gong g3 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化科"));
+            Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => "禄" == s.Hua));
+            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => "权" == s.Hua));
+            Gong g3 = arr.FirstOrDefault(g => g.Stars.Exists(s => "科" == s.Hua));
 
             if (g1 != null && g2 != null && g3 != null)
                 return true;
@@ -778,8 +780,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
 
             Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.DuiZhaoGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
-            Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化禄"));
-            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化权"));
+            Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => "禄" == s.Hua));
+            Gong g2 = arr.FirstOrDefault(g => g.Stars.Exists(s => "权" == s.Hua));
 
             if (g1 != null && g2 != null)
                 return true;
@@ -790,13 +792,13 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         private bool 科权禄夹格(PaiPan pan)
         {
             // 化禄、化权、化科有二星在左右邻宫夹命。
-            if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "化禄")
-                || pan.MingGong.Previous.Stars.Exists(s => s.Name == "化权")
-                || pan.MingGong.Previous.Stars.Exists(s => s.Name == "化科"))
+            if (pan.MingGong.Previous.Stars.Exists(s => "禄" == s.Hua)
+                || pan.MingGong.Previous.Stars.Exists(s => "权" == s.Hua)
+                || pan.MingGong.Previous.Stars.Exists(s => "科" == s.Hua))
             {
-                if (pan.MingGong.Next.Stars.Exists(s => s.Name == "化禄")
-                    || pan.MingGong.Next.Stars.Exists(s => s.Name == "化权")
-                    || pan.MingGong.Next.Stars.Exists(s => s.Name == "化科"))
+                if (pan.MingGong.Next.Stars.Exists(s => "禄" == s.Hua)
+                    || pan.MingGong.Next.Stars.Exists(s => "权" == s.Hua)
+                    || pan.MingGong.Next.Stars.Exists(s => "科" == s.Hua))
                 {
                     return true;
                 }
@@ -809,12 +811,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         {
             // 化科在命宫，化权在三方四正会照。
 
-            if (pan.MingGong.Stars.Exists(s => s.Name == "化科"))
+            if (pan.MingGong.Stars.Exists(s => "科" == s.Hua))
             {
                 BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
 
                 Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.DuiZhaoGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
-                Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化权"));
+                Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => "权" == s.Hua));
                 if (g1 != null)
                     return true;
             }
@@ -826,12 +828,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         {
             // 化科在命宫，化禄在三方四正会照。
 
-            if (pan.MingGong.Stars.Exists(s => s.Name == "化科"))
+            if (pan.MingGong.Stars.Exists(s => "科" == s.Hua))
             {
                 BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
 
                 Gong[] arr = new Gong[] { sfsz.SelfGong, sfsz.DuiZhaoGong, sfsz.HuiGongs[0], sfsz.HuiGongs[1] };
-                Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => s.Name == "化禄"));
+                Gong g1 = arr.FirstOrDefault(g => g.Stars.Exists(s => "禄" == s.Hua));
                 if (g1 != null)
                     return true;
             }
@@ -951,7 +953,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 if (pan.MingGong.Stars.Exists(s => s.Name == "巨门")
                     && pan.MingGong.Stars.Exists(s => s.Name == "天机")
-                    && pan.MingGong.Stars.Exists(s => s.Name == "化忌"))
+                    && pan.MingGong.Stars.Exists(s => "忌" == s.Hua))
                     return true;
             }
 
@@ -1116,7 +1118,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         private bool 羊陀夹忌格(PaiPan pan)
         {
             // 化忌坐命，擎羊、陀罗于两邻宫相夹。
-            if (pan.MingGong.Stars.Exists(s => s.Name == "化忌"))
+            if (pan.MingGong.Stars.Exists(s => "忌" == s.Hua))
             {
                 if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "擎羊")
                     && pan.MingGong.Next.Stars.Exists(s => s.Name == "陀罗"))
@@ -1165,20 +1167,20 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             var gong = pan.Gongs.First(g => g.Stars.Exists(s => s.Name == "天相"));
             if(gong != null)
             {
-                if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "化忌")
+                if (pan.MingGong.Previous.Stars.Exists(s => "忌" == s.Hua)
                     && pan.MingGong.Next.Stars.Exists(s => s.Name == "天梁"))
                     return true;
 
                 if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "天梁")
-                    && pan.MingGong.Next.Stars.Exists(s => s.Name == "化忌"))
+                    && pan.MingGong.Next.Stars.Exists(s => "忌" == s.Hua))
                     return true;
 
-                if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "化忌")
+                if (pan.MingGong.Previous.Stars.Exists(s => "忌" == s.Hua)
                     && pan.MingGong.Next.Stars.Exists(s => s.Name == "擎羊"))
                     return true;
 
                 if (pan.MingGong.Previous.Stars.Exists(s => s.Name == "擎羊")
-                    && pan.MingGong.Next.Stars.Exists(s => s.Name == "化忌"))
+                    && pan.MingGong.Next.Stars.Exists(s => "忌" == s.Hua))
                     return true;
                 
             }
@@ -1207,8 +1209,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         private bool 两重华盖格(PaiPan pan)
         {
             // 禄存、化禄同时坐命，遇地劫、地空同宫。
-            if (pan.MingGong.Stars.Exists(s => s.Name == "禄存") 
-                && pan.MingGong.Stars.Exists(s => s.Name == "化禄"))
+            if (pan.MingGong.Stars.Exists(s => s.Name == "禄存")
+                && pan.MingGong.Stars.Exists(s => "禄" == s.Hua))
             {
                 if (pan.MingGong.Stars.Exists(s => s.Name == "地劫") 
                     && pan.MingGong.Stars.Exists(s => s.Name == "地空"))
@@ -1225,7 +1227,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             // 禄存或化禄坐命，在三方四正中，有被地劫、地空冲破。
 
             if (pan.MingGong.Stars.Exists(s => s.Name == "禄存")
-                || pan.MingGong.Stars.Exists(s => s.Name == "化禄"))
+                || pan.MingGong.Stars.Exists(s => "禄" == s.Hua))
             {
                 BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
 
