@@ -157,14 +157,12 @@ namespace ZYWC.ZW.Demo
 
             DateTime dateTime = this.dpBirthDate.Value;
             ChineseCalendar cc = new ChineseCalendar(dateTime);
-
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
             eg = new Engine(@".\Data\");
 
             Form1 f1 = new Form1();
-            f1.pan = pan;
-            f1.eg = eg;
+            f1.htmlText = eg.PaiPanFormat.FormatHtml(pan);
             f1.Show();
         }
 

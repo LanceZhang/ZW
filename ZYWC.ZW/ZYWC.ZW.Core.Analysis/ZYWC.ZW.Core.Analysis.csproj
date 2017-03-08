@@ -49,6 +49,7 @@
     <Compile Include="BusinessLogic\GongAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiaoYouAnalyzer.cs" />
     <Compile Include="BusinessLogic\JiEAnalyzer.cs" />
+    <Compile Include="BusinessLogic\PaiPanFormat.cs" />
     <Compile Include="BusinessLogic\QianYiAnalyzer.cs" />
     <Compile Include="BusinessLogic\ShiYeAnalyzer.cs" />
     <Compile Include="BusinessLogic\TianZhaiAnalyzer.cs" />

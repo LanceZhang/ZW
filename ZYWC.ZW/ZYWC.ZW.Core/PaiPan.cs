@@ -111,6 +111,8 @@ namespace ZYWC.ZW.Core
 
         public bool IsMale { get; private set; }
 
+        public ChineseCalendar birthday { get { return calendar; } }
+
         #endregion
 
         #region 构造函数

@@ -17,8 +17,7 @@ namespace ZYWC.ZW.Demo
 {
     public partial class Form1 : Form
     {
-        public PaiPan pan { get; set; }
-        public Engine eg { get; set; }
+        public string htmlText { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +25,7 @@ namespace ZYWC.ZW.Demo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.webBrowser1.DocumentText = MingPanFormat.FormatHtml(pan);
+            this.webBrowser1.DocumentText = htmlText;
             return;
 
             #region demo
@@ -687,6 +686,7 @@ window.print();
         }
     }
 
+    /*
     public class CellData
     {
         public string zhiStr { get; set; }
@@ -700,7 +700,7 @@ window.print();
         // 长生
         public Star changSheng { get; set; }
         public IList<string> gongName { get; set; }
-        public string ganZhi { get; set; }
+        public string ganStr { get; set; }
         public string daXian { get; set; }
 
         public CellData()
@@ -735,7 +735,6 @@ window.print();
 
             return sb.ToString();
         }
-
         public string GetZhuXingLine3()
         {
             var sb = new StringBuilder(2);
@@ -755,16 +754,107 @@ window.print();
             return sb.ToString();
         }
 
-        public string GetHua()
+        public string GetFuXingLine1()
         {
-            if (huaXing == null)
+            var sb = new StringBuilder();
+            foreach(var star in fuXing)
             {
-                return string.Empty;
+                var t = xiongXing.FirstOrDefault(s => s.Name==star.Name);
+                if (t == null)
+                    sb.Append("&nbsp;&nbsp;");
+                else
+                    sb.Append("▲");
             }
-            else
+            return sb.ToString();
+        }
+
+        public string GetFuXingLine2()
+        {
+            var sb = new StringBuilder();
+            foreach (var star in fuXing)
             {
-                return huaXing.Hua;
+                sb.Append(star.Name.Substring(0,1));
             }
+            return sb.ToString();
+        }
+        public string GetFuXingLine3()
+        {
+            var sb = new StringBuilder();
+            foreach (var star in fuXing)
+            {
+                sb.Append(star.Name.Substring(1, 1));
+            }
+            return sb.ToString();
+        }
+        public string GetFuXingLine4()
+        {
+            var sb = new StringBuilder();
+            foreach (var star in fuXing)
+            {
+                if(string.IsNullOrEmpty(star.Hua))
+                    sb.Append("&nbsp;&nbsp;");
+                else
+                    sb.Append(star.Hua);
+            }
+            return sb.ToString();
+        }
+
+        public string GetS1XingLine1()
+        {
+            var sb = new StringBuilder();
+            foreach (var s in s1Xing)
+            {
+                sb.Append(s.Name.Substring(0, 1));
+            }
+            return sb.ToString();
+        }
+        public string GetS1XingLine2()
+        {
+            var sb = new StringBuilder();
+            foreach (var s in s1Xing)
+            {
+                sb.Append(s.Name.Substring(1, 1));
+            }
+            return sb.ToString();
+        }
+        public string GetS2XingLine1()
+        {
+            var sb = new StringBuilder();
+            foreach (var s in s2Xing)
+            {
+                sb.Append(s.Name.Substring(0, 1));
+            }
+            return sb.ToString();
+        }
+        public string GetS2XingLine2()
+        {
+            var sb = new StringBuilder();
+            foreach (var s in s2Xing)
+            {
+                sb.Append(s.Name.Substring(1, 1));
+            }
+            return sb.ToString();
+        }
+
+        public string GetGongNameLine1()
+        {
+            var sb = new StringBuilder();
+            foreach(var g in gongName)
+            {
+                sb.Append(g.Substring(0, 1));
+            }
+            sb.Append(ganStr);
+            return sb.ToString();
+        }
+        public string GetGongNameLine2()
+        {
+            var sb = new StringBuilder();
+            foreach (var g in gongName)
+            {
+                sb.Append(g.Substring(1, 1));
+            }
+            sb.Append(zhiStr);
+            return sb.ToString();
         }
     }
 
@@ -822,24 +912,25 @@ window.print();
                     cd.gongName.Add("身宫");
                 }
                 cd.gongName.Add(g.Name);
-                cd.ganZhi = string.Format("{0}{1}", g.GanString, g.ZhiString);
-                // 主星
-                cd.zhuXing = g.Stars.Where(s => dal.Dic_ZhuXing.ContainsKey(s.Name)).ToList();
-
-                cd.fuXing = g.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
-                cd.xiongXing = g.Stars.Where(s => dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
-                cd.s2Xing.Add(g.Stars.First(s => s.Type == Star.StarType.博士十二));
-                cd.s2Xing.Add(g.Stars.First(s => s.Type == Star.StarType.年前十二));
-                cd.s2Xing.Add(g.Stars.First(s => s.Type == Star.StarType.岁前十二));
-                cd.huaXing = g.Stars.FirstOrDefault(s => !string.IsNullOrEmpty(s.Hua));
-                cd.changSheng = g.Stars.First(s => s.Type == Star.StarType.长生十二);
-                cd.s1Xing = g.Stars.Where(s => s.Type == Star.StarType.月系
-                    || s.Type == Star.StarType.年系
-                    || s.Type == Star.StarType.时系
-                    || s.Type == Star.StarType.年干系
-                    || s.Type == Star.StarType.火铃
-                    || s.Type == Star.StarType.其它).ToList();// 还没剔除辅星
+                cd.ganStr = g.GanString;
+                
                 cd.daXian = string.Format("{0}-{1}", g.DaXian_From, g.DaXian_To);
+
+                foreach(var s in g.Stars)
+                {
+                    if (dal.Dic_ZhuXing.ContainsKey(s.Name))
+                        cd.zhuXing.Add(s);
+                    else if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name))
+                        cd.fuXing.Add(s);
+                    else if (dal.Dic_XiongXing.ContainsKey(s.Name))
+                        cd.xiongXing.Add(s);
+                    else if (s.Type == Star.StarType.博士十二 || s.Type == Star.StarType.年前十二 || s.Type == Star.StarType.岁前十二)
+                        cd.s2Xing.Add(s);
+                    else if (s.Type == Star.StarType.长生十二)
+                        cd.changSheng = s;
+                    else 
+                        cd.s1Xing.Add(s);
+                }
 
                 datas.Add(cd);
             }
@@ -848,6 +939,7 @@ window.print();
 
         private static string FormatCenter(PaiPan pan)
         {
+            ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
             var sb = new StringBuilder();
 
             sb.Append("<td colspan=2 rowspan=2>");
@@ -880,7 +972,7 @@ window.print();
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-            </table></td>");
+               </table></td>");
 
             // 现行 大限
             sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
@@ -896,58 +988,62 @@ window.print();
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
-            </table></td>");
+              </table></td>");
 
             // 年龄
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
-              <tr><td><font id=m11>丁</font></td></tr>
-              <tr><td><font id=m11>酉</font></td></tr>
+              <tr><td><font id=m11>{0}</font></td></tr>
+              <tr><td><font id=m11>{1}</font></td></tr>
               <tr><td><font id=m11>年</font></td></tr>
-              <tr><td><font id=m11>83</font></td></tr>
-              <tr><td><font id=m11>歲</font></td></tr>
+              <tr><td><font id=m11>{2}</font></td></tr>
+              <tr><td><font id=m11>岁</font></td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
-            </table></td>");
+              </table></td>", tt.GanZhiYearString.Substring(0, 1), 
+                          tt.GanZhiYearString.Substring(1, 1), 
+                          tt.ChineseYear - pan.birthday.ChineseYear);
 
             // 身主
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td><font id=m11>身</font></td></tr>
                <tr><td><font id=m11>主</font></td></tr>
                <tr><td>&nbsp;</td></tr>
-               <tr><td><font id=m11>天</font></td></tr>
-               <tr><td><font id=m11>機</font></td></tr>
+               <tr><td><font id=m11>{0}</font></td></tr>
+               <tr><td><font id=m11>{1}</font></td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-            </table></td>");
+               </table></td>", pan.ShenZhu.Substring(0, 1), 
+                             pan.ShenZhu.Substring(1, 1));
 
             // 命主
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0 valign=top>
+            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0 valign=top>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td><font id=m11>命</font></td></tr>
                <tr><td><font id=m11>主</font></td></tr>
                <tr><td>&nbsp;</td></tr>
-               <tr><td><font id=m11>巨</font></td></tr>
-               <tr><td><font id=m11>門</font></td></tr>
+               <tr><td><font id=m11>{0}</font></td></tr>
+               <tr><td><font id=m11>{1}</font></td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-            </table></td>");
+               </table></td>", pan.MingZhu.Substring(0, 1), 
+                             pan.MingZhu.Substring(1, 1));
 
-            // 局
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            // 五行局
+            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -957,30 +1053,37 @@ window.print();
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-               <tr><td><font id=m11>土</font></td></tr>
-               <tr><td><font id=m11>五</font></td></tr>
-               <tr><td><font id=m11>局</font></td></tr>
-            </table></td>");
+               <tr><td><font id=m11>{0}</font></td></tr>
+               <tr><td><font id=m11>{1}</font></td></tr>
+               <tr><td><font id=m11>{2}</font></td></tr>
+               </table></td>", pan.WuXingJu.Substring(0, 1), 
+                             pan.WuXingJu.Substring(1, 1), 
+                             pan.WuXingJu.Substring(2, 1));
 
             // 生日
-            sb.Append(@"<td><table width=60 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=60 border=0 cellpadding=0 cellspacing=0>
                <tr><td align=center>&nbsp;</td></tr>
-               <tr><td><font id=m11>1935年</font></td></tr>
+               <tr><td><font id=m11>{5}年</font></td></tr>
                <tr><td>&nbsp;</td></tr>
-               <tr><td align=center><font id=m11>乙</font></td></tr>
-               <tr><td align=center><font id=m11>亥</font></td></tr>
+               <tr><td align=center><font id=m11>{0}</font></td></tr>
+               <tr><td align=center><font id=m11>{1}</font></td></tr>
                <tr><td align=center><font id=m11>年</font></td></tr>
                <tr><td align=center><font id=m11></font></td></tr>
-               <tr><td align=center><font id=m11>1</font></td></tr>
+               <tr><td align=center><font id=m11>{2}</font></td></tr>
                <tr><td align=center><font id=m11>月</font></td></tr>
-               <tr><td align=center><font id=m11>1</font></td></tr>
+               <tr><td align=center><font id=m11>{3}</font></td></tr>
                <tr><td align=center><font id=m11>日</font></td></tr>
-               <tr><td align=center><font id=m11>子</font></td></tr>
-               <tr><td align=center><font id=m11>時</font></td></tr>
-            </table></td>");
+               <tr><td align=center><font id=m11>{4}</font></td></tr>
+               <tr><td align=center><font id=m11>时</font></td></tr>
+               </table></td>",pan.birthday.GanZhiYearString.Substring(0, 1), 
+                          pan.birthday.GanZhiYearString.Substring(1, 1),
+                          pan.birthday.Date.Month,
+                          pan.birthday.Date.Day,
+                          pan.birthday.GanZhiHourString.Substring(1, 1),
+                          pan.birthday.Date.Year);
 
             // 性别
-            sb.Append(@"<td ><table width='30' border='0' cellpadding='0' cellspacing='0'>
+            sb.AppendFormat(@"<td ><table width='30' border='0' cellpadding='0' cellspacing='0'>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -989,12 +1092,13 @@ window.print();
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-               <tr><td><font id=m11>陰</font></td></tr>
-               <tr><td><font id=m11>男</font></td></tr>
+               <tr><td><font id=m11>{0}</font></td></tr>
+               <tr><td><font id=m11>{1}</font></td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
-            </table></td>");
+               </table></td>", (pan.birthday.ChineseYear%2==0)?"阳":"阴",
+                            pan.IsMale?"男":"女");
 
             sb.Append("</tr></table>");
             sb.Append("</td>");
@@ -1029,10 +1133,10 @@ window.print();
             // 上右
             sb.Append("    <td height=19 rowspan=2 width=67>");
             sb.Append("      <table width=100% border=0 cellpadding=0 cellspacing=0>");
-            sb.Append("        <tr><td align=RIGHT><font ID=m10>&nbsp;&nbsp;&nbsp;&nbsp;▲</font></td></tr>");
-            sb.Append("        <tr><td align=RIGHT><font ID=m10>天</font></td></tr>");
-            sb.Append("        <tr><td align=RIGHT><font ID=m10>天</font></td></tr>");
-            sb.Append("        <tr><td align=RIGHT><font ID=m10>&nbsp;&nbsp;</font></td></tr>");
+            sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine1() + "</font></td></tr>");
+            sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine2() + "</font></td></tr>");
+            sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine3() + "</font></td></tr>");
+            sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine4() + "</font></td></tr>");
             sb.Append("      </table>");
             sb.Append("    </td>");
 
@@ -1040,17 +1144,17 @@ window.print();
 
             // 单元格下半部
             sb.Append("<table width=175 border=0 cellpadding=0 cellspacing=0>");
-            sb.Append("  <tr><td colspan=3><font ID=m10>天天&nbsp;</font></td></tr>");
-            sb.Append("  <tr><td colspan=3><font ID=m10>巫虛&nbsp;</font></td></tr>");
+            sb.Append("  <tr><td colspan=3><font ID=m10>" + data.GetS1XingLine1() + "</font></td></tr>");
+            sb.Append("  <tr><td colspan=3><font ID=m10>" + data.GetS1XingLine2() + "</font></td></tr>");
             sb.Append("  <tr valign=bottom>");
-            sb.Append("    <td><font ID=m10>伏歲歲</font></td>");
-            sb.Append("    <td><Center><font id=m10>95-104</font>&nbsp;&nbsp;</Center></td>");
-            sb.Append("    <td align=RIGHT><font ID=m10>  田辛</font></td>");
+            sb.Append("    <td><font ID=m10>" + data.GetS2XingLine1() + "</font></td>");
+            sb.Append("    <td><Center><font id=m10>"+data.daXian+"</font>&nbsp;&nbsp;</Center></td>");
+            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetGongNameLine1() + "</font></td>");
             sb.Append("  </tr>");
             sb.Append("  <tr valign=bottom>");
-            sb.Append("    <td><font ID=m10>兵破驛</font></td>");
-            sb.Append("    <td><Center><font ID=m10>臨官</font>&nbsp;&nbsp;</Center></td>");
-            sb.Append("    <td align=RIGHT><font ID=m10>  宅巳</font></td>");
+            sb.Append("    <td><font ID=m10>" + data.GetS2XingLine2() + "</font></td>");
+            sb.Append("    <td><Center><font ID=m10>" + data.changSheng.Name + "</font>&nbsp;&nbsp;</Center></td>");
+            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetGongNameLine2() + "</font></td>");
             sb.Append("  </tr>");
             sb.Append("</table>");
 
@@ -1059,60 +1163,56 @@ window.print();
             return sb.ToString();
         }
 
-        
-
         private static string FormatHead(PaiPan pan)
         {
             return (@"<html>
-<head>
+                    <head>
 
-<title>斗數星盤</title>
-<meta http-equiv='Content-Type' content='text/html; charset=big5'>
+                    <title>斗數星盤</title>
+                    <meta http-equiv='Content-Type' content='text/html; charset=big5'>
 
-<STYLE>
- #m9 {font-family:'細明體'; font-size: 9pt}
- #m10 {font-family:'細明體'; font-size: 10pt}
- #m11 {font-family:'細明體'; font-size: 11pt}
- #mb11 {font-family:'細明體'; font-size: 11pt; font-weight: bold}
- #titlefont {font-family:'細明體'; font-size: 18pt; font-weight: bold}
-</STYLE>
-
-
-<SCRIPT LANGUAGE='JavaScript1.2'>
-function printpage() {
-window.print();
-}
-
-</SCRIPT>
-</head>
-
-<div id=contentstart>
-
-<body marginheight='0' marginwidth='0' bgcolor=white>
-
-<table width = '720' border='0' CELLSPACING='0' CELLPADDING='0' bgcolor=white>
-
-</table>
+                    <STYLE>
+                     #m9 {font-family:'細明體'; font-size: 9pt}
+                     #m10 {font-family:'細明體'; font-size: 10pt}
+                     #m11 {font-family:'細明體'; font-size: 11pt}
+                     #mb11 {font-family:'細明體'; font-size: 11pt; font-weight: bold}
+                     #titlefont {font-family:'細明體'; font-size: 18pt; font-weight: bold}
+                    </STYLE>
 
 
-<table bgcolor=white BORDER=0 WIDTH='720' cols='4'>
-  <tr><td nowarp colspan=1>");
+                    <SCRIPT LANGUAGE='JavaScript1.2'>
+                    function printpage() {
+                    window.print();
+                    }
+
+                    </SCRIPT>
+                    </head>
+
+                    <div id=contentstart>
+
+                    <body marginheight='0' marginwidth='0' bgcolor=white>
+
+                    <table width = '720' border='0' CELLSPACING='0' CELLPADDING='0' bgcolor=white>
+
+                    </table>
+
+
+                    <table bgcolor=white BORDER=0 WIDTH='720' cols='4'>
+                      <tr><td nowarp colspan=1>");
         }
 
         private static string FormatFoot(PaiPan pan)
         {
             return (@"</td>
+                </table>
+                </td>
+                </tr>
+                </Table>
+                </div>
 
-
-
-</table>
-</td>
-</tr>
-</Table>
-</div>
-
-</body>
-</html>");
+                </body>
+                </html>");
         }
     }
+    */
 }

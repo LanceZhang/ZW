@@ -25,6 +25,7 @@ namespace ZYWC.ZW.Core.Analysis
         XiongDiAnalyzer xiongdi = null;
         ZiNvAnalyzer zinv = null;
         GeJuAnalyzer geju = null;
+        PaiPanFormat format = null;
 
         public Engine(string path)
         {
@@ -43,6 +44,7 @@ namespace ZYWC.ZW.Core.Analysis
             zinv = new ZiNvAnalyzer(dal);
             geju = new GeJuAnalyzer(dal);
             fude = new FudeAnalyzer(dal);
+            format = new PaiPanFormat(dal);
         }
 
 
@@ -149,6 +151,11 @@ namespace ZYWC.ZW.Core.Analysis
             {
                 return geju;
             }
+        }
+
+        public PaiPanFormat PaiPanFormat
+        {
+            get { return format; }
         }
 
         /// <summary>     
