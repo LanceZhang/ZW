@@ -283,7 +283,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("      <table width=100% border=0 cellpadding=0 cellspacing=0>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine1() + "</b></font></td></tr>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine2() + "</b></font></td></tr>");
-            sb.Append("        <tr><td align=center><font ID=mb11>" + data.GetZhuXingLine3() + "</font></td></tr>");
+            sb.Append("        <tr><td align=center><font ID=m11>" + data.GetZhuXingLine3() + "</font></td></tr>");
+            sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine4() + "</b></font></td></tr>");
             sb.Append("      </table>");
             sb.Append("    </td>");
             // 上右
@@ -293,6 +294,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine2() + "</font></td></tr>");
             sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine3() + "</font></td></tr>");
             sb.Append("        <tr><td align=RIGHT><font ID=m10>" + data.GetFuXingLine4() + "</font></td></tr>");
+            sb.Append("        <tr><td align=RIGHT><font ID=m10><b>" + data.GetFuXingLine5() + "</b></font></td></tr>");
             sb.Append("      </table>");
             sb.Append("    </td>");
 
@@ -325,7 +327,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                     <head>
 
                     <title>斗數星盤</title>
-                    <meta http-equiv='Content-Type' content='text/html; charset=big5'>
+                    <meta http-equiv='Content-Type' content='text/html'; charset='big5'>
 
                     <STYLE>
                      #m9 {font-family:'細明體'; font-size: 9pt}
@@ -425,6 +427,21 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             foreach (var s in zhuXing)
             {
+                if (s.LiangDu == null)
+                    sb.Append("&nbsp;&nbsp;");
+                else
+                    sb.Append(s.LiangDuString.Substring(1, 1));
+            }
+
+            return sb.ToString();
+        }
+
+        public string GetZhuXingLine4()
+        {
+            var sb = new StringBuilder(2);
+
+            foreach (var s in zhuXing)
+            {
                 if (string.IsNullOrEmpty(s.Hua))
                 {
                     sb.Append("&nbsp;&nbsp;");
@@ -471,6 +488,18 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return sb.ToString();
         }
         public string GetFuXingLine4()
+        {
+            var sb = new StringBuilder();
+            foreach (var s in fuXing)
+            {
+                if (s.LiangDu == null)
+                    sb.Append("&nbsp;&nbsp;");
+                else
+                    sb.Append(s.LiangDuString.Substring(1, 1));
+            }
+            return sb.ToString();
+        }
+        public string GetFuXingLine5()
         {
             var sb = new StringBuilder();
             foreach (var star in fuXing)
