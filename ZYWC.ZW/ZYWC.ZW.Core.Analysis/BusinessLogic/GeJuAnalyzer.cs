@@ -376,7 +376,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             if (pan.MingGong.Stars.Exists(s => s.Name == "廉贞"))
             {
-                var gong = pan.Gongs.First(g => g.Name == "官禄");
+                var gong = pan.Gongs.First(g => g.Name == "事业宫");
                 if (gong.Stars.Exists(s => s.Name == "武曲"))
                 {
                     BasicGong sfsz = SanFangSiZheng(pan, GongIndex.命宫);
