@@ -161,7 +161,7 @@ namespace ZYWC.ZW.Demo
 
             eg = new Engine(@".\Data\");
 
-            Form1 f1 = new Form1();
+            frmPan f1 = new frmPan();
             f1.htmlText = eg.PaiPanFormat.FormatHtml(pan);
             f1.Show();
         }

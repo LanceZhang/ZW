@@ -1,6 +1,6 @@
 ﻿namespace ZYWC.ZW.Demo
 {
-    partial class Form1
+    partial class frmPan
     {
         /// <summary>
         /// Required designer variable.
@@ -40,14 +40,14 @@
             this.webBrowser1.Size = new System.Drawing.Size(891, 607);
             this.webBrowser1.TabIndex = 0;
             // 
-            // Form1
+            // frmPan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 607);
             this.Controls.Add(this.webBrowser1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmPan";
+            this.Text = "中州派紫微斗数 - 天盘";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 

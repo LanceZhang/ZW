@@ -15,10 +15,10 @@ using ZYWC.ZW.Core;
 
 namespace ZYWC.ZW.Demo
 {
-    public partial class Form1 : Form
+    public partial class frmPan : Form
     {
         public string htmlText { get; set; }
-        public Form1()
+        public frmPan()
         {
             InitializeComponent();
         }
