@@ -162,7 +162,7 @@ namespace ZYWC.ZW.Demo
             eg = new Engine(@".\Data\");
 
             frmPan f1 = new frmPan();
-            f1.htmlText = eg.PaiPanFormat.FormatHtml(pan);
+            f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);
             f1.Show();
         }
 
