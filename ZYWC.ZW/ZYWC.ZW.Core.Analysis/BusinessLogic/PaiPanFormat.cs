@@ -11,13 +11,18 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
     public class PaiPanFormat
     {
         private DAL dal;
+        
         public PaiPanFormat(DAL dal)
         {
             this.dal = dal;
         }
-        public string FormatHtml(PaiPan pan)
+        public string FormatHtml(PaiPan pan, int formatType)
         {
             var datas = parseGong(pan);
+            foreach(var d in datas)
+            {
+                d.formatType = formatType;
+            }
 
             var sb = new StringBuilder();
             sb.Append(FormatHead(pan));
@@ -68,7 +73,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 cd.gongName.Add(g.Name);
                 cd.ganStr = g.GanString;
 
-                cd.daXian = string.Format("{0}-{1}", g.DaXian_From, g.DaXian_To);
+                if (g.DaXian_To == 0) cd.daXian = string.Empty;
+                else cd.daXian = string.Format("{0}-{1}", g.DaXian_From, g.DaXian_To);
 
                 foreach (var s in g.Stars)
                 {
@@ -310,12 +316,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("  <tr valign=bottom>");
             sb.Append("    <td><font ID=m10>" + data.GetS2XingLine1() + "</font></td>");
             sb.Append("    <td><Center><font id=m10>" + data.daXian + "</font>&nbsp;&nbsp;</Center></td>");
-            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetGongNameLine1() + "</font></td>");
+            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetGan() + "</font></td>");
             sb.Append("  </tr>");
             sb.Append("  <tr valign=bottom>");
             sb.Append("    <td><font ID=m10>" + data.GetS2XingLine2() + "</font></td>");
-            sb.Append("    <td><Center><font ID=m10>" + data.changSheng.Name + "</font>&nbsp;&nbsp;</Center></td>");
-            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetGongNameLine2() + "</font></td>");
+            sb.Append("    <td><Center><font ID=m10>" + data.GetGongName() + "</font>&nbsp;&nbsp;</Center></td>");
+            sb.Append("    <td align=RIGHT><font ID=m10>  " + data.GetZhi() + "</font></td>");
             sb.Append("  </tr>");
             sb.Append("</table>");
 
@@ -353,10 +359,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
                     <body marginheight='0' marginwidth='0' bgcolor=white>
 
-                    <table width = '720' border='0' CELLSPACING='0' CELLPADDING='0' bgcolor=white>
-
-                    </table>
-
 
                     <table bgcolor=white BORDER=0 WIDTH='720' cols='4'>
                       <tr><td nowarp colspan=1>");
@@ -365,8 +367,6 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         private static string FormatFoot(PaiPan pan)
         {
             return (@"</td>
-                </table>
-                </td>
                 </tr>
                 </Table>
                 </div>
@@ -391,6 +391,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         public IList<string> gongName { get; set; }
         public string ganStr { get; set; }
         public string daXian { get; set; }
+
+        public int formatType { get; set; }
 
         public CellData()
         {
@@ -535,6 +537,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         }
         public string GetS2XingLine1()
         {
+            if (formatType == 1) return "&nbsp;&nbsp;";
+
             var sb = new StringBuilder();
             foreach (var s in s2Xing)
             {
@@ -544,6 +548,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         }
         public string GetS2XingLine2()
         {
+            if (formatType == 1) return "&nbsp;&nbsp;";
+
             var sb = new StringBuilder();
             foreach (var s in s2Xing)
             {
@@ -552,25 +558,47 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return sb.ToString();
         }
 
-        public string GetGongNameLine1()
+        public string GetGan()
         {
             var sb = new StringBuilder();
-            foreach (var g in gongName)
+            if(formatType == 0)
             {
-                sb.Append(g.Substring(0, 1));
+                foreach (var g in gongName)
+                {
+                    sb.Append(g.Substring(0, 1));
+                }
             }
+            
             sb.Append(ganStr);
             return sb.ToString();
         }
-        public string GetGongNameLine2()
+        public string GetZhi()
         {
             var sb = new StringBuilder();
-            foreach (var g in gongName)
+            if (formatType == 0)
             {
-                sb.Append(g.Substring(1, 1));
+                foreach (var g in gongName)
+                {
+                    sb.Append(g.Substring(1, 1));
+                }
             }
             sb.Append(zhiStr);
             return sb.ToString();
+        }
+
+        public string GetGongName()
+        {
+            if (formatType == 0)
+            {
+                return changSheng.Name;
+            }
+            else
+            {
+                if (gongName.Count == 1)
+                    return gongName[0];
+                else
+                    return string.Format("{0}{1}", gongName[0].Substring(0, 1), gongName[1].Substring(0, 2));
+            }
         }
     }
 }
