@@ -110,11 +110,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 					  <tr><td height=20><font id=titlefont>&nbsp;微</font></td></tr>
 					  <tr><td height=20><font id=titlefont>&nbsp;斗</font></td></tr>
 					  <tr><td height=20><font id=titlefont>&nbsp;數</font></td></tr>
-                      <tr><td><font id=m10>&nbsp;张</font></td></tr>
+                      <tr><td><font id=m10>&nbsp;張</font></td></tr>
                       <tr><td><font id=m10>&nbsp;曜</font></td></tr>
                       <tr><td><font id=m10>&nbsp;之</font></td></tr>
                       <tr><td><font id=m10>&nbsp;</font></td></tr>
-                      <tr><td><font id=m10>&nbsp;启</font></td></tr>
+                      <tr><td><font id=m10>&nbsp;啓</font></td></tr>
                     </table></td>");
 
             sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
@@ -370,7 +370,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 </tr>
                 </Table>
                 </div>
-
+<br/>
+<br/>
+<br/>
+<a href='javascript:printpage();'>列印</a><br>
                 </body>
                 </html>");
         }
