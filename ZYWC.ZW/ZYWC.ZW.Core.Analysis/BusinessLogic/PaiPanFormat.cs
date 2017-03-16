@@ -26,7 +26,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             var sb = new StringBuilder();
             sb.Append(FormatHead(pan));
-            sb.Append("<table border=1 cols=1 width=175 CELLSPACING=0 CELLPADDING=0>");
+            sb.Append("<table border=1 cols=1 width=135 CELLSPACING=0 CELLPADDING=0>");
             sb.Append("<tbody><tr>");
 
             sb.Append(FormatCell(datas.First(d => d.zhiStr == "巳")));
@@ -105,10 +105,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             var sb = new StringBuilder();
 
             sb.Append("<td colspan=2 rowspan=2>");
-            sb.Append("<table width=350 border=0 height=200 valign = top><tr>");
+            sb.Append("<table width=270 border=0 height=200 valign = top><tr>");
             // 天盘
-            sb.Append(@"<td height=100 width=30>
-                    <table width=50 border=0 cellpadding=0 cellspacing=0 valign = top>
+            sb.Append(@"<td height=100 width=22>
+                    <table width=45 border=0 cellpadding=0 cellspacing=0 valign = top>
 					  <tr><td height=20><font id=titlefont>&nbsp;中</font></td></tr>
 					  <tr><td height=20><font id=titlefont>&nbsp;州</font></td></tr>
 					  <tr><td height=20><font id=titlefont>&nbsp;派</font></td></tr>
@@ -123,7 +123,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                       <tr><td><font id=m10>&nbsp;啓</font></td></tr>
                     </table></td>");
 
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.Append(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -140,7 +140,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                </table></td>");
 
             // 现行 大限
-            sb.Append(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.Append(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td><font id=m11>現</font></td></tr>
@@ -156,7 +156,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
               </table></td>");
 
             // 年龄
-            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td><font id=m11>{0}</font></td></tr>
@@ -174,7 +174,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                           tt.ChineseYear - pan.birthday.ChineseYear);
 
             // 身主
-            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td><font id=m11>身</font></td></tr>
@@ -191,7 +191,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                              pan.ShenZhu.Substring(1, 1));
 
             // 命主
-            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0 valign=top>
+            sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0 valign=top>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td><font id=m11>命</font></td></tr>
@@ -208,7 +208,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                              pan.MingZhu.Substring(1, 1));
 
             // 五行局
-            sb.AppendFormat(@"<td><table width=30 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -226,7 +226,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                              pan.WuXingJu.Substring(2, 1));
 
             // 生日
-            sb.AppendFormat(@"<td><table width=60 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=50 border=0 cellpadding=0 cellspacing=0>
                <tr><td align=center>&nbsp;</td></tr>
                <tr><td><font id=m11>{5}年</font></td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -248,7 +248,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                           pan.birthday.Date.Year);
 
             // 性别
-            sb.AppendFormat(@"<td ><table width='30' border='0' cellpadding='0' cellspacing='0'>
+            sb.AppendFormat(@"<td ><table width='22' border='0' cellpadding='0' cellspacing='0'>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td>&nbsp;</td></tr>
@@ -278,7 +278,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             sb.Append("<td>");
             // 单元格上半部
-            sb.Append("  <table width=175 border=0 height=70 cellpadding=0 cellspacing=0><tr>");
+            sb.Append("  <table width=135 border=0 height=70 cellpadding=0 cellspacing=0><tr>");
             // 上左
             sb.Append("    <td height=42 rowspan=2 width=65>");
             sb.Append("      <table width=100% border=0 cellpadding=0 cellspacing=0 vspace=0 hspace=0>");
@@ -310,7 +310,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("  </tr><tr></tr></table>");
 
             // 单元格下半部
-            sb.Append("<table width=175 border=0 cellpadding=0 cellspacing=0>");
+            sb.Append("<table width=135 border=0 cellpadding=0 cellspacing=0>");
             sb.Append("  <tr><td colspan=3><font ID=m10>" + data.GetS1XingLine1() + "</font></td></tr>");
             sb.Append("  <tr><td colspan=3><font ID=m10>" + data.GetS1XingLine2() + "</font></td></tr>");
             sb.Append("  <tr valign=bottom>");

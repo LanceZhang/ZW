@@ -548,7 +548,7 @@ namespace ZYWC.ZW.Core
             gong = _xingGong.First(xg => xg.Is_Ming);
             int i_daxian = _wuXingJuNum[_wuXingJu.ToList().IndexOf(WuXingJu)] - 1;
 
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 10; i++)
             {
                 gong.DaXian_From = i_daxian + 1;
                 i_daxian = i_daxian + 10;
