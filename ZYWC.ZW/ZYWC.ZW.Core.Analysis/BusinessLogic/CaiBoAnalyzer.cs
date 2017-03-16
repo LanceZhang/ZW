@@ -22,7 +22,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             //主星
             foreach (var xing in result.ZhuXing)
             {
-                xing.Content = dal.s15.Find(x => x.id == xing.Id.ToString()).caibo;
+                var t = dal.s15.Find(x => x.id == xing.Id.ToString());
+                xing.Content = t.caibo;
+                xing.Risk = t.caibofengxian;
             }
 
             //吉星
@@ -41,6 +43,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 var shuang = dal.s15.Find(x => x.id == string.Format("{0}#{1}", result.ZhuXing[0].Id, result.ZhuXing[1].Id));
                 result.ShuangZhuXing = shuang.caibo;
+                result.ShuangZhuXingRisk = shuang.caibofengxian;
             }
 
 

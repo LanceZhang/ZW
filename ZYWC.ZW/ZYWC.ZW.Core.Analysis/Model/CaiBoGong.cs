@@ -23,6 +23,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
         }
 
         public string ShuangZhuXing { get; set; }
+        public string ShuangZhuXingRisk { get; set; }
 
         public List<Xing> MingXing { get; set; }
 

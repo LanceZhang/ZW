@@ -105,6 +105,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
         public Position Position { get; private set; }
 
         public string Content { get; set; }
+        public string Risk { get; set; }
 
         public string HuaContent { get; set; }
 

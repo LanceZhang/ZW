@@ -33,5 +33,8 @@ namespace ZYWC.ZW.Core.Analysis.Data
 
         [XmlElement("mingong")]
         public string mingong { get; set; }
+
+        [XmlElement("caibofengxian")]
+        public string caibofengxian { get; set; }
     }
 }
