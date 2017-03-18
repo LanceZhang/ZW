@@ -26,6 +26,7 @@ namespace ZYWC.ZW.Core.Analysis
         ZiNvAnalyzer zinv = null;
         GeJuAnalyzer geju = null;
         PaiPanFormat format = null;
+        LiuNianAnalyzer liunian = null;
 
         public Engine(string path)
         {
@@ -45,6 +46,7 @@ namespace ZYWC.ZW.Core.Analysis
             geju = new GeJuAnalyzer(dal);
             fude = new FudeAnalyzer(dal);
             format = new PaiPanFormat(dal);
+            liunian = new LiuNianAnalyzer(dal);
         }
 
 
@@ -158,6 +160,11 @@ namespace ZYWC.ZW.Core.Analysis
             get { return format; }
         }
 
+        public LiuNianAnalyzer LiuNianAnalyzer
+        {
+            get { return liunian; }
+        }
+
         /// <summary>     
         /// 从某一XML文件反序列化到某一类型   
         /// </summary>    
@@ -181,6 +188,12 @@ namespace ZYWC.ZW.Core.Analysis
             {
                 return default(T);
             }
+        }
+
+        public s60_starData GetStarGuardStone(string name)
+        {
+            if (dal.s60 == null) return null;
+            return dal.s60.FirstOrDefault(s => s.name == name);
         }
     }
 }
