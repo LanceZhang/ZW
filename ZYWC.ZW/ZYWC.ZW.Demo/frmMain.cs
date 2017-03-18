@@ -154,13 +154,28 @@ namespace ZYWC.ZW.Demo
 
             #endregion
 
+            var dt = new DateTime(1985, 1, 1, 2, 0, 0);
+            var dt2 = new DateTime(2049, 12, 30, 0, 0, 0);
 
             DateTime dateTime = this.dpBirthDate.Value;
-            ChineseCalendar cc = new ChineseCalendar(dateTime);
+            ChineseCalendar cc = new ChineseCalendar(dt);
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
-            eg = new Engine(@".\Data\");
-
+            eg = new Engine(@"C:\disk\zywc\ZYWC.Data\ziwei_data\");
+            pan.Liu(new ChineseCalendar(DateTime.Now));
+            //var rets = eg.LiuNianAnalyzer.GetLiuNianInfo(pan, GongIndex.财帛宫);
+            //var sss= eg.GetStarGuardStone("紫微");
+            //dt = new DateTime(1996, 1, 1, 0, 0, 0);
+            for (; dt < dt2; dt = dt.AddYears(1))
+            {
+                cc = new ChineseCalendar(dt);
+                pan.Liu(cc);
+                var score = eg.LiuNianAnalyzer.GetLiuNianCaiboScore(pan);
+                this.txtBrithday.Text += string.Format("{0}:{1}\n", dt.Year, score);
+            }
+                
+            
+            return;
             frmPan f1 = new frmPan();
             f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);
             f1.Show();

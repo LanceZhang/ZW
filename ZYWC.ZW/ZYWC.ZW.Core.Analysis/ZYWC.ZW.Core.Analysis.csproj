@@ -75,6 +75,7 @@
     <Compile Include="Data\ziwei_data_s13.cs" />
     <Compile Include="Data\ziwei_data_s12.cs" />
     <Compile Include="Data\ziwei_data_s11.cs" />
+    <Compile Include="Data\ziwei_data_s60.cs" />
     <Compile Include="Data\ziwei_data_s7.cs" />
     <Compile Include="Data\ziwei_data_s6.cs" />
     <Compile Include="Data\ziwei_data_s5.cs" />

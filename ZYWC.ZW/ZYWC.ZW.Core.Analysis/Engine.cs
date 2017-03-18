@@ -189,5 +189,11 @@ namespace ZYWC.ZW.Core.Analysis
                 return default(T);
             }
         }
+
+        public s60_starData GetStarGuardStone(string name)
+        {
+            if (dal.s60 == null) return null;
+            return dal.s60.FirstOrDefault(s => s.name == name);
+        }
     }
 }
