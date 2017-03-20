@@ -17,9 +17,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             this.dal = dal;
         }
 
-        public IList<LiuNianInfo> GetLiuNianInfo(PaiPan pan, GongIndex index)
+        public IList<LiuNianInfo> GetLiuNianInfo(string[] stars, GongIndex index)
         {
             var list = new List<LiuNianInfo>();
+            if (stars == null || stars.Length == 0)
+                return list;
+
             int id = 0;
             switch (index)
             {
@@ -33,22 +36,18 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 case GongIndex.仆役宫: id = 7; break;
                 case GongIndex.父母宫: id = 8; break;
                 case GongIndex.子女宫: id = 9; break;
-                //case GongIndex.夫妻宫: id = 0; break;
-                //case GongIndex.夫妻宫: id = 0; break;
                 default: return list;
             }
 
             var container = dal.s43.Find(d => d.id == id);
-            var gong = pan.Gongs.First(g => g.LiuName == index.ToString());
-            var stars = gong.Stars.Where(s => s.Type == Star.StarType.主星).ToList();
             string xingid = null;
-            if (stars.Count == 1)
+            if (stars.Length == 1)
             {
-                xingid = dal.Dic_ZhuXing[stars[0].Name].id.ToString();
-            } 
-            else if (stars.Count == 2)
+                xingid = dal.Dic_ZhuXing[stars[0]].id.ToString();
+            }
+            else if (stars.Length == 2)
             {
-                xingid = string.Format("{0}#{1}", dal.Dic_ZhuXing[stars[0].Name].id, dal.Dic_ZhuXing[stars[1].Name].id);
+                xingid = string.Format("{0}#{1}", dal.Dic_ZhuXing[stars[0]].id, dal.Dic_ZhuXing[stars[1]].id);
             }
             else
             {
