@@ -184,6 +184,22 @@ namespace ZYWC.ZW.Demo
         private void Form1_Load(object sender, EventArgs e)
         {
             this.lblVersion.Text = "version "+System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            this.lblVersion.Text = ConvertIntToDateTime(1490084134).ToString();
+        }
+
+
+        /// <summary>
+        /// 将Unix时间戳转换为DateTime类型时间
+        /// </summary>
+        /// <param name="d">double 型数字</param>
+        /// <returns>DateTime</returns>
+        public static System.DateTime ConvertIntToDateTime(double d)
+        {
+            System.DateTime time = System.DateTime.MinValue;
+            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+            time = startTime.AddSeconds(d);
+            return time;
         }
 
     }
