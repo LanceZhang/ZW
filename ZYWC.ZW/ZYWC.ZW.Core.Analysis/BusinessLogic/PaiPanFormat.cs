@@ -104,8 +104,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
             var sb = new StringBuilder();
 
-            sb.Append("<td colspan=2 rowspan=2>");
-            sb.Append("<table width=270 border=0 height=200 valign = top><tr>");
+            sb.Append("<td colspan=2 rowspan=2 style='padding:0;margin:0;border: 0;'>");
+            sb.Append("<table width=270 border=0 height=200 valign = top style='padding:0;margin:0;border: 0;'><tr>");
             // 天盘
             sb.Append(@"<td height=100 width=22>
                     <table width=45 border=0 cellpadding=0 cellspacing=0 valign = top>
@@ -332,7 +332,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
         private static string FormatHead(PaiPan pan)
         {
-            return (@"<html>
+            return (@"<html style='padding:0;margin:0;border: 0;'>
                     <head>
 
                     <title>斗數星盤</title>
@@ -346,34 +346,21 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                      #titlefont {font-family:'細明體'; font-size: 18pt; font-weight: bold}
                     </STYLE>
 
-
-                    <SCRIPT LANGUAGE='JavaScript1.2'>
-                    function printpage() {
-                    window.print();
-                    }
-
-                    </SCRIPT>
                     </head>
+                    <body marginheight='0' marginwidth='0' bgcolor=white style='padding:0;margin:0;border: 0;'>
+                    <div id=contentstart style='padding:0;margin:0;border: 0;'>
 
-                    <div id=contentstart>
-
-                    <body marginheight='0' marginwidth='0' bgcolor=white>
-
-
-                    <table bgcolor=white BORDER=0 WIDTH='720' cols='4'>
-                      <tr><td nowarp colspan=1>");
+                    <table bgcolor=white BORDER=0 cols='4' style='padding:0;margin:0;border: 0;'>
+                    <tr style='padding:0;margin:0;border: 0;'>
+                    <td nowarp colspan=1 style='padding:0;margin:0;border: 0;'>");
         }
 
         private static string FormatFoot(PaiPan pan)
         {
             return (@"</td>
                 </tr>
-                </Table>
+                </table>
                 </div>
-<br/>
-<br/>
-<br/>
-<a href='javascript:printpage();'>列印</a><br>
                 </body>
                 </html>");
         }

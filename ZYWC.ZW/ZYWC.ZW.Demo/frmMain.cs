@@ -162,6 +162,7 @@ namespace ZYWC.ZW.Demo
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
             eg = new Engine(@"C:\disk\zywc\ZYWC.Data\ziwei_data\");
+            /*
             pan.Liu(new ChineseCalendar(DateTime.Now));
             //var rets = eg.LiuNianAnalyzer.GetLiuNianInfo(pan, GongIndex.财帛宫);
             //var sss= eg.GetStarGuardStone("紫微");
@@ -176,6 +177,7 @@ namespace ZYWC.ZW.Demo
                 
             
             return;
+            */
             frmPan f1 = new frmPan();
             f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);
             f1.Show();
