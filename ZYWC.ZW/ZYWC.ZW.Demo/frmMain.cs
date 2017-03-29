@@ -154,7 +154,7 @@ namespace ZYWC.ZW.Demo
 
             #endregion
 
-            var dt = new DateTime(1990, 3, 17, 10, 0, 0);
+            var dt = new DateTime(2001, 4, 27, 10, 0, 0);
             var dt2 = new DateTime(2049, 12, 30, 0, 0, 0);
 
             DateTime dateTime = this.dpBirthDate.Value;

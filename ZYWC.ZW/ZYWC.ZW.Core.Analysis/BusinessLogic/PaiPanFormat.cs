@@ -233,7 +233,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                <tr><td align=center><font id=m11>{0}</font></td></tr>
                <tr><td align=center><font id=m11>{1}</font></td></tr>
                <tr><td align=center><font id=m11>年</font></td></tr>
-               <tr><td align=center><font id=m11></font></td></tr>
+               <tr><td align=center><font id=m11>{6}</font></td></tr>
                <tr><td align=center><font id=m11>{2}</font></td></tr>
                <tr><td align=center><font id=m11>月</font></td></tr>
                <tr><td align=center><font id=m11>{3}</font></td></tr>
@@ -242,10 +242,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                <tr><td align=center><font id=m11>时</font></td></tr>
                </table></td>", pan.birthday.GanZhiYearString.Substring(0, 1),
                           pan.birthday.GanZhiYearString.Substring(1, 1),
-                          pan.birthday.Date.Month,
-                          pan.birthday.Date.Day,
+                          pan.birthday.ChineseMonth,
+                          pan.birthday.ChineseDay,
                           pan.birthday.GanZhiHourString.Substring(1, 1),
-                          pan.birthday.Date.Year);
+                          pan.birthday.Date.Year,
+                          pan.birthday.IsChineseLeapMonth ? "闰" : "");
 
             // 性别
             sb.AppendFormat(@"<td ><table width='22' border='0' cellpadding='0' cellspacing='0'>
