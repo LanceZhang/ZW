@@ -288,7 +288,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("      </table>");
             sb.Append("    </td>");
             // 上中
-            sb.Append("    <td height=49 rowspan=2 width=35 valign=top>");
+            sb.Append("    <td height=49 rowspan=2 width=44 valign=top>");
             sb.Append("      <table width=100% border=0 cellpadding=0 cellspacing=0>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine1() + "</b></font></td></tr>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine2() + "</b></font></td></tr>");
