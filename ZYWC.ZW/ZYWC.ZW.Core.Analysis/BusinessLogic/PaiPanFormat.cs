@@ -404,6 +404,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 sb.AppendFormat("{0}", s.Name.ToCharArray()[0]);
             }
 
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
         public string GetZhuXingLine2()
@@ -413,6 +418,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in zhuXing)
             {
                 sb.AppendFormat("{0}", s.Name.ToCharArray()[1]);
+            }
+
+            if (sb.Length == 0){
+                sb.Append("&nbsp;");
             }
 
             return sb.ToString();
@@ -427,6 +436,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                     sb.Append("&nbsp;&nbsp;");
                 else
                     sb.Append(s.LiangDuString.Substring(1, 1));
+            }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
 
             return sb.ToString();
@@ -448,6 +462,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 }
             }
 
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
 
@@ -462,6 +481,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append("▲");
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
 
@@ -472,6 +497,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(star.Name.Substring(0, 1));
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetFuXingLine3()
@@ -480,6 +510,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var star in fuXing)
             {
                 sb.Append(star.Name.Substring(1, 1));
+            }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }
@@ -493,6 +528,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append(s.LiangDuString.Substring(1, 1));
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
         public string GetFuXingLine5()
@@ -505,6 +546,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append(star.Hua);
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
 
@@ -515,6 +561,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(s.Name.Substring(0, 1));
             }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetS1XingLine2()
@@ -523,6 +573,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in s1Xing)
             {
                 sb.Append(s.Name.Substring(1, 1));
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }
@@ -535,6 +589,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(s.Name.Substring(0, 1));
             }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetS2XingLine2()
@@ -545,6 +603,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in s2Xing)
             {
                 sb.Append(s.Name.Substring(1, 1));
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }
