@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLogic\DaShisWords.cs" />
+    <Compile Include="BusinessLogic\GongScoreAnalyzer.cs" />
     <Compile Include="BusinessLogic\LiuNianAnalyzer.cs" />
     <Compile Include="BusinessLogic\MingAnalyzer.cs" />
     <Compile Include="BusinessLogic\CaiBoAnalyzer.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="BusinessLogic\XiongDiAnalyzer.cs" />
     <Compile Include="BusinessLogic\ZiNvAnalyzer.cs" />
     <Compile Include="Data\DAL.cs" />
+    <Compile Include="Data\ziwei_data_s18.cs" />
     <Compile Include="Data\ziwei_data_s45.cs" />
     <Compile Include="Data\ziwei_data_s44.cs" />
     <Compile Include="Data\ziwei_data_s43.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Data\ziwei_data_s12.cs" />
     <Compile Include="Data\ziwei_data_s11.cs" />
     <Compile Include="Data\ziwei_data_s60.cs" />
+    <Compile Include="Data\ziwei_data_s61.cs" />
     <Compile Include="Data\ziwei_data_s7.cs" />
     <Compile Include="Data\ziwei_data_s6.cs" />
     <Compile Include="Data\ziwei_data_s5.cs" />
