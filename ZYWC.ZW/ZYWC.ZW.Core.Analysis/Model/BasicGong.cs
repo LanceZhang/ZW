@@ -20,6 +20,7 @@ namespace ZYWC.ZW.Core.Analysis.Model
         public List<Gong> HuiGongs { get; set; }
 
         public List<Xing> ZhuXing { get; set; }
+        public bool isJieXing { get; set; }
 
         public List<Xing> JiXing { get; set; }
 

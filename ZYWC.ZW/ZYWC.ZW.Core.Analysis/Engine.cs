@@ -27,6 +27,7 @@ namespace ZYWC.ZW.Core.Analysis
         GeJuAnalyzer geju = null;
         PaiPanFormat format = null;
         LiuNianAnalyzer liunian = null;
+        GongScoreAnalyzer gongScore = null;
 
         public Engine(string path)
         {
@@ -47,6 +48,7 @@ namespace ZYWC.ZW.Core.Analysis
             fude = new FudeAnalyzer(dal);
             format = new PaiPanFormat(dal);
             liunian = new LiuNianAnalyzer(dal);
+            gongScore = new GongScoreAnalyzer(dal);
         }
 
 
@@ -163,6 +165,10 @@ namespace ZYWC.ZW.Core.Analysis
         public LiuNianAnalyzer LiuNianAnalyzer
         {
             get { return liunian; }
+        }
+
+        public GongScoreAnalyzer GongScoreAnalyzer {
+            get { return gongScore; }
         }
 
         /// <summary>     

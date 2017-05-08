@@ -158,10 +158,17 @@ namespace ZYWC.ZW.Demo
             var dt2 = new DateTime(2049, 12, 30, 0, 0, 0);
 
             DateTime dateTime = this.dpBirthDate.Value;
-            ChineseCalendar cc = new ChineseCalendar(dt);
+            ChineseCalendar cc = new ChineseCalendar(new DateTime(1985, 1,1, 4, 0, 0));
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
             eg = new Engine(@"C:\disk\zywc\ZYWC.Data\ziwei_data\");
+            var score = eg.GongScoreAnalyzer.Get12GongScore(pan);
+            var sb = new StringBuilder();
+            foreach (var  kv in score){
+                sb.AppendFormat("{0}:{1}\n", kv.Key, kv.Value);
+            }
+            this.txtBrithday.Text = sb.ToString();
+            return;
             /*
             pan.Liu(new ChineseCalendar(DateTime.Now));
             //var rets = eg.LiuNianAnalyzer.GetLiuNianInfo(pan, GongIndex.财帛宫);
