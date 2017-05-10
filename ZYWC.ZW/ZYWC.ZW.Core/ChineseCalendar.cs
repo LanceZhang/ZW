@@ -474,6 +474,18 @@ namespace ZYWC.ZW.Core
         //传回农历 y年m月的总天数
         private int GetChineseMonthDays(int year, int month)
         {   //0X0FFFF[0000 {1111 1111 1111} 1111]
+            if (year == 1996 ){
+                if(month == 5)
+                    return 30;
+                if (month == 6)
+                    return 29;
+                if (month == 7)
+                    return 30;
+                if (month == 8)
+                    return 29;
+            }
+            
+
             if (BitTest32((LunarDateArray[year - MinYear] & 0x0000FFFF), (16 - month)))
             {
                 return 30;

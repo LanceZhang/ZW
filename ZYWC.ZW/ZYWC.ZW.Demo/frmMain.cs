@@ -154,8 +154,16 @@ namespace ZYWC.ZW.Demo
 
             #endregion
 
-            var dt = new DateTime(2001, 4, 27, 10, 0, 0);
-            var dt2 = new DateTime(2049, 12, 30, 0, 0, 0);
+            var dt = new DateTime(1950, 1, 1, 1, 0, 0);
+            var dt2 = new DateTime(1981, 1, 1, 0, 0, 0);
+            var sss = new StringBuilder();
+            for (; dt < dt2; dt = dt.AddDays(1)){
+                var c = new ChineseCalendar(dt);
+                sss.AppendFormat("{0}\t{1}", dt.ToString("yyyy-MM-dd"), c.ChineseDateString);
+                sss.AppendLine();
+            }
+            this.txtBrithday.Text = sss.ToString();
+            return;
 
             DateTime dateTime = this.dpBirthDate.Value;
             ChineseCalendar cc = new ChineseCalendar(new DateTime(1985, 1,1, 4, 0, 0));
