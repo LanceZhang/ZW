@@ -154,6 +154,7 @@ namespace ZYWC.ZW.Demo
 
             #endregion
 
+            eg = new Engine(@"C:\disk\zywc\ZYWC.Data\ziwei_data\");
             var dt = new DateTime(1950, 1, 1, 1, 0, 0);
             var dt2 = new DateTime(1981, 1, 1, 0, 0, 0);
             var sss = new StringBuilder();

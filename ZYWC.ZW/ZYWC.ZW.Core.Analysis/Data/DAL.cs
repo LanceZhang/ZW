@@ -49,6 +49,9 @@ namespace ZYWC.ZW.Core.Analysis.Data
         public ziwei_data_s60 s60 { get; private set; }
         public ziwei_data_s61 s61 { get; private set; }
         public ziwei_data_s63 s63 { get; private set; }
+        public ziwei_data_s64 s64 { get; private set; }
+        public ziwei_data_s65 s65 { get; private set; }
+        public ziwei_data_s66 s66 { get; private set; }
         public Dictionary<string, s1_xingdi> Dic_ZhuXing { get; private set; }
         public Dictionary<string, s1_xingdi> Dic_JiXing { get; private set; }
         public Dictionary<string, s1_xingdi> Dic_XiongXing { get; private set; }
@@ -139,6 +142,12 @@ namespace ZYWC.ZW.Core.Analysis.Data
             s61 = DeserializeFromXml<ziwei_data_s61>(path + "ziwei_data_s61.xml");
 
             s63 = DeserializeFromXml<ziwei_data_s63>(path + "ziwei_data_s63.xml");
+
+            s64 = DeserializeFromXml<ziwei_data_s64>(path + "ziwei_data_s64.xml");
+
+            s65 = DeserializeFromXml<ziwei_data_s65>(path + "ziwei_data_s65.xml");
+
+            s66 = DeserializeFromXml<ziwei_data_s66>(path + "ziwei_data_s66.xml");
 
             Dic_ZhuXing = s1.Where(s => s.character == "正翟").ToDictionary(x => x.name);
 
