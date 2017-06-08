@@ -60,8 +60,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
             //主星
             var zhuxing = model.SelfGong.Stars.Where(s => dal.Dic_ZhuXing.ContainsKey(s.Name)).ToList();
-            if (zhuxing.Count == 0)
-            {
+            if (zhuxing.Count == 0){
+                model.isJieXing = true;
                 zhuxing = model.DuiZhaoGong.Stars.Where(s => dal.Dic_ZhuXing.ContainsKey(s.Name)).ToList(); //借星
             }
 

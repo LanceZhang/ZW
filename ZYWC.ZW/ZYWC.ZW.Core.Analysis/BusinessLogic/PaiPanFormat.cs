@@ -104,8 +104,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
             var sb = new StringBuilder();
 
-            sb.Append("<td colspan=2 rowspan=2>");
-            sb.Append("<table width=270 border=0 height=200 valign = top><tr>");
+            sb.Append("<td colspan=2 rowspan=2 style='padding:0;margin:0;border: 0;'>");
+            sb.Append("<table width=270 border=0 height=200 valign = top style='padding:0;margin:0;border: 0;'><tr>");
             // 天盘
             sb.Append(@"<td height=100 width=22>
                     <table width=45 border=0 cellpadding=0 cellspacing=0 valign = top>
@@ -233,7 +233,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                <tr><td align=center><font id=m11>{0}</font></td></tr>
                <tr><td align=center><font id=m11>{1}</font></td></tr>
                <tr><td align=center><font id=m11>年</font></td></tr>
-               <tr><td align=center><font id=m11></font></td></tr>
+               <tr><td align=center><font id=m11>{6}</font></td></tr>
                <tr><td align=center><font id=m11>{2}</font></td></tr>
                <tr><td align=center><font id=m11>月</font></td></tr>
                <tr><td align=center><font id=m11>{3}</font></td></tr>
@@ -242,10 +242,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                <tr><td align=center><font id=m11>时</font></td></tr>
                </table></td>", pan.birthday.GanZhiYearString.Substring(0, 1),
                           pan.birthday.GanZhiYearString.Substring(1, 1),
-                          pan.birthday.Date.Month,
-                          pan.birthday.Date.Day,
+                          pan.birthday.ChineseMonth,
+                          pan.birthday.ChineseDay,
                           pan.birthday.GanZhiHourString.Substring(1, 1),
-                          pan.birthday.Date.Year);
+                          pan.birthday.Date.Year,
+                          pan.birthday.IsChineseLeapMonth ? "闰" : "");
 
             // 性别
             sb.AppendFormat(@"<td ><table width='22' border='0' cellpadding='0' cellspacing='0'>
@@ -288,7 +289,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("      </table>");
             sb.Append("    </td>");
             // 上中
-            sb.Append("    <td height=49 rowspan=2 width=35 valign=top>");
+            sb.Append("    <td height=49 rowspan=2 width=44 valign=top>");
             sb.Append("      <table width=100% border=0 cellpadding=0 cellspacing=0>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine1() + "</b></font></td></tr>");
             sb.Append("        <tr><td align=center><font ID=mb11><b>" + data.GetZhuXingLine2() + "</b></font></td></tr>");
@@ -332,7 +333,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
 
         private static string FormatHead(PaiPan pan)
         {
-            return (@"<html>
+            return (@"<html style='padding:0;margin:0;border: 0;'>
                     <head>
 
                     <title>斗數星盤</title>
@@ -346,34 +347,21 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                      #titlefont {font-family:'細明體'; font-size: 18pt; font-weight: bold}
                     </STYLE>
 
-
-                    <SCRIPT LANGUAGE='JavaScript1.2'>
-                    function printpage() {
-                    window.print();
-                    }
-
-                    </SCRIPT>
                     </head>
+                    <body marginheight='0' marginwidth='0' bgcolor=white style='padding:0;margin:0;border: 0;'>
+                    <div id=contentstart style='padding:0;margin:0;border: 0;'>
 
-                    <div id=contentstart>
-
-                    <body marginheight='0' marginwidth='0' bgcolor=white>
-
-
-                    <table bgcolor=white BORDER=0 WIDTH='720' cols='4'>
-                      <tr><td nowarp colspan=1>");
+                    <table bgcolor=white BORDER=0 cols='4' style='padding:0;margin:0;border: 0;'>
+                    <tr style='padding:0;margin:0;border: 0;'>
+                    <td nowarp colspan=1 style='padding:0;margin:0;border: 0;'>");
         }
 
         private static string FormatFoot(PaiPan pan)
         {
             return (@"</td>
                 </tr>
-                </Table>
+                </table>
                 </div>
-<br/>
-<br/>
-<br/>
-<a href='javascript:printpage();'>列印</a><br>
                 </body>
                 </html>");
         }
@@ -416,6 +404,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 sb.AppendFormat("{0}", s.Name.ToCharArray()[0]);
             }
 
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
         public string GetZhuXingLine2()
@@ -425,6 +418,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in zhuXing)
             {
                 sb.AppendFormat("{0}", s.Name.ToCharArray()[1]);
+            }
+
+            if (sb.Length == 0){
+                sb.Append("&nbsp;");
             }
 
             return sb.ToString();
@@ -439,6 +436,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                     sb.Append("&nbsp;&nbsp;");
                 else
                     sb.Append(s.LiangDuString.Substring(1, 1));
+            }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
 
             return sb.ToString();
@@ -460,6 +462,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 }
             }
 
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
 
@@ -474,6 +481,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append("▲");
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
 
@@ -484,6 +497,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(star.Name.Substring(0, 1));
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetFuXingLine3()
@@ -492,6 +510,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var star in fuXing)
             {
                 sb.Append(star.Name.Substring(1, 1));
+            }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }
@@ -505,6 +528,12 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append(s.LiangDuString.Substring(1, 1));
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
+
             return sb.ToString();
         }
         public string GetFuXingLine5()
@@ -517,6 +546,11 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                 else
                     sb.Append(star.Hua);
             }
+
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
 
@@ -527,6 +561,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(s.Name.Substring(0, 1));
             }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetS1XingLine2()
@@ -535,6 +573,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in s1Xing)
             {
                 sb.Append(s.Name.Substring(1, 1));
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }
@@ -547,6 +589,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {
                 sb.Append(s.Name.Substring(0, 1));
             }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
+            }
             return sb.ToString();
         }
         public string GetS2XingLine2()
@@ -557,6 +603,10 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             foreach (var s in s2Xing)
             {
                 sb.Append(s.Name.Substring(1, 1));
+            }
+            if (sb.Length == 0)
+            {
+                sb.Append("&nbsp;");
             }
             return sb.ToString();
         }

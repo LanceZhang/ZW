@@ -9,14 +9,17 @@ namespace ZYWC.ZW.Core.Analysis.Model
 {
     public class GeJu
     {
+        private IList<s26_minggonggeju> allGe = new List<s26_minggonggeju>();
         private List<s26_minggonggeju> jiGe = new List<s26_minggonggeju>();
         private List<s26_minggonggeju> xiongGe = new List<s26_minggonggeju>();
 
+        public IList<s26_minggonggeju> AllGe { get { return allGe; }}
         public IList<s26_minggonggeju> JiGe { get { return jiGe; } }
         public IList<s26_minggonggeju> XiongGe { get { return xiongGe; } }
 
         public GeJu(IList<s26_minggonggeju> geList)
         {
+            allGe = geList;
             foreach(var ge in geList)
             {
                 if (ge.gejuJixiong == "吉")
