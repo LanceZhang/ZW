@@ -1252,7 +1252,8 @@ namespace ZYWC.ZW.Core
         {
             get
             {
-                int offset = _date.Year - AnimalStartYear;
+                //int offset = _date.Year - AnimalStartYear;  //阳历计算  
+                int offset = this._cYear - AnimalStartYear;　//农历计算
                 return (offset % 12) + 1;
             }
         }
@@ -1266,8 +1267,8 @@ namespace ZYWC.ZW.Core
         {
             get
             {
-                int offset = _date.Year - AnimalStartYear; //阳历计算
-                //int offset = this._cYear - AnimalStartYear;　农历计算
+                //int offset = _date.Year - AnimalStartYear; //阳历计算
+                int offset = this._cYear - AnimalStartYear;　//农历计算
                 return animalStr[offset % 12].ToString();
             }
         }
