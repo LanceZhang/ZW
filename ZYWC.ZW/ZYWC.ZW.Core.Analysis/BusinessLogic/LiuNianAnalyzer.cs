@@ -70,6 +70,9 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return list;
         }
 
+
+        #region 流年财运
+
         /// <summary>
         /// 获取流年财运指数
         /// </summary>
@@ -362,6 +365,8 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             {"廉贞七杀",40},
             {"廉贞破军",10}
         };
+        #endregion
+
         #endregion
     }
 
