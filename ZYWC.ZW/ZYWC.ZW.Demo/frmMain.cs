@@ -340,23 +340,23 @@ namespace ZYWC.ZW.Demo
 
 
 
-            string serviceAddress = "http://weixin.mp.12ystar.com/shance/SendResult";
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(serviceAddress);
-            request.Method = "POST";
-            request.ContentType = "application/json";
-            string strContent = @"{ order_guid: '2017061415140995991252' }";
-            using (StreamWriter dataStream = new StreamWriter(request.GetRequestStream()))
-            {
-                dataStream.Write(strContent);
-                dataStream.Close();
-            }
+            //string serviceAddress = "http://weixin.mp.12ystar.com/shance/SendResult";
+            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(serviceAddress);
+            //request.Method = "POST";
+            //request.ContentType = "application/json";
+            //string strContent = @"{ order_guid: '2017061415140995991252' }";
+            //using (StreamWriter dataStream = new StreamWriter(request.GetRequestStream()))
+            //{
+            //    dataStream.Write(strContent);
+            //    dataStream.Close();
+            //}
             
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            using (StreamReader dataStream = new StreamReader(response.GetResponseStream()))
-            {
-                var result = dataStream.ReadToEnd();
-                MessageBox.Show(result);
-            }
+            //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            //using (StreamReader dataStream = new StreamReader(response.GetResponseStream()))
+            //{
+            //    var result = dataStream.ReadToEnd();
+            //    MessageBox.Show(result);
+            //}
         }
 
     }
