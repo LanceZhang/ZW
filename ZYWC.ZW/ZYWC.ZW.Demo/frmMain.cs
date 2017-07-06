@@ -180,7 +180,7 @@ namespace ZYWC.ZW.Demo
             ChineseCalendar cc = new ChineseCalendar(dateTime);
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
-            eg = new Engine(@"C:\disk\zywc\ZYWC.Data\ziwei_data\");
+            eg = new Engine(@".\Data\");
 
             frmPan f1 = new frmPan();
             f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);
