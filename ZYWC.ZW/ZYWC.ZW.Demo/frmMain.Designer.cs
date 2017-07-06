@@ -107,7 +107,7 @@
             this.dpLiuDate.ShowUpDown = true;
             this.dpLiuDate.Size = new System.Drawing.Size(133, 21);
             this.dpLiuDate.TabIndex = 3;
-            this.dpLiuDate.Value = new System.DateTime(2016, 7, 22, 9, 3, 0, 0);
+            this.dpLiuDate.Value = new System.DateTime(2017, 7, 22, 9, 3, 0, 0);
             // 
             // label1
             // 
