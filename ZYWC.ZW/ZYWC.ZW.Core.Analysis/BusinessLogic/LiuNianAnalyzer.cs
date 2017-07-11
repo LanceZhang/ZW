@@ -133,7 +133,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return model;
         }
 
-        private float CaiboScore(PaiPan pan, Gong caibo)
+        public float CaiboScore(PaiPan pan, Gong caibo)
         {
             var sfsz = SanFangSiZheng(pan, caibo.Name);
             // 主星
