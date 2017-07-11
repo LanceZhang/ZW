@@ -109,6 +109,8 @@ namespace ZYWC.ZW.Demo
 
         private void button4_Click(object sender, EventArgs e)
         {
+            eg = new Engine(@".\Data\");
+
             #region 穷举命盘
 
             //Dictionary<string, int> dic = new Dictionary<string, int>();
@@ -178,13 +180,18 @@ namespace ZYWC.ZW.Demo
             //    this.txtBrithday.Text += string.Format("{0}:{1}\n", dt.Year, score);
             //}
 
+            var dt = new DateTime(1982, 11, 3, 6, 1, 0);
+            ChineseCalendar dtc = new ChineseCalendar(dt);
+            var ppan = new PaiPan(dtc, true);
+            var caiboMing = ppan.Gongs.First(g => g.Name == GongIndex.财帛宫.ToString());
+            var score = eg.LiuNianAnalyzer.CaiboScore(ppan, caiboMing);
             #endregion
 
             DateTime dateTime = this.dpBirthDate.Value;
             ChineseCalendar cc = new ChineseCalendar(dateTime);
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
-            eg = new Engine(@".\Data\");
+            
 
             frmPan f1 = new frmPan();
             f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);

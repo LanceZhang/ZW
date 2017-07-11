@@ -158,29 +158,49 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             }
 
             // 辅星
-            var fuxing = caibo.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
+            var fuxing0 = caibo.Stars.Where(s => dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name)).ToList();
+            var fuxing = new List<Star>(fuxing0);
+            foreach (var star in zhuxing){
+                if (!string.IsNullOrEmpty(star.Hua)){
+                    fuxing.Add(new Star("化"+star.Hua, Star.StarType.其它));
+                }
+            }
 
             // 会照辅星
             List<Star> huizhaoFuxing = new List<Star>();
             foreach (var s in sfsz.DuiZhaoGong.Stars)
             {
-                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name))
+                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name) )
                 {
                     huizhaoFuxing.Add(s);
                 }
+
+                if (!string.IsNullOrEmpty(s.Hua))
+                {
+                    fuxing.Add(new Star("化" + s.Hua, Star.StarType.其它));
+                }
+                
             }
             foreach (var s in sfsz.HuiGongs[0].Stars)
             {
-                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name))
+                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name) || s.Name == "化禄")
                 {
                     huizhaoFuxing.Add(s);
+                }
+                if (!string.IsNullOrEmpty(s.Hua))
+                {
+                    fuxing.Add(new Star("化" + s.Hua, Star.StarType.其它));
                 }
             }
             foreach (var s in sfsz.HuiGongs[1].Stars)
             {
-                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name))
+                if (dal.Dic_JiXing.ContainsKey(s.Name) || dal.Dic_XiongXing.ContainsKey(s.Name) || s.Name == "化禄")
                 {
                     huizhaoFuxing.Add(s);
+                }
+                if (!string.IsNullOrEmpty(s.Hua))
+                {
+                    fuxing.Add(new Star("化" + s.Hua, Star.StarType.其它));
                 }
             }
 
