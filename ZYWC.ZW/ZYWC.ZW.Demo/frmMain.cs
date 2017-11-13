@@ -26,6 +26,7 @@ namespace ZYWC.ZW.Demo
             InitializeComponent();
             this.dpBirthDate.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dpLiuDate.CustomFormat = "yyyy-MM-dd HH:mm";
+            //btnUtil.Hide();
         }
 
 
@@ -109,6 +110,8 @@ namespace ZYWC.ZW.Demo
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //TestAiqingScore();
+            //return;
             eg = new Engine(@".\Data\");
 
             #region 穷举命盘
@@ -180,21 +183,22 @@ namespace ZYWC.ZW.Demo
             //    this.txtBrithday.Text += string.Format("{0}:{1}\n", dt.Year, score);
             //}
 
-            var dt = new DateTime(1982, 11, 3, 6, 1, 0);
-            ChineseCalendar dtc = new ChineseCalendar(dt);
-            var ppan = new PaiPan(dtc, true);
-            var caiboMing = ppan.Gongs.First(g => g.Name == GongIndex.财帛宫.ToString());
-            var score = eg.LiuNianAnalyzer.CaiboScore(ppan, caiboMing);
+            //var dt = new DateTime(1982, 11, 3, 6, 1, 0);
+            //ChineseCalendar dtc = new ChineseCalendar(dt);
+            //var ppan = new PaiPan(dtc, true);
+            //var caiboMing = ppan.Gongs.First(g => g.Name == GongIndex.财帛宫.ToString());
+           // var score = eg.LiuNianAnalyzer.CaiboScore(ppan, caiboMing);
             #endregion
 
             DateTime dateTime = this.dpBirthDate.Value;
             ChineseCalendar cc = new ChineseCalendar(dateTime);
+            ChineseCalendar2 cc2 = new ChineseCalendar2(dateTime);
             var pan = new PaiPan(cc, this.ckMan.Checked);
 
             
 
             frmPan f1 = new frmPan();
-            f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1);
+            f1.htmlText = eg.PaiPanFormat.FormatHtml(pan, 1, cc2);
             f1.Show();
         }
 
@@ -268,7 +272,7 @@ namespace ZYWC.ZW.Demo
 
 
 
-        private BasicGong SanFangSiZheng(PaiPan pan, string name)
+        public static BasicGong SanFangSiZheng(PaiPan pan, string name)
         {
             //三方四正
             var model = new BasicGong();
@@ -366,5 +370,188 @@ namespace ZYWC.ZW.Demo
             //}
         }
 
+        void TestAiqingScore()
+        {
+            var asa = new AiqingScoreAnalyzer();
+            var dt1 = new DateTime(1980, 1, 1, 0, 0, 0);
+            var dt2 = new DateTime(1980, 2, 1, 0, 0, 0);
+            var sb = new StringBuilder();
+            for (var dt = dt1; dt < dt2; dt = dt.AddHours(2))
+            {
+                var dtc = new ChineseCalendar(dt);
+                var pan = new PaiPan(dtc, true);
+                var score = asa.GetScore(pan);
+                sb.AppendLine(score.ToString());
+            }
+            this.txtBrithday.Text = sb.ToString();
+        }
+
+        private void btnUtil_Click(object sender, EventArgs e)
+        {
+            var dlg = new OpenFileDialog();
+            if(dlg.ShowDialog()==DialogResult.OK)
+            {
+                StreamReader sr = new StreamReader(dlg.FileName, Encoding.Default);
+                string line;
+                var sb = new StringBuilder();
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (!string.IsNullOrEmpty(line)){
+                        //HandleLine(line);
+                    }
+                }
+
+                this.txtBrithday.Text = sb.ToString();
+            }
+        }
+        
+
+    }
+
+    public class AiqingScoreAnalyzer
+    {
+        public int GetScore(PaiPan pan)
+        {
+            var mingGong = pan.Gongs.First(g => g.Name == GongIndex.命宫.ToString());
+            var fuqiGong = pan.Gongs.First(g => g.Name == GongIndex.夫妻宫.ToString());
+            var sfsz = frmMain.SanFangSiZheng(pan, fuqiGong.Name);
+            // 主星
+            List<Star> zhuxing = fuqiGong.Stars.Where(s => s.Type == Star.StarType.主星).ToList();
+            if (zhuxing == null || zhuxing.Count == 0)
+            {
+                zhuxing = new List<Star>();
+                var duiStars = sfsz.DuiZhaoGong.Stars.Where(s => s.Type == Star.StarType.主星);
+                foreach (var star in duiStars)
+                {
+                    var s = new Star(star.Name, star.Type);
+                    if (star.LiangDu != null)
+                    {
+                        int ld = (int)star.LiangDu;
+                        ld -= 2;
+                        if (ld < -3)
+                            ld = -3;
+                        s.LiangDu = ld;
+                    }
+                    zhuxing.Add(s);
+                }
+            }
+
+            float totalScore = 0;
+
+            // 主星得分
+            if (zhuxing.Count == 1)
+            {
+                int liandu = (int)zhuxing[0].LiangDu;
+                totalScore = fuqiZhuXingScore[zhuxing[0].Name] * liangduWeight[liandu];
+            }
+            else if (zhuxing.Count == 2)
+            {
+                float liandu = (liangduWeight[(int)zhuxing[0].LiangDu] + liangduWeight[(int)zhuxing[1].LiangDu]) / 2;
+                int score = 0;
+                bool exist = fuqiZhuXingScore.TryGetValue(zhuxing[0].Name + zhuxing[1].Name, out score);
+                if (!exist)
+                    exist = fuqiZhuXingScore.TryGetValue(zhuxing[1].Name + zhuxing[0].Name, out score);
+                if (!exist)
+                    return 0;
+                totalScore = score * liandu;
+            }
+
+            foreach (var star in mingGong.Stars)
+            {
+                int score = 0;
+                bool exist = mingXingScore.TryGetValue(star.Name, out score);
+                if (exist)
+                    totalScore += score;
+            }
+
+            foreach (var star in fuqiGong.Stars)
+            {
+                int score = 0;
+                bool exist = fuqiXingScore.TryGetValue(star.Name, out score);
+                if (exist)
+                    totalScore += score;
+            }
+
+            return (int)totalScore;
+        }
+
+        private static Dictionary<string, int> fuqiZhuXingScore = new Dictionary<string, int>() 
+        { 
+            {"紫微",70},
+            {"天机",70},
+            {"太阳",80},
+            {"武曲",60},
+            {"天同",80},
+            {"廉贞",60},
+            {"天府",80},
+            {"太阴",90},
+            {"贪狼",70},
+            {"巨门",60},
+            {"天相",90},
+            {"天梁",80},
+            {"七杀",60},
+            {"破军",70},
+            {"紫微破军",70},
+            {"紫微天府",75},
+            {"紫微贪狼",70},
+            {"紫微天相",80},
+            {"紫微七杀",65},
+            {"天机太阴",80},
+            {"天机巨门",65},
+            {"天机天梁",75},
+            {"太阳太阴",85},
+            {"太阳巨门",70},
+            {"太阳天梁",80},
+            {"武曲七杀",60},
+            {"武曲天相",75},
+            {"武曲破军",65},
+            {"武曲天府",70},
+            {"武曲贪狼",65},
+            {"天同巨门",70},
+            {"天同天梁",80},
+            {"天同太阴",85},
+            {"廉贞天府",70},
+            {"廉贞贪狼",65},
+            {"廉贞天相",75},
+            {"廉贞七杀",60},
+            {"廉贞破军",65}
+        };
+
+        private static Dictionary<int, float> liangduWeight = new Dictionary<int, float>()
+        {
+            {3, 1.5f},
+            {2, 1.2f},
+            {1, 1f},
+            {0, 1f},
+            {-1, 0.8f},
+            {-2, 0.7f},
+            {-3, 0.5f}
+        };
+
+        private static Dictionary<string, int> mingXingScore = new Dictionary<string, int>()
+        {
+            {"贪狼",40},
+            {"廉贞",35},
+            {"红鸾",20},
+            {"天喜",20},
+            {"天姚",10},
+            {"咸池",10},
+            {"沐浴",10},
+            {"寡宿",-20},
+            {"孤辰",-20},
+        };
+
+        private static Dictionary<string, int> fuqiXingScore = new Dictionary<string, int>()
+        {
+            {"贪狼",40},
+            {"廉贞",35},
+            {"红鸾",20},
+            {"天喜",20},
+            {"天姚",10},
+            {"咸池",10},
+            {"沐浴",10},
+            {"寡宿",-20},
+            {"孤辰",-20},
+        };
     }
 }

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <jixiongzhishu>
+    <xingyao id="0" name="禄存">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="2" name="文曲">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="3" name="文昌">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="4" name="左辅">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="5" name="右弼">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="6" name="天魁">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="7" name="天钺">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="8" name="擎羊">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="9" name="陀罗">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="10" name="火星">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="11" name="铃星">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="12" name="地空">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="13" name="地劫">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="14" name="化禄">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="15" name="化权">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="16" name="化科">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="17" name="化忌">
+      <item name="jixiong">凶</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="18" name="文曲文昌">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="19" name="左辅右弼">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="20" name="天魁天钺">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="21" name="擎羊陀罗">
+      <item name="jixiong">凶</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="22" name="火星铃星">
+      <item name="jixiong">凶</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="23" name="地空地劫">
+      <item name="jixiong">凶</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="24" name="化权化科">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="25" name="化科化禄">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="26" name="化权化禄">
+      <item name="jixiong">吉</item>
+      <item name="weight">3</item>
+    </xingyao>
+    <xingyao id="1" name="天马">
+      <item name="jixiong">吉</item>
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+  </jixiongzhishu>
+  <xingxiang>
+    <liangdu id="5" name="庙" character="大吉" />
+    <liangdu id="4" name="旺" character="吉" />
+    <liangdu id="3" name="平" character="吉凶參半" />
+    <liangdu id="2" name="地" character="凶" />
+    <liangdu id="1" name="陷" character="大凶" />
+  </xingxiang>
+  <zonghe>
+    <xingyao id="0" name="禄存（先天、流年、流月）">
+      <item name="tonggong_weight">6</item>
+      <item name="huizhao_weight">3</item>
+    </xingyao>
+    <xingyao id="1" name="化科（先天、流年、流月）">
+      <item name="tonggong_weight">2</item>
+      <item name="huizhao_weight">1</item>
+    </xingyao>
+    <xingyao id="2" name="化权（先天、流年、流月）">
+      <item name="tonggong_weight">4</item>
+      <item name="huizhao_weight">2</item>
+    </xingyao>
+    <xingyao id="3" name="化禄（先天、流年、流月）">
+      <item name="tonggong_weight">8</item>
+      <item name="huizhao_weight">4</item>
+    </xingyao>
+    <xingyao id="4" name="化忌（先天、流年、流月）">
+      <item name="tonggong_weight">-6</item>
+      <item name="huizhao_weight">-3</item>
+    </xingyao>
+    <xingyao id="5" name="禄存（流日）">
+      <item name="tonggong_weight">12</item>
+      <item name="huizhao_weight">6</item>
+    </xingyao>
+    <xingyao id="6" name="化科（流日）">
+      <item name="tonggong_weight">4</item>
+      <item name="huizhao_weight">2</item>
+    </xingyao>
+    <xingyao id="7" name="化权（流日）">
+      <item name="tonggong_weight">8</item>
+      <item name="huizhao_weight">4</item>
+    </xingyao>
+    <xingyao id="8" name="化禄（流日）">
+      <item name="tonggong_weight">16</item>
+      <item name="huizhao_weight">8</item>
+    </xingyao>
+    <xingyao id="9" name="化忌（流日）">
+      <item name="tonggong_weight">-12</item>
+      <item name="huizhao_weight">-6</item>
+    </xingyao>
+    <xingyao id="10" name="双禄夹">
+      <item name="weight">6</item>
+    </xingyao>
+    <xingyao id="11" name="双禄夹禄">
+      <item name="weight">8</item>
+    </xingyao>
+    <xingyao id="12" name="双忌夹忌">
+      <item name="weight">-8</item>
+    </xingyao>
+    <xingyao id="13" name="双忌夹">
+      <item name="weight">-6</item>
+    </xingyao>
+  </zonghe>
+  <lucky>
+    <gongzhi id="0" name="子">
+      <item name="wuxing">水</item>
+      <item name="color">黑色</item>
+      <item name="miaowang_num">6</item>
+      <item name="pingdixian_num">1</item>
+      <item name="kaiyun_fruit">黑布林、核桃</item>
+      <item name="caiyun_direction">北</item>
+      <item name="luck_dressup">今天可以穿黑色系列的衣服，或者佩戴带点黑色的配件饰品，可以增加自身正能力，有开运的效果，同时可以增强事业运势，工作效率事半功倍！</item>
+    </gongzhi>
+    <gongzhi id="1" name="丑">
+      <item name="wuxing">土</item>
+      <item name="color">褐色</item>
+      <item name="miaowang_num">5</item>
+      <item name="pingdixian_num">0</item>
+      <item name="kaiyun_fruit">山竹、奇异果</item>
+      <item name="caiyun_direction">东北</item>
+      <item name="luck_dressup">今天可以穿褐色系列的衣服，或者佩戴带点褐色的配件饰品，可以增加自身正能力，有开运的效果，同时可以增强财运。</item>
+    </gongzhi>
+    <gongzhi id="2" name="寅">
+      <item name="wuxing">木</item>
+      <item name="color">深绿色</item>
+      <item name="miaowang_num">8</item>
+      <item name="pingdixian_num">3</item>
+      <item name="kaiyun_fruit">哈密瓜、枇杷、猕猴桃、龙眼</item>
+      <item name="caiyun_direction">东北</item>
+      <item name="luck_dressup">今天可以穿深绿色系列的衣服，或者佩戴带点深绿色的配件饰品，可以增加自身正能力，有开运的效果，同时可以促进人际关系，避免一些不必要的口舌之争。</item>
+    </gongzhi>
+    <gongzhi id="3" name="卯">
+      <item name="wuxing">木</item>
+      <item name="color">翠绿色</item>
+      <item name="miaowang_num">8</item>
+      <item name="pingdixian_num">3</item>
+      <item name="kaiyun_fruit">李子、香瓜、杨梅、黄瓜</item>
+      <item name="caiyun_direction">东</item>
+      <item name="luck_dressup">今天可以穿深绿色系列的衣服，或者佩戴带点深绿色的配件饰品，可以增加自身正能力，有开运的效果，同时可以招来贵人相助，遇到问题也能轻松解决。</item>
+    </gongzhi>
+    <gongzhi id="4" name="辰">
+      <item name="wuxing">土</item>
+      <item name="color">土黄色</item>
+      <item name="miaowang_num">5</item>
+      <item name="pingdixian_num">0</item>
+      <item name="kaiyun_fruit">菠萝、芒果</item>
+      <item name="caiyun_direction">东南</item>
+      <item name="luck_dressup">今天可以穿土黄色系列的衣服，或者佩戴带点土黄色的配件饰品，可以增加自身正能力，有开运的效果，同时可以增强财运，利于财富收入。</item>
+    </gongzhi>
+    <gongzhi id="5" name="巳">
+      <item name="wuxing">火</item>
+      <item name="color">暗红色、玫瑰红</item>
+      <item name="miaowang_num">7</item>
+      <item name="pingdixian_num">2</item>
+      <item name="kaiyun_fruit">草莓、樱桃、荔枝、西红柿、石榴</item>
+      <item name="caiyun_direction">东南</item>
+      <item name="luck_dressup">今天可以穿暗红色、玫瑰红色系列的衣服，或者佩戴带点暗红色、玫瑰红的配件饰品，可以增加自身正能力，有开运的效果，提高自己的运势。</item>
+    </gongzhi>
+    <gongzhi id="6" name="午">
+      <item name="wuxing">火</item>
+      <item name="color">大红色</item>
+      <item name="miaowang_num">7</item>
+      <item name="pingdixian_num">2</item>
+      <item name="kaiyun_fruit">西瓜、火龙果</item>
+      <item name="caiyun_direction">南</item>
+      <item name="luck_dressup">今天可以穿大红色系列的衣服，或者佩戴带点大红色的配件饰品，可以增加自身正能力，有开运的效果，提高自己的运势。</item>
+    </gongzhi>
+    <gongzhi id="7" name="未">
+      <item name="wuxing">土</item>
+      <item name="color">橙色</item>
+      <item name="miaowang_num">5</item>
+      <item name="pingdixian_num">0</item>
+      <item name="kaiyun_fruit">橙子、橘子、香蕉</item>
+      <item name="caiyun_direction">西南</item>
+      <item name="luck_dressup">今天可以穿橙色系列的衣服，或者佩戴带点橙色的配件饰品，可以增加自身正能力，有开运的效果，同时可以招来财气，增强财运。</item>
+    </gongzhi>
+    <gongzhi id="8" name="申">
+      <item name="wuxing">金</item>
+      <item name="color">白色</item>
+      <item name="miaowang_num">9</item>
+      <item name="pingdixian_num">4</item>
+      <item name="kaiyun_fruit">梨、苹果、水蜜桃</item>
+      <item name="caiyun_direction">西南</item>
+      <item name="luck_dressup">今天可以白色系列的衣服，或者佩戴带点白色的配件饰品，可以增加自身正能力，有开运的效果，同时可以增强您的财气，更有避免小人缠身的功用。</item>
+    </gongzhi>
+    <gongzhi id="9" name="酉">
+      <item name="wuxing">金</item>
+      <item name="color">金黄色</item>
+      <item name="miaowang_num">9</item>
+      <item name="pingdixian_num">4</item>
+      <item name="kaiyun_fruit">柠檬、柚子</item>
+      <item name="caiyun_direction">西</item>
+      <item name="luck_dressup">今天可以金黄色系列的衣服，或者佩戴带点金黄色的配件饰品，可以增加自身正能力，有开运的效果，同时可以加强您的桃花和人缘，让你充满魅力。</item>
+    </gongzhi>
+    <gongzhi id="10" name="戌">
+      <item name="wuxing">土</item>
+      <item name="color">灰色</item>
+      <item name="miaowang_num">5</item>
+      <item name="pingdixian_num">0</item>
+      <item name="kaiyun_fruit">榴莲、菠萝蜜</item>
+      <item name="caiyun_direction">西北</item>
+      <item name="luck_dressup">今天可以穿灰色系列的衣服，或者佩戴带点灰色的配件饰品，可以增加自身正能力，有开运的效果，同时可以增强财运，帮您斩掉烂桃花。</item>
+    </gongzhi>
+    <gongzhi id="11" name="亥">
+      <item name="wuxing">水</item>
+      <item name="color">蓝色</item>
+      <item name="miaowang_num">6</item>
+      <item name="pingdixian_num">1</item>
+      <item name="kaiyun_fruit">蓝莓、葡萄</item>
+      <item name="caiyun_direction">西北</item>
+      <item name="luck_dressup">今天可以穿蓝色系列的衣服，或者佩戴带点蓝色的配件饰品，可以增加自身正能力，增强事业运势，让你在商谈、工作沟通讲话时更有说服力，容易得到认可！</item>
+    </gongzhi>
+  </lucky>
+  <jiyi>
+    <gongwei id="0" name="命宫" character="策划、比赛、决策、展现才华" />
+    <gongwei id="11" name="父母宫" character="父母聚餐、上司交流、会见长辈" />
+    <gongwei id="10" name="福德宫" character="许愿、祈福、读书、品德修养、学习" />
+    <gongwei id="9" name="田宅宫" character="买房、理财、置业、装修" />
+    <gongwei id="8" name="事业宫" character="工作、考试、功名、制敌、宣传" />
+    <gongwei id="7" name="交友宫" character="交友、合作、会友、交流" />
+    <gongwei id="6" name="迁移宫" character="搬迁、离乡、出行、旅游、观光" />
+    <gongwei id="5" name="疾厄宫" character="体检、治病、运动" />
+    <gongwei id="4" name="财帛宫" character="投资、交易、购物、收租、讨债、贷款" />
+    <gongwei id="3" name="子女宫" character="求子、子女教育、家庭聚餐、亲子活动" />
+    <gongwei id="2" name="夫妻宫" character="求婚、约会、恋爱、相亲、表白、订婚" />
+    <gongwei id="1" name="兄弟宫" character="商谈、朋友聚会、团队交流合作、开会" />
+  </jiyi>
+</root>

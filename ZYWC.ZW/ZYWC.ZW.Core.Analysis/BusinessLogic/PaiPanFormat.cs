@@ -16,7 +16,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         {
             this.dal = dal;
         }
-        public string FormatHtml(PaiPan pan, int formatType)
+        public string FormatHtml(PaiPan pan, int formatType, ChineseCalendar2 cc2=null)
         {
             var datas = parseGong(pan);
             foreach(var d in datas)
@@ -37,7 +37,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("</tr><tr>");
 
             sb.Append(FormatCell(datas.First(d => d.zhiStr == "辰")));
-            sb.Append(FormatCenter(pan));
+            sb.Append(FormatCenter(pan, cc2));
             sb.Append(FormatCell(datas.First(d => d.zhiStr == "酉")));
 
             sb.Append("</tr><tr>");
@@ -99,7 +99,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return datas;
         }
 
-        private static string FormatCenter(PaiPan pan)
+        private static string FormatCenter(PaiPan pan, ChineseCalendar2 cc2 = null)
         {
             ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
             var sb = new StringBuilder();
@@ -237,14 +237,16 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                <tr><td align=center><font id=m11>{2}</font></td></tr>
                <tr><td align=center><font id=m11>月</font></td></tr>
                <tr><td align=center><font id=m11>{3}</font></td></tr>
-               <tr><td align=center><font id=m11>日</font></td></tr>
+               <tr><td align=center><font id=m11>日</font></td></tr>"
+                + ((cc2!= null && cc2.ChineseWanZi)? @"<tr><td align=center><font id=m11>晚</font></td></tr>" : @"") 
+                +@"
                <tr><td align=center><font id=m11>{4}</font></td></tr>
                <tr><td align=center><font id=m11>时</font></td></tr>
-               </table></td>", pan.birthday.GanZhiYearString.Substring(0, 1),
-                          pan.birthday.GanZhiYearString.Substring(1, 1),
-                          pan.birthday.ChineseMonth,
-                          pan.birthday.ChineseDay,
-                          pan.birthday.GanZhiHourString.Substring(1, 1),
+               </table></td>", cc2 != null ? cc2.GanZhiYearString.Substring(0, 1) : pan.birthday.GanZhiYearString.Substring(0, 1),
+                          cc2!=null? cc2.GanZhiYearString.Substring(1, 1) : pan.birthday.GanZhiYearString.Substring(1, 1),
+                          cc2 != null ? cc2.ChineseMonth : pan.birthday.ChineseMonth,
+                          cc2 != null ? cc2.ChineseDay : pan.birthday.ChineseDay,
+                          cc2 != null ? cc2.GanZhiHourString.Substring(1, 1) : pan.birthday.GanZhiHourString.Substring(1, 1),
                           pan.birthday.Date.Year,
                           pan.birthday.IsChineseLeapMonth ? "闰" : "");
 

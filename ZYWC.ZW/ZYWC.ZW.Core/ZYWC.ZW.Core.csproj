@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChineseCalendar2.cs" />
     <Compile Include="ChineseCalendar.cs" />
     <Compile Include="Gong.cs" />
     <Compile Include="PaiPan.cs" />

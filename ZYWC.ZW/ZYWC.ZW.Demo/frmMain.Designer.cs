@@ -42,6 +42,7 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.btnUtil = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -181,11 +182,23 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // btnUtil
+            // 
+            this.btnUtil.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUtil.Location = new System.Drawing.Point(31, 687);
+            this.btnUtil.Name = "btnUtil";
+            this.btnUtil.Size = new System.Drawing.Size(75, 23);
+            this.btnUtil.TabIndex = 8;
+            this.btnUtil.Text = "工具";
+            this.btnUtil.UseVisualStyleBackColor = true;
+            this.btnUtil.Click += new System.EventHandler(this.btnUtil_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(987, 732);
+            this.Controls.Add(this.btnUtil);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -225,6 +238,7 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnUtil;
     }
 }
 
