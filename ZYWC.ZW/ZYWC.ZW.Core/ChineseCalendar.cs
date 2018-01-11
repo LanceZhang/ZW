@@ -1138,6 +1138,9 @@ namespace ZYWC.ZW.Core
                         break;
                     }
                 }
+
+                
+
                 return tempStr;
             }
         }
@@ -1166,6 +1169,14 @@ namespace ZYWC.ZW.Core
                         tempStr = string.Format("{0}[{1}]", SolarTerm[i - 1], newDate.ToString("yyyy-MM-dd"));
                         break;
                     }
+                }
+
+                if (string.IsNullOrEmpty(tempStr))
+                {
+                    y -= 1;
+                    num = 525948.76 * (y - 1900) + sTermInfo[23];
+                    newDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+                    tempStr = string.Format("{0}[{1}]", SolarTerm[23], newDate.ToString("yyyy-MM-dd"));
                 }
 
                 return tempStr;
@@ -1198,6 +1209,15 @@ namespace ZYWC.ZW.Core
                         break;
                     }
                 }
+
+                if (string.IsNullOrEmpty(tempStr))
+                {
+                    y += 1;
+                    num = 525948.76 * (y - 1900) + sTermInfo[0];
+                    newDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+                    tempStr = string.Format("{0}[{1}]", SolarTerm[0], newDate.ToString("yyyy-MM-dd"));
+                }
+
                 return tempStr;
             }
 

@@ -18,10 +18,29 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
         }
         public string FormatHtml(PaiPan pan, int formatType, ChineseCalendar2 cc2=null)
         {
+            ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
+            var age = tt.ChineseYear - pan.birthday.ChineseYear;
+            var daxian = "  ";
+
             var datas = parseGong(pan);
             foreach(var d in datas)
             {
                 d.formatType = formatType;
+
+                try
+                {
+                    var arr = d.daXian.Split('-');
+                    var f = Convert.ToInt32(arr[0]);
+                    var t = Convert.ToInt32(arr[1]);
+                    if (age >= f && age <= t)
+                    {
+                        daxian = d.ganStr + d.zhiStr;
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
 
             var sb = new StringBuilder();
@@ -37,7 +56,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             sb.Append("</tr><tr>");
 
             sb.Append(FormatCell(datas.First(d => d.zhiStr == "辰")));
-            sb.Append(FormatCenter(pan, cc2));
+            sb.Append(FormatCenter(pan, cc2, daxian));
             sb.Append(FormatCell(datas.First(d => d.zhiStr == "酉")));
 
             sb.Append("</tr><tr>");
@@ -99,7 +118,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             return datas;
         }
 
-        private static string FormatCenter(PaiPan pan, ChineseCalendar2 cc2 = null)
+        private static string FormatCenter(PaiPan pan, ChineseCalendar2 cc2 = null, string daxian="  ")
         {
             ChineseCalendar tt = new ChineseCalendar(DateTime.Now);
             var sb = new StringBuilder();
@@ -140,20 +159,20 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
                </table></td>");
 
             // 现行 大限
-            sb.Append(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
+            sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td><font id=m11>現</font></td></tr>
               <tr><td><font id=m11>行</font></td></tr>
-              <tr><td>&nbsp;</td></tr>
-              <tr><td>&nbsp;</td></tr>
+              <tr><td><span id=m11>{0}</span></td></tr>
+              <tr><td><span id=m11>{1}</span></td></tr>
               <tr><td><font id=m11>大</font></td></tr>
               <tr><td><font id=m11>限</font></td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
               <tr><td>&nbsp;</td></tr>
-              </table></td>");
+              </table></td>", daxian.Substring(0, 1), daxian.Substring(1, 1));
 
             // 年龄
             sb.AppendFormat(@"<td><table width=22 border=0 cellpadding=0 cellspacing=0>
@@ -228,7 +247,7 @@ namespace ZYWC.ZW.Core.Analysis.BusinessLogic
             // 生日
             sb.AppendFormat(@"<td><table width=50 border=0 cellpadding=0 cellspacing=0>
                <tr><td align=center>&nbsp;</td></tr>
-               <tr><td><font id=m11>{5}年</font></td></tr>
+               <tr><td><font id=m11></font></td></tr>
                <tr><td>&nbsp;</td></tr>
                <tr><td align=center><font id=m11>{0}</font></td></tr>
                <tr><td align=center><font id=m11>{1}</font></td></tr>

@@ -318,56 +318,19 @@ namespace ZYWC.ZW.Demo
 
         private void button6_Click(object sender, EventArgs e)
         {
-            //string refer = "https://so.m.sm.cn/s?q=%E5%85%AB%E5%AD%97%E7%9C%8B%E5%A9%9A%E5%A7%BB&from=wy930931";
-
-
-            //var sp = refer.Split('=', '&');
-
-            //MessageBox.Show(System.Web.HttpUtility.UrlDecode(sp[1], System.Text.Encoding.UTF8));
-
-            //HttpClient httpClient = new HttpClient();
-            //HttpContent content = new StringContent(@"{ order_guid: '2017061415140995991252'}");
-            //content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            //httpClient.PostAsync(new Uri("http://weixin.mp.12ystar.com/SendResult"), content).ContinueWith(
-            //(requestTask) =>
-            //{
-            //    // Get HTTP response from completed task. 
-            //    HttpResponseMessage response = requestTask.Result;
-
-            //    // Check that response was successful or throw exception 
-            //    response.EnsureSuccessStatusCode();
-
-            //    // Read response asynchronously as JsonValue and write out top facts for each country 
-            //    response.Content.ReadAsAsync<string>().ContinueWith(
-            //        (readTask) =>
-            //        {
-            //            MessageBox.Show(readTask.Result);
-            //        });
-            //});
-
-
-
-
-
-
-            //string serviceAddress = "http://weixin.mp.12ystar.com/shance/SendResult";
-            //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(serviceAddress);
-            //request.Method = "POST";
-            //request.ContentType = "application/json";
-            //string strContent = @"{ order_guid: '2017061415140995991252' }";
-            //using (StreamWriter dataStream = new StreamWriter(request.GetRequestStream()))
-            //{
-            //    dataStream.Write(strContent);
-            //    dataStream.Close();
-            //}
+            var birth = new DateTime(2018, 1, 1, 15, 0, 0);
+            List<string> rets = new List<string>();
+            var cc = new ChineseCalendar(birth);
+            if (!string.IsNullOrEmpty(cc.ChineseTwentyFourDay))
+            {
+                rets.Add(cc.ChineseTwentyFourDay);
+            }
+            else
+            {
+                rets.Add(cc.ChineseTwentyFourPrevDay);
+                rets.Add(cc.ChineseTwentyFourNextDay);
+            }
             
-            //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            //using (StreamReader dataStream = new StreamReader(response.GetResponseStream()))
-            //{
-            //    var result = dataStream.ReadToEnd();
-            //    MessageBox.Show(result);
-            //}
         }
 
         void TestAiqingScore()
