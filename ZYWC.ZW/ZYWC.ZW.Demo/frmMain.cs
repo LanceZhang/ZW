@@ -318,9 +318,11 @@ namespace ZYWC.ZW.Demo
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var birth = new DateTime(2018, 1, 1, 15, 0, 0);
+            var birth = new DateTime(2018, 1, 13, 15, 0, 0);
+            
             List<string> rets = new List<string>();
             var cc = new ChineseCalendar(birth);
+            var yuezhu = cc.GanZhiMonthStringFromLichun;
             if (!string.IsNullOrEmpty(cc.ChineseTwentyFourDay))
             {
                 rets.Add(cc.ChineseTwentyFourDay);
