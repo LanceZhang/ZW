@@ -318,10 +318,14 @@ namespace ZYWC.ZW.Demo
 
         private void button6_Click(object sender, EventArgs e)
         {
-            var birth = new DateTime(2018, 1, 13, 15, 0, 0);
-            
-            List<string> rets = new List<string>();
+            var birth  = this.dpBirthDate.Value;
             var cc = new ChineseCalendar(birth);
+            this.txtBrithday.Text = cc.LiChunBaZi();
+
+            /*
+            List<string> rets = new List<string>();
+            var cc = new ChineseCalendar2(birth);
+            var nianzhu = cc.GanZhiYearStringFromLichun;
             var yuezhu = cc.GanZhiMonthStringFromLichun;
             if (!string.IsNullOrEmpty(cc.ChineseTwentyFourDay))
             {
@@ -331,8 +335,8 @@ namespace ZYWC.ZW.Demo
             {
                 rets.Add(cc.ChineseTwentyFourPrevDay);
                 rets.Add(cc.ChineseTwentyFourNextDay);
-            }
-            
+            }*/
+
         }
 
         void TestAiqingScore()

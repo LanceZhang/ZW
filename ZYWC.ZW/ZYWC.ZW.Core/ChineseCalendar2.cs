@@ -1301,6 +1301,19 @@ namespace ZYWC.ZW.Core
                 return tempStr;
             }
         }
+
+        public string GanZhiYearStringFromLichun
+        {
+            get
+            {
+                if (_datetime >= new DateTime(2018, 2, 4, 0, 0, 0) && _datetime < new DateTime(2018, 2, 16, 0, 0, 0))
+                {
+                    return "戊戌年";
+                }
+                return GanZhiYearString;
+            }
+        }
+
         #endregion
 
         #region GanZhiMonthString
@@ -1368,6 +1381,258 @@ namespace ZYWC.ZW.Core
 
                 return gan + zhi + "月";
             }
+        }
+
+
+
+        public string GanZhiMonthStringFromLichun
+        {
+            get
+            {
+                if (_datetime >= new DateTime(2018, 2, 4, 0, 0, 0) && _datetime < new DateTime(2018, 2, 16, 0, 0, 0))
+                {
+                    return "甲寅月";
+                }
+
+                //每个月的地支总是固定的,而且总是从寅月开始
+                var year = this._cYear;
+                int zhiIndex;
+                string zhi;
+                var lichunMonth = GetLichunMonth;
+                
+                if (lichunMonth > 10)
+                {
+                    zhiIndex = lichunMonth - 10;
+                }
+                else
+                {
+                    zhiIndex = lichunMonth + 2;
+                }
+                zhi = zhiStr[zhiIndex - 1].ToString();
+
+                //根据当年的干支年的干来计算月干的第一个
+                int ganIndex = 1;
+                string gan;
+                int i = (year - GanZhiStartYear) % 60; //计算干支
+                switch (i % 10)
+                {
+                    #region ...
+                    case 0: //甲
+                        ganIndex = 3;
+                        break;
+                    case 1: //乙
+                        ganIndex = 5;
+                        break;
+                    case 2: //丙
+                        ganIndex = 7;
+                        break;
+                    case 3: //丁
+                        ganIndex = 9;
+                        break;
+                    case 4: //戊
+                        ganIndex = 1;
+                        break;
+                    case 5: //己
+                        ganIndex = 3;
+                        break;
+                    case 6: //庚
+                        ganIndex = 5;
+                        break;
+                    case 7: //辛
+                        ganIndex = 7;
+                        break;
+                    case 8: //壬
+                        ganIndex = 9;
+                        break;
+                    case 9: //癸
+                        ganIndex = 1;
+                        break;
+                        #endregion
+                }
+                gan = ganStr[(ganIndex + lichunMonth - 2) % 10].ToString();
+
+                return gan + zhi + "月";
+            }
+        }
+
+        public int GetLichunMonth
+        {
+            get
+            {
+                var jieqi = ChineseTwentyFourDay;
+                if (string.IsNullOrEmpty(jieqi))
+                    jieqi = ChineseTwentyFourPrevDay;
+
+                if (!string.IsNullOrEmpty(jieqi))
+                {
+                    jieqi = jieqi.Substring(0, 2);
+                    switch (jieqi)
+                    {
+                        case "立春":
+                        case "雨水":
+                        default:
+                            return 1;
+                        case "惊蛰":
+                        case "春分":
+                            return 2;
+                        case "清明":
+                        case "谷雨":
+                            return 3;
+                        case "立夏":
+                        case "小满":
+                            return 4;
+                        case "芒种":
+                        case "夏至":
+                            return 5;
+                        case "小暑":
+                        case "大暑":
+                            return 6;
+                        case "立秋":
+                        case "处暑":
+                            return 7;
+                        case "白露":
+                        case "秋分":
+                            return 8;
+                        case "寒露":
+                        case "霜降":
+                            return 9;
+                        case "立冬":
+                        case "小雪":
+                            return 10;
+                        case "大雪":
+                        case "冬至":
+                            return 11;
+                        case "小寒":
+                        case "大寒":
+                            return 12;
+                    }
+                }
+
+                jieqi = ChineseTwentyFourNextDay;
+                jieqi = jieqi.Substring(0, 2);
+                switch (jieqi)
+                {
+                    case "立春":
+                    default:
+                        return 12;
+                    case "雨水":
+                    case "惊蛰":
+                        return 1;
+                    case "春分":
+                        
+                    case "清明":
+                        return 2;
+                    case "谷雨":
+                        
+                    case "立夏":
+                        return 3;
+                    case "小满":
+                        
+                    case "芒种":
+                        return 4;
+                    case "夏至":
+                        
+                    case "小暑":
+                        return 5;
+                    case "大暑":
+                        
+                    case "立秋":
+                        return 6;
+                    case "处暑":
+                        
+                    case "白露":
+                        return 7;
+                    case "秋分":
+                        
+                    case "寒露":
+                        return 8;
+                    case "霜降":
+                        
+                    case "立冬":
+                        return 9;
+                    case "小雪":
+                        
+                    case "大雪":
+                        return 10;
+                    case "冬至":
+                    case "小寒":
+                        return 11;
+                    case "大寒":
+                        return 12;
+                }
+            }
+        }
+
+        public string LiChunBaZi()
+        {
+            DateTime baseDateAndTime = new DateTime(1900, 1, 6, 2, 5, 0);
+            var year = _date.Year;
+            var num = 525948.76 * (year - 1900) + sTermInfo[2];
+
+            var lichunDate = baseDateAndTime.AddMinutes(num);//按分钟计算
+            if (_date.DayOfYear < lichunDate.DayOfYear)
+                year -= 1;
+
+            int i = (year - GanZhiStartYear) % 60; //计算干支
+            var nz = ganStr[i % 10].ToString() + zhiStr[i % 12].ToString();
+
+            //每个月的地支总是固定的,而且总是从寅月开始
+            int zhiIndex;
+            string zhi;
+            var lichunMonth = GetLichunMonth;
+
+            if (lichunMonth > 10)
+            {
+                zhiIndex = lichunMonth - 10;
+            }
+            else
+            {
+                zhiIndex = lichunMonth + 2;
+            }
+            zhi = zhiStr[zhiIndex - 1].ToString();
+
+            //根据当年的干支年的干来计算月干的第一个
+            int ganIndex = 1;
+            string gan;
+            int j = (year - GanZhiStartYear) % 60; //计算干支
+            switch (j % 10)
+            {
+                #region ...
+                case 0: //甲
+                    ganIndex = 3;
+                    break;
+                case 1: //乙
+                    ganIndex = 5;
+                    break;
+                case 2: //丙
+                    ganIndex = 7;
+                    break;
+                case 3: //丁
+                    ganIndex = 9;
+                    break;
+                case 4: //戊
+                    ganIndex = 1;
+                    break;
+                case 5: //己
+                    ganIndex = 3;
+                    break;
+                case 6: //庚
+                    ganIndex = 5;
+                    break;
+                case 7: //辛
+                    ganIndex = 7;
+                    break;
+                case 8: //壬
+                    ganIndex = 9;
+                    break;
+                case 9: //癸
+                    ganIndex = 1;
+                    break;
+                    #endregion
+            }
+            gan = ganStr[(ganIndex + lichunMonth - 2) % 10].ToString();
+
+            return nz + gan + zhi + GanZhiDayString.Substring(0, 2) + GanZhiHourString.Substring(0, 2);
         }
 
         #endregion
